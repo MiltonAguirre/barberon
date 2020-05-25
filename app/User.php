@@ -15,25 +15,29 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
+     protected $fillable = [
+         'username', 'password'
+     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+     /**
+      * The attributes that should be hidden for arrays.
+      *
+      * @var array
+      */
+     protected $hidden = [
+         'password', 'remember_token',
+     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+     public function dataUser(){
+       return $this->belongsto(DataUser::class);
+     }
+
+     public function location(){
+       return $this->belongsto(Location::class);
+     }
+
+     public function getUsername(){
+       return $this->username;
+     }
+
 }
