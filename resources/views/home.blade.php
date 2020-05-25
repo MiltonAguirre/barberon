@@ -2,7 +2,6 @@
 
 @section('content')
 <div class="container">
-  <!-- Masthead-->
   <header class="masthead">
       <div class="container">
         <div class="masthead-heading">Bienvenido a BarberON</div>
@@ -15,6 +14,6 @@
           </form>
       </div>
   </header>
-  
+
 </div>
 @endsection
