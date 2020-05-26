@@ -10,13 +10,13 @@ class Barber extends Model
       'name', 'phone',
   ];
   public function location(){
-    return $this->belongsto('App\Location', 'location_id');
+    return $this->belongsto(Location::class);
   }
   public function products(){
-    return $this->hasMany('App\Product');
+    return $this->hasMany(Product::class);
   }
   public function user(){
-    return $this->belongsTo('App\User', 'user_id');
+    return $this->belongsto(User::class);
   }
   public function getName(){
     return $this->name;

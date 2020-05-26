@@ -19,7 +19,16 @@ class UserController extends Controller
   public function show(){
     return view('user.show', ['user' => \Auth::user()]);
   }
-
+  public function profile_img()
+  {
+    return view('user.image_profile', ['user' => \Auth::user()]);
+  }
+  public function getImage($filename)
+  {
+    $file = Storage::disk('users')->get($filename);
+    return new Response($file,200);
+  }
+  //UPDATE DATA
   public function update(Request $request, $id){
     $request->validate([
       'first_name' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
@@ -83,18 +92,18 @@ class UserController extends Controller
     $user->dataUser->phone = $request->get('phone');
     //Upload image
     $image_path = $request->file('image_path');
-    if($image_path){
+    if ($image_path) {
+      $image = new \App\Image;
       //delete image for be replace
       if($user->image){
-        \App\Image::find($user->image_id)->delete();
+        $id_img = $user->image->id;
+        \App\Image::find($id_img)->delete();
       }
-      $image = new \App\Image;
-      //upload file
       $image_path_name = time().$image_path->getClientOriginalName();
       Storage::disk('users')->put($image_path_name, File::get($image_path));
       $image->image_path = $image_path_name;
+      $image->user_id = $user->id;
       $image->save();
-      $user->image_id = $image->id;
     }
     $user->dataUser->save();
     $user->location->save();
@@ -102,15 +111,7 @@ class UserController extends Controller
     $request->session()->flash('alert-success', 'User was successful uploaded!');
     return redirect('/user/profile')->with('alert-success','Usuario editado con exito');
   }
-  public function getImage($filename)
-  {
-    $file = Storage::disk('users')->get($filename);
-    return new Response($file,200);
-  }
-  public function profile_img()
-  {
-    return view('user.image_profile');
-  }
+  //SAVE IMAGE
   public function save_img(Request $request)
   {
     $validate = $this->validate($request, [

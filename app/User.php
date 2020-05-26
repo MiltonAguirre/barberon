@@ -38,6 +38,9 @@ class User extends Authenticatable
      public function image(){
        return $this->hasOne(Image::class);
      }
+     public function barber(){
+       return $this->hasOne(Barber::class);
+     }
 
      public function getUsername(){
        return $this->username;

@@ -10,7 +10,7 @@ class Product extends Model
       'name', 'price', 'delay',
   ];
   public function barber(){
-    return $this->belongsTo('App\Barber', 'barber_id');
+    return $this->belongsTo(Barber::class);
   }
   public function getPrice(){
     return $this->price;

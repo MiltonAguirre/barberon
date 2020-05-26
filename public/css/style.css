@@ -9,7 +9,6 @@ header.masthead {
   padding-bottom: 6rem;
   text-align: center;
   color: #fff;
-  background-image: url("../assets/img/header-bg.jpg");
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
@@ -64,4 +63,39 @@ header.masthead .masthead-heading {
   padding-top: 1rem;
   padding-bottom: 1rem;
   color: #fff;
+}
+
+.navbar .container-avatar,
+.pub_image .container-avatar{
+  width: 35px;
+  height: 35px;
+  border-radius: 900px;
+  overflow: hidden;
+  margin-left: 20px;
+}
+.navbar .container-avatar img,
+.pub_image .container-avatar img{
+  height: 100%;
+}
+.pub_image{
+  margin-bottom: 25px;
+}
+.pub_image .container-avatar{
+  float: left;
+  margin-right: 15px;
+}
+.image-container{
+  max-height: 400px;
+  overflow: hidden;
+  border-radius: 500px;
+
+}
+.image-detail{
+  max-height: 700px;
+}
+.image-container img{
+  width: 100%;
+}
+.pub_image .card-body{
+  padding: 0px;
 }
