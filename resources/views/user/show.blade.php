@@ -61,5 +61,14 @@
       </div>
     </div>
   </div>
+  <div class="col-4">
+    <div>
+      @if($user->image)
+      <img src="{{route('user.avatar',['filename'=>$user->image->image_path])}}" alt="">
+      @else
+      <img src="/img/empty_pic.png" alt="">
+      @endif
+    </div>
+  </div>
 </div>
 @endsection

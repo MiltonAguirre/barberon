@@ -35,6 +35,9 @@ class User extends Authenticatable
      public function location(){
        return $this->belongsto(Location::class);
      }
+     public function image(){
+       return $this->hasOne(Image::class);
+     }
 
      public function getUsername(){
        return $this->username;

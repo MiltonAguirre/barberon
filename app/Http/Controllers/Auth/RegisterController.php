@@ -107,7 +107,7 @@ class RegisterController extends Controller
           'zip.required' => 'Debe ingresar el codigo postal destino.',
           'zip.numeric' => 'El codigo postal debe contener solo números.',
           'zip.digits_between' => 'El código postal es incorrecto.',
-          
+
         ]);
     }
 
@@ -138,7 +138,7 @@ class RegisterController extends Controller
 
       $user->username = $data['username'];
       $user->password = bcrypt('asdasd' );
-
+      
       $user->save();
 
       return $user;

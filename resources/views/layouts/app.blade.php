@@ -58,6 +58,9 @@
                                     <a class="dropdown-item" href="{{ route('profile') }}">
                                         Mi Perfil
                                     </a>
+                                    <a class="dropdown-item" href="{{ route('user.image_profile') }}">
+                                        Imagen de perfíl
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('config') }}">
                                         Configuración
                                     </a>

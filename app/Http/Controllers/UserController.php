@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class UserController extends Controller
 {
@@ -18,7 +21,6 @@ class UserController extends Controller
   }
 
   public function update(Request $request, $id){
-
     $request->validate([
       'first_name' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
       'last_name' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
@@ -27,9 +29,11 @@ class UserController extends Controller
       'addressnum' => 'required|numeric|digits_between:1,10',
       'city' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
       'location' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
-      'zip' => 'required|numeric|digits_between:3,10'
+      'zip' => 'required|numeric|digits_between:3,10',
+      'image_path' => 'image'
     ],
     [
+      'image_path.image' => 'La imagen no es un archivo válido.',
       'first_name.required' => 'Debe ingresar el nombre del destinatario.',
       'first_name.min' => 'El nombre no puede ser tan corto.',
       'first_name.max' => 'El nombre no puede ser tan largo.',
@@ -77,13 +81,59 @@ class UserController extends Controller
     $user->dataUser->first_name = $request->get('first_name');
     $user->dataUser->last_name = $request->get('last_name');
     $user->dataUser->phone = $request->get('phone');
-
+    //Upload image
+    $image_path = $request->file('image_path');
+    if($image_path){
+      //delete image for be replace
+      if($user->image){
+        \App\Image::find($user->image_id)->delete();
+      }
+      $image = new \App\Image;
+      //upload file
+      $image_path_name = time().$image_path->getClientOriginalName();
+      Storage::disk('users')->put($image_path_name, File::get($image_path));
+      $image->image_path = $image_path_name;
+      $image->save();
+      $user->image_id = $image->id;
+    }
     $user->dataUser->save();
     $user->location->save();
     $user->save();
-
     $request->session()->flash('alert-success', 'User was successful uploaded!');
-    return redirect('profile')->with('alert-success','Usuario editado con exito');
+    return redirect('/user/profile')->with('alert-success','Usuario editado con exito');
   }
+  public function getImage($filename)
+  {
+    $file = Storage::disk('users')->get($filename);
+    return new Response($file,200);
+  }
+  public function profile_img()
+  {
+    return view('user.image_profile');
+  }
+  public function save_img(Request $request)
+  {
+    $validate = $this->validate($request, [
+      'image_path'=>'required|image'
+    ]);
+    $image_path = $request->file('image_path');
+    $user = \Auth::user();
+    //upload file
+    if ($image_path) {
+      $image = new \App\Image;
+      //delete image for be replace
+      if($user->image){
+        $id_img = $user->image->id;
+        \App\Image::find($id_img)->delete();
+      }
+      $image_path_name = time().$image_path->getClientOriginalName();
+      Storage::disk('users')->put($image_path_name, File::get($image_path));
+      $image->image_path = $image_path_name;
+      $image->user_id = $user->id;
+      $image->save();
+    }
+    $user->save();
 
+    return redirect()->route('home')->with(['message'=> 'La imagen ha sido subida correctamente']);
+  }
 }
