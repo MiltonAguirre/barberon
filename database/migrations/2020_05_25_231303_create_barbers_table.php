@@ -17,6 +17,7 @@ class CreateBarbersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('phone');
+            $table->string('image_path');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('location_id');
             $table->timestamps();

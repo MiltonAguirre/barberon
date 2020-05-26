@@ -134,11 +134,11 @@ class RegisterController extends Controller
     ]);
       $user = new \App\User;
       $user->dataUser()->associate($data_user);
-      $user->location()->associate($location) ;
-
+      $user->location()->associate($location);
+      
       $user->username = $data['username'];
       $user->password = bcrypt('asdasd' );
-      
+
       $user->save();
 
       return $user;

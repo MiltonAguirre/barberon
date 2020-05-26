@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Barber extends Model
 {
   protected $fillable = [
-      'name', 'phone',
+      'name', 'phone', 'image_path',
   ];
   public function location(){
     return $this->belongsto(Location::class);

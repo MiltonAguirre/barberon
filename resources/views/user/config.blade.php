@@ -21,7 +21,7 @@
     <div class="row">
         <div class="col-8">
           <p class="subtitule">Información de usuario</p>
-            <form class="form-horizontal" method="POST" action="/user/edit/{{$user->id}}" enctype="multipart/form-data">
+            <form class="form-horizontal" method="POST" action="/user/edit" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <!-- First y last name -->
                 <div class="form-group row">

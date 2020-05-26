@@ -29,7 +29,7 @@ class UserController extends Controller
     return new Response($file,200);
   }
   //UPDATE DATA
-  public function update(Request $request, $id){
+  public function update(Request $request){
     $request->validate([
       'first_name' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
       'last_name' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
@@ -80,7 +80,7 @@ class UserController extends Controller
 
     ]
     );
-    $user = \App\User::find($id);
+    $user = \Auth::user();
 
     $user->location->addressname = $request->get('addressname');
     $user->location->addressnum = $request->get('addressnum');
@@ -136,5 +136,15 @@ class UserController extends Controller
     $user->save();
 
     return redirect()->route('home')->with(['message'=> 'La imagen ha sido subida correctamente']);
+  }
+  //BARBER METHODS
+  public function createBarber(){
+    return view('barber.create', ['user' => \Auth::user()]);
+  }
+  public function showBarber(){
+    return view('barber.show', ['barber' => '']);
+  }
+  public function editBarber(){
+    return view('barber.edit', ['barber' => '']);
   }
 }

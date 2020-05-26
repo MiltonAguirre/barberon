@@ -1,7 +1,6 @@
 body{
-  background-color: white;
+  background-color: #996901;
   width:100%;
-  background-image: url("/img/wood-background.jpg");
   background-size:cover;
 }
 header.masthead {
@@ -9,10 +8,6 @@ header.masthead {
   padding-bottom: 6rem;
   text-align: center;
   color: #fff;
-  background-repeat: no-repeat;
-  background-attachment: scroll;
-  background-position: center center;
-  background-size: cover;
 }
 header.masthead .masthead-subheading {
   font-size: 1.5rem;
@@ -98,4 +93,13 @@ header.masthead .masthead-heading {
 }
 .pub_image .card-body{
   padding: 0px;
+}
+.subheading {
+  color: #fff;
+  font-size: 1.5rem;
+  font-style: italic;
+  line-height: 1.5rem;
+  margin-bottom: 25px;
+  text-align: center;
+  font-family: "Droid Serif", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
