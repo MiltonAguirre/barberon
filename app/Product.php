@@ -9,8 +9,8 @@ class Product extends Model
   protected $fillable = [
       'name', 'price', 'delay',
   ];
-  public function barber(){
-    return $this->belongsTo(Barber::class);
+  public function user(){
+    return $this->belongsTo(User::class);
   }
   public function getPrice(){
     return $this->price;

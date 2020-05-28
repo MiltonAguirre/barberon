@@ -77,7 +77,15 @@
                       <input id="phone" type="text" title="Teléfono" class="form-control {{ $errors->has('phone') ? ' border-danger' : '' }}" name="phone"
                       value="{{ $user->dataUser->phone }}" placeholder="Telefono" required>
                   </div>
+                  <div class="form-group col-4">
+                    <div class="  {{ $errors->has('rol') ? ' has-error' : '' }}">
+                      <select name="rol" class="form-control selcls  {{ $errors->has('rol') ? ' border-danger' : '' }}" id="rol" disabled>
+                        <option value="" selected disabled hidden>{{$user->role->name}}</option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
+
                 <div class="form-group row">
                   <div class="col-md-4">
                     <label for="image_path" class="form-control">Cambiar foto</label>
@@ -112,7 +120,7 @@
               <div class="card-body">
                 <div class="image-container image-detail">
                   @if($user->image)
-                  <img src="{{route('user.avatar',['filename'=>$user->image->image_path])}}" >
+                  <img src="{{route('user.avatar',['filename'=>$user->image])}}" >
                   @else
                   <img src="/img/empty_pic.png" alt="">
                   @endif

@@ -77,6 +77,15 @@
                             <input id="zip" type="text" class="form-control  {{ $errors->has('zip') ? ' border-danger' : '' }}" name="zip"
                              value="{{ old('zip') }}" placeholder="C.P." required>
                           </div>
+                          <div class="form-group col-4">
+                            <div class="  {{ $errors->has('rol') ? ' has-error' : '' }}">
+                            <select name="rol" class="form-control selcls  {{ $errors->has('rol') ? ' border-danger' : '' }}" id="rol">
+                              <option value="" selected disabled hidden>Rol del usuario</option>
+                              <option value="1">Cliente</option>
+                              <option value="2">Barbero</option>
+                            </select>
+                            </div>
+                          </div>
                         </div>
 <!-- REGISTER BUTTON-->
                         <div class="form-group row">

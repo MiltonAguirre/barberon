@@ -93,58 +93,34 @@ class UserController extends Controller
     //Upload image
     $image_path = $request->file('image_path');
     if ($image_path) {
-      $image = new \App\Image;
       //delete image for be replace
       if($user->image){
-        $id_img = $user->image->id;
-        \App\Image::find($id_img)->delete();
+        Storage::disk('users')->get($user->image)->delete();
       }
       $image_path_name = time().$image_path->getClientOriginalName();
       Storage::disk('users')->put($image_path_name, File::get($image_path));
-      $image->image_path = $image_path_name;
-      $image->user_id = $user->id;
-      $image->save();
+      $user->image = $image_path_name;
     }
     $user->dataUser->save();
     $user->location->save();
     $user->save();
     $request->session()->flash('alert-success', 'User was successful uploaded!');
-    return redirect('/user/profile')->with('alert-success','Usuario editado con exito');
+    return redirect('config')->with('alert-success','Se ha actualizado el usuario correctamente');
   }
-  //SAVE IMAGE
   public function save_img(Request $request)
   {
-    $validate = $this->validate($request, [
-      'image_path'=>'required|image'
-    ]);
+    $request->validate(
+      ['image_path' => 'image'], ['image_path.image' => 'La imagen no es un archivo válido.']
+    );
     $image_path = $request->file('image_path');
     $user = \Auth::user();
-    //upload file
     if ($image_path) {
-      $image = new \App\Image;
-      //delete image for be replace
       if($user->image){
-        $id_img = $user->image->id;
-        \App\Image::find($id_img)->delete();
+        Storage::disk('users')->get($user->image)->delete();
       }
       $image_path_name = time().$image_path->getClientOriginalName();
       Storage::disk('users')->put($image_path_name, File::get($image_path));
-      $image->image_path = $image_path_name;
-      $image->user_id = $user->id;
-      $image->save();
+      $user->image = $image_path_name;
     }
-    $user->save();
-
-    return redirect()->route('home')->with(['message'=> 'La imagen ha sido subida correctamente']);
-  }
-  //BARBER METHODS
-  public function createBarber(){
-    return view('barber.create', ['user' => \Auth::user()]);
-  }
-  public function showBarber(){
-    return view('barber.show', ['barber' => '']);
-  }
-  public function editBarber(){
-    return view('barber.edit', ['barber' => '']);
   }
 }

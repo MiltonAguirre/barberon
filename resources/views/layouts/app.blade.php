@@ -51,14 +51,16 @@
                             @endif
                         @else
                           <li class="nav-item">
-                            <a class="nav-link" href="{{route('barber.create')}}">Crear barbería</a>
+                            <a class="nav-link" href="{{route('image.create')}}">Subir una imagen</a>
+                          </li>
+                          <!--OPTIONS ONLY FOR BARBERS USERS
+                          <li class="nav-item">
+                            <a class="nav-link" href="">Mi barbería</a>
                           </li>
                           <li class="nav-item">
-                            <a class="nav-link" href="{{route('barber.show')}}">Mi barbería</a>
+                            <a class="nav-link" href="">Editar barbería</a>
                           </li>
-                          <li class="nav-item">
-                            <a class="nav-link" href="{{route('barber.edit')}}">Editar barbería</a>
-                          </li>
+                        -->
                             <li>
                               @include('includes.avatar')
                             </li>
@@ -70,7 +72,7 @@
                                     <a class="dropdown-item" href="{{ route('profile') }}">
                                         Mi Perfil
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('user.image_profile') }}">
+                                    <a class="dropdown-item" href="{{ route('user.img_profile') }}">
                                         Subir foto de perfíl
                                     </a>
                                     <a class="dropdown-item" href="{{ route('config') }}">

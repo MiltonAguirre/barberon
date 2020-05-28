@@ -8,7 +8,7 @@
           <div class="col-md-8">
             <div class="card">
               <div class="card-header">
-                Subir nueva foto de perfíl
+                Subir nueva foto para la barbería
               </div>
               <div class="card-body">
                 <form action="{{route('user.save_img')}}" method="post" enctype="multipart/form-data">
@@ -30,23 +30,7 @@
                     </div>
                   </div>
                 </form>
-                </div>
               </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card pub_image pub_image_detail">
-                <div class="card-header bg-info">
-                  <p>Imagen de perfíl</p>
-                </div>
-                <div class="card-body">
-                  <div class="image-container image-detail">
-                    @if($user->image)
-                      <img src="{{route('user.avatar',['filename'=>$user->image])}}" >
-                    @else
-                      <img src="/img/empty_pic.png" alt="">
-                    @endif
-                  </div>
-                </div>
             </div>
         </div>
     </div>

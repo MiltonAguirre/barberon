@@ -18,11 +18,12 @@ class CreateProductsTable extends Migration
           $table->string('name');
           $table->string('price');
           $table->string('delay');
-          $table->unsignedInteger('barber_id');
+          $table->string('image');
+          $table->unsignedInteger('user_id');
           $table->timestamps();
       });
       Schema::table('products', function($table) {
-        $table->foreign('barber_id')->references('id')->on('barbers')->onDelete('cascade');
+        $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
       });
     }
 

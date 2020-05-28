@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
      protected $fillable = [
-         'username', 'password'
+         'username', 'password', 'role',
      ];
 
      /**
@@ -36,10 +36,7 @@ class User extends Authenticatable
        return $this->belongsto(Location::class);
      }
      public function image(){
-       return $this->hasOne(Image::class);
-     }
-     public function barber(){
-       return $this->hasOne(Barber::class);
+       return $this->hasMany(Image::class);
      }
 
      public function getUsername(){

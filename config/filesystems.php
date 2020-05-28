@@ -61,9 +61,9 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
-        'barbers' => [
+        'images' => [
             'driver' => 'local',
-            'root' => storage_path('app/barbers'),
+            'root' => storage_path('app/images'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
