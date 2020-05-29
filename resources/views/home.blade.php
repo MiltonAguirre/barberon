@@ -14,7 +14,6 @@
           </form>
       </div>
   </header>
-  <div class="subheading">¿Eres Barbero? Pues pon tu barbería online <a href="{{route('barber.create')}}">aquí</a> </div>
 
 </div>
 @endsection

@@ -60,7 +60,7 @@ class RegisterController extends Controller
           'city' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
           'location' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
           'zip' => 'required|numeric|digits_between:3,10',
-          'rol' => 'required|numeric|min:1|max:2'
+          'role' => 'required|numeric|min:1|max:2'
         ],[
           'first_name.required' => 'Debe ingresar el nombre del destinatario.',
           'first_name.min' => 'El nombre no puede ser tan corto.',
@@ -107,10 +107,10 @@ class RegisterController extends Controller
           'zip.required' => 'Debe ingresar el codigo postal destino.',
           'zip.numeric' => 'El codigo postal debe contener solo números.',
           'zip.digits_between' => 'El código postal es incorrecto.',
-          'rol.required' => 'Debe seleccionar un rol.',
-          'rol.numeric' => 'El rol debe ser un número.',
-          'rol.min' => 'El rol es incorrecto.'
-          'rol.max' => 'El rol es incorrecto.'
+          'role.required' => 'Debe seleccionar un rol.',
+          'role.numeric' => 'El rol debe ser un número.',
+          'role.min' => 'El rol es incorrecto.',
+          'role.max' => 'El rol es incorrecto.'
         ]);
     }
 
@@ -139,10 +139,9 @@ class RegisterController extends Controller
       $user->dataUser()->associate($data_user);
       $user->location()->associate($location);
 
-      $user->role = $data['rol'];
+      $user->role = $data['role'];
       $user->username = $data['username'];
       $user->password = bcrypt('asdasd' );
-
       $user->save();
 
       return $user;

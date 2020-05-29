@@ -21,7 +21,7 @@
     <div class="row">
         <div class="col-8">
           <p class="subtitule">Información de usuario</p>
-            <form class="form-horizontal" method="POST" action="/user/edit" enctype="multipart/form-data">
+            <form class="form-horizontal" method="POST" action="{{route('user.save')}}" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <!-- First y last name -->
                 <div class="form-group row">
@@ -77,27 +77,26 @@
                       <input id="phone" type="text" title="Teléfono" class="form-control {{ $errors->has('phone') ? ' border-danger' : '' }}" name="phone"
                       value="{{ $user->dataUser->phone }}" placeholder="Telefono" required>
                   </div>
-                  <div class="form-group col-4">
-                    <div class="  {{ $errors->has('rol') ? ' has-error' : '' }}">
-                      <select name="rol" class="form-control selcls  {{ $errors->has('rol') ? ' border-danger' : '' }}" id="rol" disabled>
-                        <option value="" selected disabled hidden>{{$user->role->name}}</option>
-                      </select>
-                    </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-md-4">
+                    <label for="role" class="form-control">Role de usuario: </label>
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-control">{{$user->getRole()}}</label>
                   </div>
                 </div>
-
                 <div class="form-group row">
                   <div class="col-md-4">
                     <label for="image_path" class="form-control">Cambiar foto</label>
-
                   </div>
                   <div class="col-md-4">
-                      <input id="image_path" type="file" class="form-control @error('image_path') is-invalid @enderror" name="image_path">
-                      @error('image_path')
-                          <span class="invalid-feedback" role="alert">
-                              <strong>{{ $message }}</strong>
-                          </span>
-                      @enderror
+                    <input id="image_path" type="file" class="form-control @error('image_path') is-invalid @enderror" name="image_path">
+                    @error('image_path')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                   </div>
                 </div>
 

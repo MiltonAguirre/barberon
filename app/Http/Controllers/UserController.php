@@ -95,7 +95,7 @@ class UserController extends Controller
     if ($image_path) {
       //delete image for be replace
       if($user->image){
-        Storage::disk('users')->get($user->image)->delete();
+        Storage::disk('users')->delete($user->image);
       }
       $image_path_name = time().$image_path->getClientOriginalName();
       Storage::disk('users')->put($image_path_name, File::get($image_path));
@@ -105,7 +105,7 @@ class UserController extends Controller
     $user->location->save();
     $user->save();
     $request->session()->flash('alert-success', 'User was successful uploaded!');
-    return redirect('config')->with('alert-success','Se ha actualizado el usuario correctamente');
+    return redirect(route('user.profile'))->with('message','Se ha actualizado el usuario correctamente');
   }
   public function save_img(Request $request)
   {
@@ -116,11 +116,14 @@ class UserController extends Controller
     $user = \Auth::user();
     if ($image_path) {
       if($user->image){
-        Storage::disk('users')->get($user->image)->delete();
+        Storage::disk('users')->delete($user->image);
       }
       $image_path_name = time().$image_path->getClientOriginalName();
       Storage::disk('users')->put($image_path_name, File::get($image_path));
       $user->image = $image_path_name;
+      $user->save();
     }
+    return redirect(route('user.profile'))->with('message','Se ha actualizado la foto de perfíl correctamente');
+
   }
 }

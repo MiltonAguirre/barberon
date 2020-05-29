@@ -78,8 +78,8 @@
                              value="{{ old('zip') }}" placeholder="C.P." required>
                           </div>
                           <div class="form-group col-4">
-                            <div class="  {{ $errors->has('rol') ? ' has-error' : '' }}">
-                            <select name="rol" class="form-control selcls  {{ $errors->has('rol') ? ' border-danger' : '' }}" id="rol">
+                            <div class="  {{ $errors->has('role') ? ' has-error' : '' }}">
+                            <select name="role" class="form-control selcls  {{ $errors->has('role') ? ' border-danger' : '' }}" id="role">
                               <option value="" selected disabled hidden>Rol del usuario</option>
                               <option value="1">Cliente</option>
                               <option value="2">Barbero</option>

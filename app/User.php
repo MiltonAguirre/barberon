@@ -42,5 +42,12 @@ class User extends Authenticatable
      public function getUsername(){
        return $this->username;
      }
+     public function getRole(){
+       if($this->role==2){
+         return "Barbero";
+       }else{
+         return "Cliente";
+       }
+     }
 
 }

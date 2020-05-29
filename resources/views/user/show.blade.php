@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+  @include('includes.message')
   <div class="row">
     <div class="col-md-8">
       <div class="card border-info" >
@@ -69,7 +70,7 @@
           <div class="card-body">
             <div class="image-container image-detail">
               @if($user->image)
-              <img src="{{route('user.avatar',['filename'=>$user->image->image_path])}}" >
+              <img src="{{route('user.avatar',['filename'=>$user->image])}}" >
               @else
               <img src="/img/empty_pic.png" alt="">
               @endif
