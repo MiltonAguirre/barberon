@@ -112,6 +112,7 @@
             </form>
         </div>
         <div class="col-md-4">
+          <br><br><br><br>
           <div class="card pub_image pub_image_detail">
               <div class="card-header bg-info">
                 <p>Imagen de perfíl</p>

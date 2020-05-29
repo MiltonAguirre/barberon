@@ -53,6 +53,12 @@
               <p>C.P.: <strong>{{$user->location->zip}}</strong></p>
             </div>
           </div>
+          <!--Role-->
+          <div class="row">
+            <div class="col-xs-5 col-md-4">
+              <p>Rol de usuario: <strong>{{$user->getRole()}}</strong></p>
+            </div>
+          </div>
           <!-- button -->
           <div class="row">
               <div class="col-sm-4 col-xs-offset-9 col-sm-offset-10">
