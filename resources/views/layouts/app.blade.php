@@ -50,17 +50,18 @@
                                 </li>
                             @endif
                         @else
+                          <!--OPTIONS ONLY FOR BARBERS USERS                        -->
+                          @if(\Auth::user()->getRole()=="Barbero")
                           <li class="nav-item">
-                            <a class="nav-link" href="{{route('image.create')}}">Subir una imagen</a>
-                          </li>
-                          <!--OPTIONS ONLY FOR BARBERS USERS
-                          <li class="nav-item">
-                            <a class="nav-link" href="">Mi barbería</a>
+                            <a class="nav-link" href="{{route('barber.show')}}">Mi barbería</a>
                           </li>
                           <li class="nav-item">
-                            <a class="nav-link" href="">Editar barbería</a>
+                            <a class="nav-link" href="{{route('barber.edit')}}">Editar barbería</a>
                           </li>
-                        -->
+                          <li class="nav-item">
+                            <a class="nav-link" href="{{route('image.create')}}">Subir fotos de barbería</a>
+                          </li>
+                          @endif
                             <li>
                               @include('includes.avatar')
                             </li>
@@ -75,6 +76,11 @@
                                     <a class="dropdown-item" href="{{ route('user.img_profile') }}">
                                         Subir foto de perfíl
                                     </a>
+                                    @if(\Auth::user()->getRole()=="Barbero" && \Auth::user()->barber==null)
+                                    <a class="dropdown-item" href="{{ route('barber.create') }}">
+                                        Crear baberia
+                                    </a>
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('config') }}">
                                         Configuración
                                     </a>

@@ -1,0 +1,159 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+
+class BarberController extends Controller
+{
+  public function getImage($filename)
+  {
+    $file = Storage::disk('barbers')->get($filename);
+    return new Response($file,200);
+  }
+  public function save(Request $request){
+    $request->validate([
+      'name' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
+      'phone' => 'required|numeric|digits_between:5,20',
+      'addressname' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
+      'addressnum' => 'required|numeric|digits_between:1,10',
+      'city' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
+      'location' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
+      'zip' => 'required|numeric|digits_between:3,10',
+      'image_path' => 'image'
+    ],
+    [
+      'image_path.image' => 'La imagen no es un archivo válido.',
+      'name.required' => 'Debe ingresar el nombre de la barbería.',
+      'name.min' => 'El nombre no puede ser tan corto.',
+      'name.max' => 'El nombre no puede ser tan largo.',
+      'name.regex' => 'El nombre debe contener solo letras y espacios.',
+      'name.string' => 'El nombre es incorrecto.',
+      'phone.required' => 'Debe ingresar el número telefónico.',
+      'phone.numeric' => 'El número telefónico debe contener solo números.',
+      'phone.digits_between' => 'El número telefónico es inválido.',
+      'addressname.required' => 'Debe ingresar dirección de su barbería.',
+      'addressname.string' => 'La dirección es inválida.',
+      'addressname.min' => 'La dirección no puede ser tan corta.',
+      'addressname.max' => 'La dirección no puede ser tan larga.',
+      'addressname.regex' => 'La dirección debe contener solo letras y espacios.',
+      'addressnum.required' => 'Debe ingresar la altura.',
+      'addressnum.numeric' => 'La altura debe contener solo números.',
+      'addressnum.digits_between' => 'La altura es inválida.',
+      'city.required' => 'Debe ingresar la ciudad.',
+      'city.string' => 'La ciudad es inválida.',
+      'city.min' => 'La ciudad no puede ser tan corta.',
+      'city.max' => 'La ciudad no puede ser tan larga.',
+      'city.regex' => 'La ciudad debe contener solo letras y espacios.',
+      'location.required' => 'Debe ingresar la localidad.',
+      'location.string' => 'La localidad es inválida.',
+      'location.min' => 'La localidad no puede ser tan corta.',
+      'location.max' => 'La localidad no puede ser tan larga.',
+      'location.regex' => 'La localidad debe contener solo letras y espacios.',
+      'zip.required' => 'Debe ingresar el codigo postal.',
+      'zip.numeric' => 'El codigo postal debe contener solo números.',
+      'zip.digits_between' => 'El código postal es incorrecto.',
+
+    ]);
+    $user = \Auth::user();
+    $location = \App\Location::create([
+      'addressname' => $request->get('addressname'),
+      'addressnum' => $request->get('addressnum'),
+      'zip' => $request->get('zip'),
+      'city' => $request->get('city'),
+      'location' => $request->get('location'),
+    ]);
+    $barber = new \App\Barber;
+    $barber->name = $request->get('name');
+    $barber->phone = $request->get('phone');
+    //Upload image
+    $image_path = $request->file('image_path');
+    if ($image_path) {
+      //delete image for be replace
+      if($barber->image){
+        Storage::disk('barbers')->delete($barber->image);
+      }
+      $image_path_name = time().$image_path->getClientOriginalName();
+      Storage::disk('barbers')->put($image_path_name, File::get($image_path));
+      $barber->image = $image_path_name;
+    }
+    $barber->location()->associate($location);
+    $barber->user()->associate($user);
+    $barber->save();
+    $request->session()->flash('alert-success', 'Barber was successful uploaded!');
+    return redirect(route('barber.show'))->with('message','Se ha creado su barbería correctamente');
+  }
+  public function update(Request $request)
+  {
+    $request->validate([
+      'name' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
+      'phone' => 'required|numeric|digits_between:5,20',
+      'addressname' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
+      'addressnum' => 'required|numeric|digits_between:1,10',
+      'city' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
+      'location' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
+      'zip' => 'required|numeric|digits_between:3,10',
+      'image_path' => 'image'
+    ],
+    [
+      'image_path.image' => 'La imagen no es un archivo válido.',
+      'name.required' => 'Debe ingresar el nombre de la barbería.',
+      'name.min' => 'El nombre no puede ser tan corto.',
+      'name.max' => 'El nombre no puede ser tan largo.',
+      'name.regex' => 'El nombre debe contener solo letras y espacios.',
+      'name.string' => 'El nombre es incorrecto.',
+      'phone.required' => 'Debe ingresar el número telefónico.',
+      'phone.numeric' => 'El número telefónico debe contener solo números.',
+      'phone.digits_between' => 'El número telefónico es inválido.',
+      'addressname.required' => 'Debe ingresar dirección de su barbería.',
+      'addressname.string' => 'La dirección es inválida.',
+      'addressname.min' => 'La dirección no puede ser tan corta.',
+      'addressname.max' => 'La dirección no puede ser tan larga.',
+      'addressname.regex' => 'La dirección debe contener solo letras y espacios.',
+      'addressnum.required' => 'Debe ingresar la altura.',
+      'addressnum.numeric' => 'La altura debe contener solo números.',
+      'addressnum.digits_between' => 'La altura es inválida.',
+      'city.required' => 'Debe ingresar la ciudad.',
+      'city.string' => 'La ciudad es inválida.',
+      'city.min' => 'La ciudad no puede ser tan corta.',
+      'city.max' => 'La ciudad no puede ser tan larga.',
+      'city.regex' => 'La ciudad debe contener solo letras y espacios.',
+      'location.required' => 'Debe ingresar la localidad.',
+      'location.string' => 'La localidad es inválida.',
+      'location.min' => 'La localidad no puede ser tan corta.',
+      'location.max' => 'La localidad no puede ser tan larga.',
+      'location.regex' => 'La localidad debe contener solo letras y espacios.',
+      'zip.required' => 'Debe ingresar el codigo postal.',
+      'zip.numeric' => 'El codigo postal debe contener solo números.',
+      'zip.digits_between' => 'El código postal es incorrecto.',
+
+    ]);
+    $user = \Auth::user();
+    $user->barber->location->addressname =$request->get('addressname');
+    $user->barber->location->addressnum = $request->get('addressnum');
+    $user->barber->location->zip = $request->get('zip');
+    $user->barber->location->city = $request->get('city');
+    $user->barber->location->location = $request->get('location');
+    $user->barber->name = $request->get('name');
+    $user->barber->phone = $request->get('phone');
+    //Upload image
+    $image_path = $request->file('image_path');
+    if ($image_path) {
+      //delete image for be replace
+      if($user->barber->image){
+        Storage::disk('barbers')->delete($user->barber->image);
+      }
+      $image_path_name = time().$image_path->getClientOriginalName();
+      Storage::disk('barbers')->put($image_path_name, File::get($image_path));
+      $user->barber->image = $image_path_name;
+    }
+    $user->barber->location->save();
+    $user->barber->save();
+    $request->session()->flash('alert-success', 'Barber was successful uploaded!');
+    return redirect(route('barber.show'))->with('message','Se ha actualizado su barbería correctamente');
+
+  }
+}

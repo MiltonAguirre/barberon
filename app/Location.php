@@ -18,6 +18,9 @@ class Location extends Model
  public function user(){
    return $this->hasOne(User::class);
  }
+ public function Barber(){
+   return $this->hasOne(Barber::class);
+ }
  public function getAddress(){
    return $this->addressname . " " . $this->addressnum . " " . $this->addressfloor . " (" . $this->zip . "), ". $this->city . " - ". $this->location;
  }

@@ -12,4 +12,10 @@ class Image extends Model
   public function user(){
     return $this->belongsto(User::class);
   }
+  public function barber(){
+    return $this->belongsto(Barber::class);
+  }
+  public function product(){
+    return $this->hasOne(Product::class);
+  }
 }

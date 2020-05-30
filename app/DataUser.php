@@ -14,7 +14,6 @@ class DataUser extends Model
       return $this->hasOne(User::class);
     }
 
-
     function getCompleteName(){
       return $this->first_name . " " . $this->last_name;
     }

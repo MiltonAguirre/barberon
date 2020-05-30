@@ -25,4 +25,16 @@ class HomeController extends Controller
     {
         return view('home');
     }
+    public function search(Request $request)
+    {
+      dd($request);
+      $barber_name = $request->barber_name;
+      if(!$barber_name){
+        $barbers = \App\Barber::all();
+      }else{
+        $barbers = \App\Barber::where('name', $barber_name)->get();
+      }
+      return view('barber.list', ['barbers' => $barbers]);
+
+    }
 }

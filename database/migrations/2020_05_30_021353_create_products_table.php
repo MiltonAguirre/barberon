@@ -13,18 +13,18 @@ class CreateProductsTable extends Migration
      */
     public function up()
     {
-      Schema::create('products', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
           $table->increments('id');
           $table->string('name');
           $table->string('price');
           $table->string('delay');
           $table->string('image');
-          $table->unsignedInteger('user_id');
+          $table->unsignedInteger('barber_id');
           $table->timestamps();
-      });
-      Schema::table('products', function($table) {
-        $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-      });
+        });
+        Schema::table('products', function($table) {
+          $table->foreign('barber_id')->references('id')->on('barbers')->onDelete('cascade');
+        });
     }
 
     /**

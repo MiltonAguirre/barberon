@@ -11,7 +11,7 @@
                 Subir nueva foto para la barbería
               </div>
               <div class="card-body">
-                <form action="{{route('user.save_img')}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('image.save')}}" method="post" enctype="multipart/form-data">
                   @csrf
                   <div class="form-group row">
                     <label class="col-md-4 col-form-label text-md-right" for="image_path">Cargar imagen</label>

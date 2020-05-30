@@ -19,9 +19,17 @@ class UserController extends Controller
   public function show(){
     return view('user.show', ['user' => \Auth::user()]);
   }
-  public function profile_img()
-  {
+  public function profile_img(){
     return view('user.image_profile', ['user' => \Auth::user()]);
+  }
+  public function showBarber(){
+    return view('barber.show', ['user' => \Auth::user()]);
+  }
+  public function createBarber(){
+    return view('barber.create', ['user' => \Auth::user()]);
+  }
+  public function editBarber(){
+    return view('barber.edit', ['user' => \Auth::user()]);
   }
   public function getImage($filename)
   {
@@ -43,12 +51,12 @@ class UserController extends Controller
     ],
     [
       'image_path.image' => 'La imagen no es un archivo válido.',
-      'first_name.required' => 'Debe ingresar el nombre del destinatario.',
+      'first_name.required' => 'Debe ingresar su nombre.',
       'first_name.min' => 'El nombre no puede ser tan corto.',
       'first_name.max' => 'El nombre no puede ser tan largo.',
       'first_name.regex' => 'El nombre debe contener solo letras y espacios.',
       'first_name.string' => 'El nombre es incorrecto.',
-      'last_name.required' => 'Debe ingresar el apellido del destinatario.',
+      'last_name.required' => 'Debe ingresar su apellido.',
       'last_name.min' => 'El apellido no puede ser tan corto.',
       'last_name.max' => 'El apellido no puede ser tan largo.',
       'last_name.regex' => 'El apellido debe contener solo letras y espacios.',
@@ -56,32 +64,31 @@ class UserController extends Controller
       'phone.required' => 'Debe ingresar el número telefónico.',
       'phone.numeric' => 'El número telefónico debe contener solo números.',
       'phone.digits_between' => 'El número telefónico es inválido.',
-      'addressname.required' => 'Debe ingresar la dirección destino.',
-      'addressname.string' => 'La dirección destino es inválida.',
+      'addressname.required' => 'Debe ingresar su dirección.',
+      'addressname.string' => 'La dirección es inválida.',
       'addressname.min' => 'La dirección no puede ser tan corta.',
       'addressname.max' => 'La dirección no puede ser tan larga.',
       'addressname.regex' => 'La dirección debe contener solo letras y espacios.',
       'addressnum.required' => 'La altura es requerida.',
       'addressnum.numeric' => 'La altura debe contener solo números.',
       'addressnum.digits_between' => 'La altura es inválida.',
-      'city.required' => 'Debe ingresar la ciudad destino.',
-      'city.string' => 'La ciudad destino es inválida.',
+      'city.required' => 'Debe ingresar su ciudad.',
+      'city.string' => 'La ciudad es inválida.',
       'city.min' => 'La ciudad no puede ser tan corta.',
       'city.max' => 'La ciudad no puede ser tan larga.',
       'city.regex' => 'La ciudad debe contener solo letras y espacios.',
-      'location.required' => 'Debe ingresar la localidad destino.',
-      'location.string' => 'La localidad destino es inválida.',
+      'location.required' => 'Debe ingresar su localidad.',
+      'location.string' => 'La localidad es inválida.',
       'location.min' => 'La localidad no puede ser tan corta.',
       'location.max' => 'La localidad no puede ser tan larga.',
       'location.regex' => 'La localidad debe contener solo letras y espacios.',
-      'zip.required' => 'Debe ingresar el codigo postal destino.',
+      'zip.required' => 'Debe ingresar su codigo postal.',
       'zip.numeric' => 'El codigo postal debe contener solo números.',
       'zip.digits_between' => 'El código postal es incorrecto.',
 
     ]
     );
     $user = \Auth::user();
-
     $user->location->addressname = $request->get('addressname');
     $user->location->addressnum = $request->get('addressnum');
     $user->location->zip = $request->get('zip');
