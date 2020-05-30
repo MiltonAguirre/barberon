@@ -19,4 +19,12 @@ class Barber extends Model
   public function image(){
     return $this->hasMany(Image::class);
   }
+  public function getName()
+  {
+    return $this->name;
+  }
+  public function getPhone()
+  {
+    return $this->phone;
+  }
 }

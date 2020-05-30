@@ -11,10 +11,6 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     /**
      * Show the application dashboard.
@@ -27,14 +23,19 @@ class HomeController extends Controller
     }
     public function search(Request $request)
     {
-      dd($request);
-      $barber_name = $request->barber_name;
-      if(!$barber_name){
-        $barbers = \App\Barber::all();
+      $search = $request->search;
+      if($search){
+        $barbers = \App\Barber::where('name', 'LIKE', "%$search%")->get();
+        if(count($barbers)){
+          $message = "Se encontraron coincidencias";
+        }else{
+          $message = "No se encontraron coincidencias, estas son las barberias totales";
+          $barbers = \App\Barber::all();
+        }
       }else{
-        $barbers = \App\Barber::where('name', $barber_name)->get();
+        $message = "Estas son todas las barberias";
+        $barbers = \App\Barber::all();
       }
-      return view('barber.list', ['barbers' => $barbers]);
-
+      return view('barber.list', ['barbers'=>$barbers, 'message'=>$message]);
     }
 }
