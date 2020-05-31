@@ -16,6 +16,6 @@ class Image extends Model
     return $this->belongsto(Barber::class);
   }
   public function product(){
-    return $this->hasOne(Product::class);
+    return $this->belongsto(Product::class);
   }
 }

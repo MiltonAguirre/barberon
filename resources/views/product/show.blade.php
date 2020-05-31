@@ -7,12 +7,12 @@
   </header>
   @foreach($products as $product)
   <div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="..." alt="Card image cap">
+    <img class="card-img-top" src="{{route('product.avatar',['filename'=>$product->image])}}" alt="Card image cap">
     <div class="card-body">
       <h5 class="card-title">{{$product->name}}</h5>
       <p class="card-text">Precio: {{$product->price}}</p>
       <p class="card-text">Tiempo estimado: {{$product->delay}}</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+      <a href="#" class="btn btn-primary">Obtener turno</a>
     </div>
   </div>
   @endforeach
