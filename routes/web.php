@@ -28,11 +28,16 @@ Route::get('/user/profile-image', 'UserController@profile_img')->name('user.img_
 Route::post('/user/profile-image/save', 'UserController@save_img')->name('user.save_img');
 //BARBERS
 Route::get('/user/barber/create', 'UserController@createBarber')->name('barber.create');
-Route::get('/user/barber/show', 'UserController@showBarber')->name('barber.show');
 Route::get('/user/barber/edit', 'UserController@editBarber')->name('barber.edit');
+
+Route::get('/barber/show/{id}', 'BarberController@showBarber');
 Route::get('/user/barber/avatar/{filename}', 'BarberController@getImage')->name('barber.avatar');
 Route::post('/user/barber/save', 'BarberController@save')->name('barber.save');
 Route::post('/user/barber/update', 'BarberController@update')->name('barber.update');
+
+//Products
+Route::get('/barber/products/{id}', 'ProductController@showProducts');
+Route::get('/barber/product/create', 'ProductController@addProduct')->name('product.create');
 
 //Images
 Route::get('/upload-image', 'ImageController@create')->name('image.create');

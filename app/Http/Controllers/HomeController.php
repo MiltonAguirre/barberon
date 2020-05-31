@@ -23,6 +23,7 @@ class HomeController extends Controller
     }
     public function search(Request $request)
     {
+      //[TTI] if $search is empty return error
       $search = $request->search;
       if($search){
         $barbers = \App\Barber::where('name', 'LIKE', "%$search%")->get();

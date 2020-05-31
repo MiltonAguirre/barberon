@@ -22,9 +22,6 @@ class UserController extends Controller
   public function profile_img(){
     return view('user.image_profile', ['user' => \Auth::user()]);
   }
-  public function showBarber(){
-    return view('barber.show', ['user' => \Auth::user()]);
-  }
   public function createBarber(){
     return view('barber.create', ['user' => \Auth::user()]);
   }

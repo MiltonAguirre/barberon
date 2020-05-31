@@ -51,16 +51,26 @@
                             @endif
                         @else
                           <!--OPTIONS ONLY FOR BARBERS USERS                        -->
-                          @if(\Auth::user()->getRole()=="Barbero")
-                          <li class="nav-item">
-                            <a class="nav-link" href="{{route('barber.show')}}">Mi barbería</a>
-                          </li>
-                          <li class="nav-item">
-                            <a class="nav-link" href="{{route('barber.edit')}}">Editar barbería</a>
-                          </li>
-                          <li class="nav-item">
-                            <a class="nav-link" href="{{route('image.create')}}">Subir fotos de barbería</a>
-                          </li>
+                          @if(\Auth::user()->getRole()=="Barbero" && \Auth::user()->barber)
+                            <li class="nav-item dropdown">
+                              <a id="navbarDropdownBarber" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                  {{ Auth::user()->barber->name}} <span class="caret"></span>
+                              </a>
+                              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/barber/show/{{\Auth::user()->barber->id}}">
+                                    Mi barbería
+                                </a>
+                                <a class="dropdown-item" href="{{route('barber.edit')}}">
+                                    Editar barbería
+                                </a>
+                                <a class="dropdown-item" href="{{route('image.create')}}">
+                                    Subir fotos de barbería
+                                </a>
+                                <a class="dropdown-item" href="{{route('product.create')}}">
+                                    Agregar producto a la barbería
+                                </a>
+                              </div>
+                            </li>
                           @endif
                             <li>
                               @include('includes.avatar')
@@ -77,9 +87,9 @@
                                         Subir foto de perfíl
                                     </a>
                                     @if(\Auth::user()->getRole()=="Barbero" && \Auth::user()->barber==null)
-                                    <a class="dropdown-item" href="{{ route('barber.create') }}">
-                                        Crear baberia
-                                    </a>
+                                      <a class="dropdown-item" href="{{ route('barber.create') }}">
+                                          Crear baberia
+                                      </a>
                                     @endif
                                     <a class="dropdown-item" href="{{ route('config') }}">
                                         Configuración

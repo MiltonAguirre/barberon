@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
   @include('includes.message')
-  @if($user->barber)
+  @if($barber)
   <div class="row">
     <div class="col-md-8">
       <div class="card border-info" >
@@ -12,34 +12,34 @@
           <!-- First and last name -->
           <div class="row">
             <div class="col-xs-5 col-md-4">
-              <p>Nombre: <strong>{{$user->barber->name}}</strong></p>
+              <p>Nombre: <strong>{{$barber->name}}</strong></p>
             </div>
           </div>
           <!--Address -->
           <div class="row">
             <div class="col-xs-5 col-md-4">
-              <p>Dirección: <strong>{{$user->barber->location->addressname}}</strong></p>
+              <p>Dirección: <strong>{{$barber->location->addressname}}</strong></p>
             </div>
             <div class="col-xs-5 col-md-4">
-               <p>Nro.: <strong>{{$user->barber->location->addressnum}}</strong></p>
+               <p>Nro.: <strong>{{$barber->location->addressnum}}</strong></p>
              </div>
           </div>
           <!--Location and city -->
           <div class="row">
             <div class="col-xs-5 col-md-4">
-              <p>Ciudad: <strong>{{$user->barber->location->city}}</strong></p>
+              <p>Ciudad: <strong>{{$barber->location->city}}</strong></p>
             </div>
             <div class="col-xs-5 col-md-4">
-              <p>Localidad: <strong>{{$user->barber->location->location}}</strong></p>
+              <p>Localidad: <strong>{{$barber->location->location}}</strong></p>
             </div>
           </div>
           <!--Phone and ZIP -->
           <div class="row">
             <div class="col-xs-5 col-md-4">
-              <p>Teléfono: <strong>{{$user->barber->phone}}</strong></p>
+              <p>Teléfono: <strong>{{$barber->phone}}</strong></p>
             </div>
             <div class="col-xs-4 col-md-4 col-offset-2 ">
-              <p>C.P.: <strong>{{$user->barber->location->zip}}</strong></p>
+              <p>C.P.: <strong>{{$barber->location->zip}}</strong></p>
             </div>
           </div>
           <!-- button -->
@@ -58,8 +58,8 @@
           </div>
           <div class="card-body">
             <div class="image-container image-detail">
-              @if($user->barber->image)
-              <img src="{{route('barber.avatar',['filename'=>$user->barber->image])}}" >
+              @if($barber->image)
+              <img src="{{route('barber.avatar',['filename'=>$barber->image])}}" >
               @else
               <img src="/img/empty_pic.png" alt="">
               @endif
@@ -68,6 +68,8 @@
       </div>
     </div>
   </div>
+  <br><br>
+  <a type="button" class="btn btn-primary btn-lg btn-block" href="/barber/products/{{$barber->id}}">Ver productos</a>
   @else
   <div class="alert alert-danger">
     Usted no posee una barbería online, creela <a href="{{route('barber.create')}}">aquí</a>
