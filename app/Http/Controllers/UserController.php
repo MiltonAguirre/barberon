@@ -111,8 +111,7 @@ class UserController extends Controller
     $request->session()->flash('alert-success', 'User was successful uploaded!');
     return redirect(route('user.profile'))->with('message','Se ha actualizado el usuario correctamente');
   }
-  public function save_img(Request $request)
-  {
+  public function save_img(Request $request){
     $request->validate(
       ['image_path' => 'image'], ['image_path.image' => 'La imagen no es un archivo válido.']
     );

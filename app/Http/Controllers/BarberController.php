@@ -92,7 +92,7 @@ class BarberController extends Controller
     $barber->user()->associate($user);
     $barber->save();
     $request->session()->flash('alert-success', 'Barber was successful uploaded!');
-    return redirect(route('barber.show'))->with('message','Se ha creado su barbería correctamente');
+    return view('barber.show', ['barber' => $barber])->with('message','Se ha creado su barbería correctamente');
   }
   public function update(Request $request)
   {
@@ -161,7 +161,7 @@ class BarberController extends Controller
     $user->barber->location->save();
     $user->barber->save();
     $request->session()->flash('alert-success', 'Barber was successful uploaded!');
-    return redirect(route('barber.show'))->with('message','Se ha actualizado su barbería correctamente');
+    return view('barber.show', ['barber' => $user->barber])->with('message','Se ha actualizado su barbería correctamente');
 
   }
 }

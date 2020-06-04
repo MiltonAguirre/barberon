@@ -16,7 +16,7 @@
                   <div class="form-group row">
                     <label class="col-md-4 col-form-label text-md-right" for="image_path">Cargar imagen</label>
                     <div class="col-md-4">
-                      <input id="image_path" type="file" name="image_path" class="form-control {{$errors->has('image_path') ? 'is-invalid' : ''}}" >
+                      <input id="image_path" type="file" name="image_path" class="form-control {{$errors->has('image_path') ? 'is-invalid' : ''}}" required>
                       @if($errors->has('image_path'))
                         <span class="invalid-feeback" role="alert">
                           <strong>{{$errors->first('image_path')}}</strong>
