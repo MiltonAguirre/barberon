@@ -37,10 +37,12 @@ Route::post('/user/barber/update', 'BarberController@update')->name('barber.upda
 
 //Products
 Route::get('/barber/products/{id}', 'ProductController@showProducts');
+Route::get('/barber/products/edit/{id}', 'ProductController@editProduct');
 Route::get('/barber/product/create', 'ProductController@addProduct')->name('product.create');
 Route::get('/barber/product/avatar/{filename}', 'ProductController@getImage')->name('product.avatar');
 
 Route::post('/barber/product/new', 'ProductController@newProduct')->name('product.new');
+Route::post('/barber/product/upddate/{id}', 'ProductController@updateProduct');
 
 //Images
 Route::get('/upload-image', 'ImageController@create')->name('image.create');

@@ -9,7 +9,7 @@
           <div class="masthead-subheading">Busca tu barbería favorita y obtene tu turno</div>
           <form class="form-inline form-inline-search" method="POST" action="{{route('search')}}">
             {{ csrf_field() }}
-              <input type="text" class="form-control" size="50" name="search" placeholder="Nombre de la barberia">
+              <input type="text" class="form-control" size="50" name="name" placeholder="Nombre de la barberia">
               <div class="input-group-btn">
                 <button type="submit" class="btn btn-primary">Buscar</button>
               </div>

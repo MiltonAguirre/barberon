@@ -2,6 +2,9 @@
 
 @section('content')
 <div class="container">
+
+    @include('includes.message')
+    <br>
   <a class="btn btn-info" href="/barber/show/{{$products[0]->barber->id}}">Volver</a>
 
 
@@ -15,9 +18,16 @@
           <img class="card-img-top" src="{{route('product.avatar',['filename'=>$product->image])}}" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">{{$product->name}}</h5>
-            <p class="card-text">Precio: {{$product->price}}</p>
-            <p class="card-text">Tiempo estimado: {{$product->delay}}</p>
-            <a href="#" class="btn btn-primary">Obtener turno</a>
+            <p class="card-text">Precio: ${{$product->price}}</p>
+            <p class="card-text">Tiempo estimado: {{$product->delay}} minutos</p>
+            <!-- Button trigger modal -->
+            @if($product->barber_id == \Auth::user()->barber->id)
+              <a href="/barber/products/edit/{{$product->id}}" class="btn btn-info">Editar</a>
+            @else
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#turnModal">
+                Obtener turno
+              </button>
+            @endif
           </div>
         </div>
       </div>
@@ -28,6 +38,38 @@
       }
       ?>
       @endforeach
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="turnModal" tabindex="-1" role="dialog" aria-labelledby="turnModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="turnModalLabel">Obten un turno</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form-group"name="formTurn" method="post" action="#">
+          <div class="form-group">
+            <label for="dateTurn">Selecciona la fecha deseada:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="date" name="dateTurn" min="2020-06-01" max="2518-05-25" step="1" required>
+          </div>
+          <div class="form-group">
+            <label for="timeTurn">Selecciona la hora deseada:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="time" name="timeTurn" min="08:00" max="21:00" step="1800" required>
+          </div>
+          <div class="form-group">
+            <input type="submit" name="submit" value="Obtener">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+      </div>
     </div>
   </div>
 </div>
