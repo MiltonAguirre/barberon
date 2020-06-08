@@ -4,7 +4,7 @@
 <div class="container">
   @include('includes.message')
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-7">
       <div class="card border-info" >
         <div class="card-header bg-info">Información del usuario</div>
         <div class="card-body">
@@ -13,7 +13,7 @@
             <div class="col-xs-5 col-md-4">
               <p>Nombre: <strong>{{$user->dataUser->first_name}}</strong></p>
             </div>
-            <div class="col-xs-5 col-md-4">
+            <div class="col-xs-5 col-md-4 offset-1">
               <p>Apellido: <strong>{{$user->dataUser->last_name}}</strong></p>
             </div>
           </div>
@@ -22,7 +22,7 @@
             <div class="col-xs-5 col-md-4">
               <p>Usuario: <strong>{{$user->username}}</strong></p>
             </div>
-            <div class="col-xs-5 col-sm-5 col-md-4">
+            <div class="col-xs-5 col-sm-5 col-md-4 offset-1">
               <p>Email: <strong>{{$user->dataUser->email}}</strong></p>
             </div>
           </div>
@@ -31,7 +31,7 @@
             <div class="col-xs-5 col-md-4">
               <p>Dirección: <strong>{{$user->location->addressname}}</strong></p>
             </div>
-            <div class="col-xs-5 col-md-4">
+            <div class="col-xs-5 col-md-4 offset-1">
                <p>Nro.: <strong>{{$user->location->addressnum}}</strong></p>
              </div>
           </div>
@@ -40,7 +40,7 @@
             <div class="col-xs-5 col-md-4">
               <p>Ciudad: <strong>{{$user->location->city}}</strong></p>
             </div>
-            <div class="col-xs-5 col-md-4">
+            <div class="col-xs-5 col-md-4 offset-1">
               <p>Localidad: <strong>{{$user->location->location}}</strong></p>
             </div>
           </div>
@@ -49,20 +49,20 @@
             <div class="col-xs-5 col-md-4">
               <p>Teléfono: <strong>{{$user->dataUser->phone}}</strong></p>
             </div>
-            <div class="col-xs-4 col-md-4 col-offset-2 ">
+            <div class="col-xs-4 col-md-4 offset-1 ">
               <p>C.P.: <strong>{{$user->location->zip}}</strong></p>
             </div>
           </div>
           <!--Role-->
           <div class="row">
             <div class="col-xs-5 col-md-4">
-              <p>Rol de usuario: <strong>{{$user->getRole()}}</strong></p>
+              <span class="badge badge-pill badge-info">Rol de usuario: <strong>{{$user->getRole()}}</strong> </span>
             </div>
           </div>
           <!-- button -->
           <div class="row">
-              <div class="col-sm-4 col-xs-offset-9 col-sm-offset-10">
-                <a  class="btn btn-info" href="/">Volver</a>
+              <div class="col-sm-4 offset-xs-9 offset-sm-10">
+                <a  class="btn btn-info" href="/">Ir a inicio</a>
               </div>
           </div>
         </div>

@@ -4,12 +4,13 @@
 <div class="container">
 
     @include('includes.message')
-    <br>
-  <a class="btn btn-info" href="/barber/show/{{$products[0]->barber->id}}">Volver</a>
-
+    <div class="offset-md-11">
+      <a class="btn btn-info" href="/barber/show/{{$products[0]->barber->id}}">Volver</a>
+    </div>
 
   <div class="products">
       <h3 class="edithead">Productos de la barberia</h3>
+      <br><br>
     <div class="row">
       <?php $i=0 ?>
       @foreach($products as $product)
@@ -21,13 +22,28 @@
             <p class="card-text">Precio: ${{$product->price}}</p>
             <p class="card-text">Tiempo estimado: {{$product->delay}} minutos</p>
             <!-- Button trigger modal -->
-            @if($product->barber_id == \Auth::user()->barber->id)
-              <a href="/barber/products/edit/{{$product->id}}" class="btn btn-info">Editar</a>
-            @else
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#turnModal">
-                Obtener turno
-              </button>
-            @endif
+            <div class="row">
+              @if(\Auth::user()->isBarber() && \Auth::user()->barber->id == $product->barber_id)
+              <div class="col-md-2 offset-md-5">
+                <a href="/barber/product/edit/{{$product->id}}" class="btn btn-info">Editar</a>
+              </div>
+              <div class="col-md-2 offset-md-1">
+                <form action="/barber/product/delete/{{$product->id}}" method="POST">
+                  <input type="hidden" name="_method" value="delete" />
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+                  <input class="btn btn-danger a-btn-slide-text" type="submit" value="Borrar" />
+                </form>
+              </div>
+
+              @else
+              <div class="col-md-2 offset-8">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#turnModal">
+                  Turno
+                </button>
+              </div>
+              @endif
+            </div>
+
           </div>
         </div>
       </div>

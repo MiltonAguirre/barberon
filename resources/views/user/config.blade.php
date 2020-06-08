@@ -102,10 +102,10 @@
 
                 <!-- buttons -->
                 <div class="form-group row">
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                       <a  class="btn btn-info" href="/">Volver</a>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-2 offset-md-4">
                       <button id="button-update" type="submit" class="btn btn-success">Actualizar</button>
                     </div>
                 </div>

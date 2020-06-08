@@ -131,6 +131,11 @@ class ProductController extends Controller
 
     return redirect("/barber/products/".$user->barber->id)->with('message', 'El producto se actualizado con exito');
   }
+  public function destroy($id)
+  {
+    \App\Product::find($id)->delete();
+    return redirect("/barber/products/".\Auth::user()->barber->id)->with('message', 'El producto se eliminó con exito');
+  }
 
 
 }

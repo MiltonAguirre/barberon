@@ -52,5 +52,12 @@ class User extends Authenticatable
          return "Cliente";
        }
      }
+     public function isBarber(){
+       if($this->role==2){
+         return true;
+       }else{
+         return false;
+       }
+     }
 
 }
