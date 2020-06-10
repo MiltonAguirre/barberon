@@ -12,7 +12,7 @@ class BarberController extends Controller
   public function showBarber($id){
     $barber =\App\Barber::find($id);
     if(!$barber){
-      return redirect(route('home'))->with('message', 'Error, no se encontro la barberia');
+      return redirect(route('home'))->with('message', 'Error, no se encontro la barbería');
     }else{
       return view('barber.show', ['barber' => $barber]);
     }

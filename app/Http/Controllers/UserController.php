@@ -19,6 +19,9 @@ class UserController extends Controller
   public function show(){
     return view('user.show', ['user' => \Auth::user()]);
   }
+  public function showTurns(){
+    return view('user.myTurns', ['user' => \Auth::user()]);
+  }
   public function profile_img(){
     return view('user.image_profile', ['user' => \Auth::user()]);
   }
@@ -128,5 +131,31 @@ class UserController extends Controller
     }
     return redirect(route('user.profile'))->with('message','Se ha actualizado la foto de perfíl correctamente');
 
+  }
+  public function getTurn(Request $request, $id)
+  {
+    dd($request);
+    $request->validate([
+      'dateTurn' => 'required',
+      'timeTurns' => 'required',
+    ],
+    [
+      'dateTurn.required' => 'Debe elegír una fecha para el turno',
+      'timeTurns.required' => 'Debe elegír una hora para el turno'
+    ]);
+    $user = \Auth::user();
+    $turn = \App\Turn::create([
+      'state' => "Activo",
+      'hour' => $request->get('timeTurn'),
+      'date' => $request->get('dateTurn')
+    ]);
+
+    $product = \App\Product::find($id);
+    $barber = \App\Barber::find($product->barber_id);
+    $turn->product()->associate($product);
+    $turn->barber()->associate($barber);
+    $user->turn()->associate($turn);
+
+    return redirect(route('user.turns'));
   }
 }

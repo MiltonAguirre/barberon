@@ -72,6 +72,9 @@
                               </div>
                             </li>
                           @endif
+                          <li class="nav-item">
+                              <a class="nav-link" href="{{ route('user.turns') }}">Mis turnos</a>
+                          </li>
                             <li>
                               @include('includes.avatar')
                             </li>

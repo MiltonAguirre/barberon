@@ -15,7 +15,7 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col">Nombre</th>
-          <th scope="col">Phone</th>
+          <th scope="col">Teléfono</th>
           <th scope="col">Dirección</th>
           <th scope="col">Ciudad</th>
           <th scope="col">Localidad</th>

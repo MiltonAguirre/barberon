@@ -29,11 +29,11 @@ class HomeController extends Controller
         if(count($barbers)){
           $message = "Se encontraron coincidencias";
         }else{
-          $message = "No se encontraron coincidencias, estas son las barberias totales";
+          $message = "No se encontraron coincidencias, estas son las barberías totales";
           $barbers = \App\Barber::all();
         }
       }else{
-        $message = "Estas son todas las barberias";
+        $message = "Estas son todas las barberías";
         $barbers = \App\Barber::all();
       }
       return view('barber.list', ['barbers'=>$barbers, 'message'=>$message]);

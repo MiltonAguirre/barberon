@@ -9,7 +9,7 @@
     </div>
 
   <div class="products">
-      <h3 class="edithead">Productos de la barberia</h3>
+      <h3 class="edithead">Productos de la barbería</h3>
       <br><br>
     <div class="row">
       <?php $i=0 ?>
@@ -69,7 +69,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form class="form-group"name="formTurn" method="post" action="#">
+        <form class="form-group" method="post" action="/user/product/turn/{{$product->id}}">
           <div class="form-group">
             <label for="dateTurn">Selecciona la fecha deseada:</label>&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="date" name="dateTurn" min="2020-06-01" max="2518-05-25" step="1" required>

@@ -38,6 +38,9 @@ class User extends Authenticatable
      public function image(){
        return $this->hasMany(Image::class);
      }
+     public function turn(){
+       return $this->hasMany(Turn::class);
+     }
      public function barber(){
        return $this->hasOne(Barber::class);
      }
