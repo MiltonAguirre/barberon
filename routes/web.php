@@ -28,7 +28,8 @@ Route::get('/user/profile-image', 'UserController@profile_img')->name('user.img_
 Route::post('/user/profile-image/save', 'UserController@save_img')->name('user.save_img');
 //Turns
 Route::get('/user/turns', 'UserController@showTurns')->name('user.turns');
-Route::post('/user/product/turn/{id}', 'UserController@getTurn');
+Route::get('/user/product/create/turn/{id}', 'UserController@createTurn');
+Route::post('/user/product/turn/save/{id}', 'UserController@saveTurn');
 
 //BARBERS
 Route::get('/user/barber/create', 'UserController@createBarber')->name('barber.create');

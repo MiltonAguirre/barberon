@@ -22,6 +22,9 @@ class Barber extends Model
   public function product(){
     return $this->hasMany(Image::class);
   }
+  public function turn(){
+    return $this->hasMany(Turn::class);
+  }
   public function getName()
   {
     return $this->name;

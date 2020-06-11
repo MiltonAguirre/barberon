@@ -37,10 +37,11 @@
 
               @else
               <div class="col-md-2 offset-8">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#turnModal">
+                <a type="button" class="btn btn-primary" href="/user/product/create/turn/{{$product->id}}">
                   Turno
-                </button>
+                </a>
               </div>
+
               @endif
             </div>
 
@@ -54,38 +55,6 @@
       }
       ?>
       @endforeach
-    </div>
-  </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="turnModal" tabindex="-1" role="dialog" aria-labelledby="turnModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="turnModalLabel">Obten un turno</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form class="form-group" method="post" action="/user/product/turn/{{$product->id}}">
-          <div class="form-group">
-            <label for="dateTurn">Selecciona la fecha deseada:</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="date" name="dateTurn" min="2020-06-01" max="2518-05-25" step="1" required>
-          </div>
-          <div class="form-group">
-            <label for="timeTurn">Selecciona la hora deseada:</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="time" name="timeTurn" min="08:00" max="21:00" step="1800" required>
-          </div>
-          <div class="form-group">
-            <input type="submit" name="submit" value="Obtener">
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-      </div>
     </div>
   </div>
 </div>

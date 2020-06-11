@@ -13,12 +13,10 @@ class Turn extends Model
   {
     return $this->belongsto(User::class);
   }
-  ];
   public function barber()
   {
-    return $this->hasOne(Barber::class);
+    return $this->belongsto(Barber::class);
   }
-  ];
   public function product()
   {
     return $this->belongsto(Product::class);

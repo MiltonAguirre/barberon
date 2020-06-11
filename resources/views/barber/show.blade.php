@@ -71,9 +71,10 @@
     </div>
     <br><br>
     <a type="button" class="btn btn-primary btn-lg btn-block" href="/barber/products/{{$barber->id}}">Ver productos</a>
-    @if(\Auth::user()->isBarber() && \Auth::user()->barber->id == $barber->id)
-      <a type="button" class="btn btn-success btn-lg btn-block" href="{{route('product.create')}}">Agregar productos</a>
-    @endif
+
+      @if(\Auth::user() && \Auth::user()->isBarber() && \Auth::user()->barber->id == $barber->id)
+        <a type="button" class="btn btn-success btn-lg btn-block" href="{{route('product.create')}}">Agregar productos</a>
+      @endif
   @else
     <div class="alert alert-danger">
       Usted no posee una barbería online, creela <a href="{{route('barber.create')}}">aquí</a>
