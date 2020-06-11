@@ -52,6 +52,9 @@
                         @else
                           <!--OPTIONS ONLY FOR BARBERS USERS                        -->
                           @if(\Auth::user()->getRole()=="Barbero" && \Auth::user()->barber)
+                          <li class="nav-item">
+                              <a class="nav-link" href="{{ route('barber.turns') }}">Mis turnos</a>
+                          </li>
                             <li class="nav-item dropdown">
                               <a id="navbarDropdownBarber" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                   {{ Auth::user()->barber->name}} <span class="caret"></span>
@@ -71,10 +74,12 @@
                                 </a>
                               </div>
                             </li>
+                          @elseif(\Auth::user()->getRole()=="Cliente")
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('user.turns') }}">Mis turnos</a>
+                            </li>
                           @endif
-                          <li class="nav-item">
-                              <a class="nav-link" href="{{ route('user.turns') }}">Mis turnos</a>
-                          </li>
+
                             <li>
                               @include('includes.avatar')
                             </li>

@@ -17,6 +17,14 @@ class BarberController extends Controller
       return view('barber.show', ['barber' => $barber]);
     }
   }
+  public function showTurns(){
+    $barber =\Auth::user()->barber;
+    if($barber){
+      $turns =\App\Turn::where('barber_id',$barber->id)->get();
+      return view('barber.turns', ['turns' => $turns]);
+    }
+
+  }
   public function getImage($filename)
   {
     $file = Storage::disk('barbers')->get($filename);

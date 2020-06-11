@@ -34,7 +34,7 @@ Route::post('/user/product/turn/save/{id}', 'UserController@saveTurn');
 //BARBERS
 Route::get('/user/barber/create', 'UserController@createBarber')->name('barber.create');
 Route::get('/user/barber/edit', 'UserController@editBarber')->name('barber.edit');
-
+Route::get('/user/barber/turns', 'BarberController@showTurns')->name('barber.turns');
 Route::get('/barber/show/{id}', 'BarberController@showBarber');
 Route::get('/user/barber/avatar/{filename}', 'BarberController@getImage')->name('barber.avatar');
 Route::post('/user/barber/save', 'BarberController@save')->name('barber.save');

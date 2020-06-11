@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-  <div class="container p-3 my-3 bg-dark text-white">
+  <div class="container p-3 my-3 bg-dark text-white" style="text-align: center">
     <h3>Mis turnos</h3>
   </div>
   <div class="table-responsive">
