@@ -4,7 +4,7 @@
 <div class="container">
 
     @include('includes.message')
-    <div class="offset-md-11">
+    <div class="goBack">
       <a class="btn btn-info" href="/barber/show/{{$products[0]->barber->id}}">Volver</a>
     </div>
 
