@@ -37,7 +37,7 @@
 
               @else
               <div class="col-md-2 offset-8">
-                <a type="button" class="btn btn-primary" href="/user/product/create/turn/{{$product->id}}">
+                <a type="button" class="btn btn-primary" href="/user/turn/create/{{$product->id}}">
                   Turno
                 </a>
               </div>

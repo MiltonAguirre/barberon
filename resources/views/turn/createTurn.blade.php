@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
   <div class="col-8">
-    <form class="form-horizontal" action="/user/product/turn/save/{{$product->id}}" method="POST">
+    <form class="form-horizontal" action="/user/turn/save/{{$product->id}}" method="POST">
       {{ csrf_field() }}
         <div class="form-group">
           <label for="dateTurn">Selecciona la fecha deseada:</label>&nbsp;&nbsp;&nbsp;&nbsp;

@@ -61,6 +61,7 @@ header.masthead .masthead-heading {
 }
 
 .navbar .container-avatar,
+.container-avatar,
 .pub_image .container-avatar{
   width: 35px;
   height: 35px;
@@ -69,7 +70,17 @@ header.masthead .masthead-heading {
   margin-left: 20px;
 }
 .navbar .container-avatar img,
+.container-avatar img,
 .pub_image .container-avatar img{
+  height: 100%;
+}
+.barber-avatar{
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.barber-avatar img{
   height: 100%;
 }
 .pub_image{

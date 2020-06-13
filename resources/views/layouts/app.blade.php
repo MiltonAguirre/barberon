@@ -55,6 +55,15 @@
                           <li class="nav-item">
                               <a class="nav-link" href="{{ route('barber.turns') }}">Mis turnos</a>
                           </li>
+                          <li>
+                            <div class="container-avatar">
+                              @if(Auth::user()->barber->image)
+                                <img src="{{route('barber.avatar',['filename'=>Auth::user()->barber->image])}}"class="avatar">
+                              @else
+                                <img src="/img/empty_pic.png" alt="">
+                              @endif
+                            </div>
+                          </li>
                             <li class="nav-item dropdown">
                               <a id="navbarDropdownBarber" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                   {{ Auth::user()->barber->name}} <span class="caret"></span>

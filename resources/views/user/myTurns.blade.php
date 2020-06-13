@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+  @include('includes.message')
   <div class="container p-3 my-3 bg-dark text-white" style="text-align: center">
     <h3>Mis turnos</h3>
   </div>
@@ -21,13 +22,27 @@
       <tbody>
         @foreach($user->turn as $turn)
           <tr>
-            <th>*</th>
+            <th>
+              <div class="barber-avatar">
+              @if($turn->barber->image)
+                <img src="{{route('barber.avatar',['filename'=>$turn->barber->image])}}"class="avatar">
+              @else
+                <img src="/img/empty_pic.png" alt="">
+              @endif
+              </div>
+            </th>
             <td><a href="/barber/show/{{$turn->barber->id}}">{{$turn->barber->name}}</a></td>
             <td>{{$turn->product->name}}</td>
             <td>{{$turn->date}}</td>
             <td>{{$turn->hour}}</td>
             <td>{{$turn->state}}</td>
-            <td>aca van acciones</td>
+            <td><div class="col-md-2">
+              <form action="/user/turn/delete/{{$turn->id}}" method="POST">
+                <input type="hidden" name="_method" value="delete" />
+                <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+                <input class="btn btn-danger a-btn-slide-text" type="submit" value="Cancelar" />
+              </form>
+            </div></td>
           </tr>
         @endforeach
       </tbody>
