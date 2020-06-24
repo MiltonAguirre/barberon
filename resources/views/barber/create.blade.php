@@ -26,43 +26,59 @@
                 <!-- name -->
                 <div class="form-group row">
                   <div class="col-md-4 {{ $errors->has('name') ? ' has-error' : '' }}">
-                      <input id="name" title="Nombre" type="text" class="form-control {{ $errors->has('name') ? ' border-danger' : '' }}" name="name"
-                        placeholder="Nombre de la barbería" required autofocus>
+                      <input id="name" type="text" class="form-control {{ $errors->has('name') ? ' border-danger' : '' }}" name="name"
+                        value="{{ old('name') }}" placeholder="Nombre de la barbería" required autofocus>
                   </div>
                 </div>
                 <!--Ubications-->
                 <div class="form-group row">
                   <div class="col-md-4  {{ $errors->has('location') ? ' has-error' : '' }}">
-                      <input id="location" type="text" title="Localidad" class="form-control {{ $errors->has('location') ? ' border-danger' : '' }}" name="location"
-                        placeholder="Localidad" required>
+                      <input id="location" type="text" class="form-control {{ $errors->has('location') ? ' border-danger' : '' }}" name="location"
+                        value="{{ old('location') }}" placeholder="Localidad" required>
                   </div>
                   <div class="col-md-4 {{ $errors->has('city') ? ' has-error' : '' }}">
-                      <input id="city" type="text" title="Ciudad" class="form-control {{ $errors->has('city') ? ' border-danger' : '' }}" name="city"
-                        placeholder="Ciudad" required>
+                      <input id="city" type="text" class="form-control {{ $errors->has('city') ? ' border-danger' : '' }}" name="city"
+                        value="{{ old('city') }}" placeholder="Ciudad" required>
                   </div>
                 </div>
                 <div class="form-group row">
                   <div class="col-md-4  {{ $errors->has('addressname') ? ' has-error' : '' }}">
-                      <input id="addressname" type="text" title="Dirección" class="form-control {{ $errors->has('addressname') ? ' border-danger' : '' }}" name="addressname"
-                        placeholder="Nombre de calle"required>
+                      <input id="addressname" type="text" class="form-control {{ $errors->has('addressname') ? ' border-danger' : '' }}" name="addressname"
+                        value="{{ old('addressname') }}" placeholder="Nombre de calle"required>
                   </div>
                   <div class="col-md-4  {{ $errors->has('addressnum') ? ' has-error' : '' }}">
-                      <input id="addressnum" title="Número" type="text" class="form-control {{ $errors->has('addressnum') ? ' border-danger' : '' }}" name="addressnum"
-                        placeholder="Número" required>
+                      <input id="addressnum" type="text" class="form-control {{ $errors->has('addressnum') ? ' border-danger' : '' }}" name="addressnum"
+                        value="{{ old('addressnum') }}" placeholder="Número" required>
                   </div>
 
                 </div>
                 <!--Phone and zip -->
                 <div class="form-group row">
                     <div class="col-md-4  {{ $errors->has('zip') ? ' has-error' : '' }}">
-                        <input id="zip" type="text" title="Código Postal" class="form-control {{ $errors->has('zip') ? ' border-danger' : '' }}" name="zip"
-                          placeholder="C.P." required>
+                        <input id="zip" type="text" class="form-control {{ $errors->has('zip') ? ' border-danger' : '' }}" name="zip"
+                          value="{{ old('zip') }}" placeholder="C.P." required>
                     </div>
                   <div class="col-md-4 col-offset-2  {{ $errors->has('phone') ? ' has-error' : '' }}">
-                      <input id="phone" type="text" title="Teléfono" class="form-control {{ $errors->has('phone') ? ' border-danger' : '' }}" name="phone"
-                        placeholder="Telefono" required>
+                      <input id="phone" type="text" class="form-control {{ $errors->has('phone') ? ' border-danger' : '' }}" name="phone"
+                        value="{{ old('phone') }}" placeholder="Telefono" required>
                   </div>
                 </div>
+                <!--Schedule-->
+                <div class="form-group row">
+                  <div class="col-md-2">
+                    <label for="time_start" class="form-control">Apertura</label>
+                  </div>
+                  <div class="col-md-2  {{ $errors->has('time_start') ? ' has-error' : '' }}">
+                      <input id="time_start" type="time" class="form-control {{ $errors->has('time_start') ? ' border-danger' : '' }}" name="time_start" required>
+                  </div>
+                  <div class="col-md-2">
+                    <label for="time_end" class="form-control">Cierre</label>
+                  </div>
+                    <div class="col-md-2  {{ $errors->has('time_end') ? ' has-error' : '' }}">
+                        <input id="time_end" type="time" class="form-control {{ $errors->has('end') ? ' border-danger' : '' }}" name="time_end" required>
+                    </div>
+                </div>
+                <!--Image -->
                 <div class="form-group row">
                   <div class="col-md-4">
                     <label for="image_path" class="form-control">Subir foto de barbería</label>

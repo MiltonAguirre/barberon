@@ -63,6 +63,23 @@
                         value="{{$user->barber->phone}}" placeholder="Telefono" required>
                   </div>
                 </div>
+                <!--Schedule-->
+                <div class="form-group row">
+                  <div class="col-md-2">
+                    <label for="time_start" class="form-control">Apertura</label>
+                  </div>
+                  <div class="col-md-2  {{ $errors->has('time_start') ? ' has-error' : '' }}">
+                      <input id="time_start" type="time" class="form-control {{ $errors->has('time_start') ? ' border-danger' : '' }}" name="time_start"
+                      value="{{$user->barber->schedule->init}}" required>
+                  </div>
+                  <div class="col-md-2">
+                    <label for="time_end" class="form-control">Cierre</label>
+                  </div>
+                    <div class="col-md-2  {{ $errors->has('time_end') ? ' has-error' : '' }}">
+                        <input id="time_end" type="time" class="form-control {{ $errors->has('end') ? ' border-danger' : '' }}" name="time_end"
+                        value="{{$user->barber->schedule->end}}" required>
+                    </div>
+                </div>
                 <div class="form-group row">
                   <div class="col-md-4">
                     <label for="image_path" class="form-control">Subir foto de barbería</label>

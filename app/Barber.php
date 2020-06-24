@@ -25,12 +25,7 @@ class Barber extends Model
   public function turn(){
     return $this->hasMany(Turn::class);
   }
-  public function getName()
-  {
-    return $this->name;
-  }
-  public function getPhone()
-  {
-    return $this->phone;
+  public function schedule(){
+    return $this->hasOne(Schedule::class);
   }
 }

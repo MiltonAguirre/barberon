@@ -30,6 +30,8 @@ class BarberController extends Controller
     $file = Storage::disk('barbers')->get($filename);
     return new Response($file,200);
   }
+  //SAVE
+  //***
   public function save(Request $request){
     $request->validate([
       'name' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
@@ -39,9 +41,15 @@ class BarberController extends Controller
       'city' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
       'location' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
       'zip' => 'required|numeric|digits_between:3,10',
+      'time_start' => 'required',
+      'time_end' => 'required|after:time_start',
+
       'image_path' => 'image'
     ],
     [
+      'time_start.required' => 'Debe ingresar un horario de apertura.',
+      'time_end.required' => 'Debe ingresar un horario de cierre.',
+      'time_end.after' => 'El horario de cierre es incorrecto.',
       'image_path.image' => 'La imagen no es un archivo válido.',
       'name.required' => 'Debe ingresar el nombre de la barbería.',
       'name.min' => 'El nombre no puede ser tan corto.',
@@ -96,12 +104,19 @@ class BarberController extends Controller
       Storage::disk('barbers')->put($image_path_name, File::get($image_path));
       $barber->image = $image_path_name;
     }
+    $schedule = new \App\Schedule;
+    $schedule->init = $request->get('time_start');
+    $schedule->end = $request->get('time_end');
     $barber->location()->associate($location);
     $barber->user()->associate($user);
     $barber->save();
+    $schedule->barber()->associate($barber);
+    $schedule->save();
     $request->session()->flash('alert-success', 'Barber was successful uploaded!');
     return view('barber.show', ['barber' => $barber])->with('message','Se ha creado su barbería correctamente');
   }
+  //UPDATE
+  //***
   public function update(Request $request)
   {
     $request->validate([

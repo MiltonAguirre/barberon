@@ -6,6 +6,11 @@
   <div class="container p-3 my-3 bg-dark text-white" style="text-align: center">
     <h3>Mis turnos</h3>
   </div>
+  @if(!count($user->turn))
+    <div class="container p-1 my-1 bg-info text-white">
+      <h5>No posee turnos para mostrar</h5>
+    </div>
+  @else
   <div class="table-responsive">
     <table class="table table-light">
       <thead class="thead-dark">
@@ -48,5 +53,6 @@
       </tbody>
     </table>
   </div>
+  @endif
 </div>
 @endsection

@@ -39,7 +39,30 @@
                 <p>Teléfono: <strong>{{$barber->phone}}</strong></p>
               </div>
               <div class="col-xs-4 col-md-4 offset-1 ">
-                <p>C.P.: <strong>{{$barber->location->zip}}</strong></p>
+                <label for="zip">Teléfono:</label>
+              </div>
+              <div class="col-xs-4 col-md-4 offset-1 ">
+                <label name="zip"><strong>{{$barber->location->zip}}</strong></label>
+              </div>
+              <div class="col-xs-4 col-md-4 offset-1 ">
+                <label for="zip">C.P.:</label>
+              </div>
+              <div class="col-xs-4 col-md-4 offset-1 ">
+                <label name="zip"><strong>{{$barber->location->zip}}</strong></label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-2">
+                <label for="time_start">Apertura</label>
+              </div>
+              <div class="col-md-2">
+                <label name="time_start">{{$barber->schedule->init}}</label>
+              </div>
+              <div class="col-md-2">
+                <label for="time_end">Cierre</label>
+              </div>
+              <div class="col-md-2">
+                <lavel name="time_end">{{$barber->schedule->end}}</label>
               </div>
             </div>
             <div class="row">
