@@ -19,10 +19,26 @@ use Illuminate\Support\Str;
 
 $factory->define(User::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'email_verified_at' => now(),
+        'username' => $faker->username,
+        'role' => rand(1,2),
+        'image' => null,
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+        'location_id' => function(){
+          return factory(App\Location::class)->create()->id;
+        },
+        'data_user_id' => function(){
+          return factory(App\DataUser::class)->create()->id;
+        },
         'remember_token' => Str::random(10),
     ];
 });
+$factory->state(User::class, 'barber', [
+    'username' => 'barber',
+    'role' => '2',
+    'password' => bcrypt('asdasd' )
+]);
+$factory->state(User::class, 'client', [
+    'username' => 'client',
+    'role' => '1',
+    'password' => bcrypt('asdasd' )
+]);
