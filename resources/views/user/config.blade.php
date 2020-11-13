@@ -93,7 +93,7 @@
                       <a  class="btn btn-info btn-block" href="/">Volver</a>
                     </div>
                     <div class="col-md-3 offset-md-5 mt-2">
-                      <button id="button-update" type="submit" class="btn btn-success btn-block">Guardar</button>
+                      <button type="submit" class="btn btn-success btn-block">Guardar</button>
                     </div>
                 </div>
             </form>

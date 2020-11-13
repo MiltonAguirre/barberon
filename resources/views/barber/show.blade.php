@@ -9,65 +9,52 @@
         <div class="card border-info" >
           <div class="card-header bg-info">Información de la barbería</div>
           <div class="card-body">
-            <!-- First and last name -->
-            <div class="row">
-              <div class="col-xs-5 col-md-4">
-                <p>Nombre: <strong>{{$barber->name}}</strong></p>
-              </div>
-            </div>
+            <!-- Name -->
+            <label>Nombre: <strong>{{$barber->name}}</strong></label>
+            <hr/>
             <!--Address -->
             <div class="row">
-              <div class="col-xs-5 col-md-4">
-                <p>Dirección: <strong>{{$barber->location->addressname}}</strong></p>
+              <div class="col-md-6">
+                <p>Calle: <strong>{{$barber->location->addressname}}</strong></p>
               </div>
-              <div class="col-xs-5 col-md-4 offset-1">
+              <div class="col-md-6">
                  <p>Nro.: <strong>{{$barber->location->addressnum}}</strong></p>
                </div>
             </div>
             <!--Location and city -->
             <div class="row">
-              <div class="col-xs-5 col-md-4">
+              <div class="col-md-6">
                 <p>Ciudad: <strong>{{$barber->location->city}}</strong></p>
               </div>
-              <div class="col-xs-5 col-md-4 offset-1">
+              <div class="col-md-6">
                 <p>Localidad: <strong>{{$barber->location->location}}</strong></p>
               </div>
             </div>
             <!--Phone and ZIP -->
             <div class="row">
-              <div class="col-xs-5 col-md-4">
+              <div class="col-md-6">
                 <p>Teléfono: <strong>{{$barber->phone}}</strong></p>
               </div>
-              <div class="col-xs-4 col-md-4 offset-1 ">
-                <label for="zip">Teléfono:</label>
-              </div>
-              <div class="col-xs-4 col-md-4 offset-1 ">
-                <label name="zip"><strong>{{$barber->location->zip}}</strong></label>
-              </div>
-              <div class="col-xs-4 col-md-4 offset-1 ">
-                <label for="zip">C.P.:</label>
-              </div>
-              <div class="col-xs-4 col-md-4 offset-1 ">
-                <label name="zip"><strong>{{$barber->location->zip}}</strong></label>
+              <div class="col-md-6">
+                <p>C.P.: <strong>{{$barber->location->zip}}</strong></p>
               </div>
             </div>
+            <hr/>
+            <!--Phone and ZIP -->
             <div class="row">
-              <div class="col-md-2">
-                <label for="time_start">Apertura</label>
+              <div class="col-md-6">
+                <p>Apertura: <strong>{{$barber->schedule->init}}</strong></p>
               </div>
-              <div class="col-md-2">
-                <label name="time_start">{{$barber->schedule->init}}</label>
-              </div>
-              <div class="col-md-2">
-                <label for="time_end">Cierre</label>
-              </div>
-              <div class="col-md-2">
-                <lavel name="time_end">{{$barber->schedule->end}}</label>
+              <div class="col-md-6">
+                <p>Cierrre: <strong>{{$barber->schedule->end}}</strong></p>
               </div>
             </div>
+            <br/>
+
+            <!-- button -->
             <div class="row">
-                <div class="col-sm-4 offset-xs-9 offset-sm-10">
-                  <a  class="btn btn-info" href="/">Volver</a>
+                <div class="offset-8 offset-md-9 offset-lg-10">
+                  <a  class="btn btn-info" href="/">Ir a inicio</a>
                 </div>
             </div>
           </div>

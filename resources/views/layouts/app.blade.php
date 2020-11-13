@@ -22,7 +22,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar sticky-top navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar sticky-top navbar-expand-md navbar-light shadow-sm color-secondary">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     BarberON
@@ -31,14 +31,14 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse mt-2" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
 
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ml-auto float-right">
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
@@ -50,20 +50,11 @@
                                 </li>
                             @endif
                         @else
-                          <!--OPTIONS ONLY FOR BARBERS USERS                        -->
+                          <!--BARBERSHOPS MENU-->
                           @if(\Auth::user()->getRole()=="Barbero" && \Auth::user()->barber)
-                          <li class="nav-item">
-                              <a class="nav-link" href="{{ route('barber.turns') }}">Mis turnos</a>
-                          </li>
-                          <li>
-                            <div class="container-avatar">
-                              @if(Auth::user()->barber->image)
-                                <img src="{{route('barber.avatar',['filename'=>Auth::user()->barber->image])}}"class="avatar">
-                              @else
-                                <img src="/img/empty_pic.png" alt="">
-                              @endif
-                            </div>
-                          </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('barber.turns') }}">Mis turnos</a>
+                            </li>
                             <li class="nav-item dropdown">
                               <a id="navbarDropdownBarber" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                   {{ Auth::user()->barber->name}} <span class="caret"></span>
@@ -84,43 +75,47 @@
                               </div>
                             </li>
                           @elseif(\Auth::user()->getRole()=="Cliente")
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('user.turns') }}">Mis turnos</a>
-                            </li>
+                              <li class="nav-item">
+                                  <a class="nav-link" href="{{ route('user.turns') }}">Mis turnos</a>
+                              </li>
                           @endif
-
-                            <li>
-                              @include('includes.avatar')
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->username }} <span class="caret"></span>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('user.profile') }}">
-                                        Mi Perfil
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('user.img_profile') }}">
-                                        Subir foto de perfíl
-                                    </a>
-                                    @if(\Auth::user()->getRole()=="Barbero" && \Auth::user()->barber==null)
+                          <!--USERS MENU-->
+                            <li class="nav-item dropdown ">
+                              <ul class="nav navbar-nav list-inline">
+                                <li class="list-inline-item">
+                                  @include('includes.avatar')
+                                </li>
+                                <li class="list-inline-item">
+                                  <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <span class="caret">{{ Auth::user()->username }}</span>
+                                  </a>
+                                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                      <a class="dropdown-item" href="{{ route('user.profile') }}">
+                                          Mi Perfil
+                                      </a>
+                                      <a class="dropdown-item" href="{{ route('user.img_profile') }}">
+                                          Subir foto de perfíl
+                                      </a>
+                                      @if(\Auth::user()->getRole()=="Barbero" && \Auth::user()->barber==null)
                                       <a class="dropdown-item" href="{{ route('barber.create') }}">
                                           Crear baberia
                                       </a>
-                                    @endif
-                                    <a class="dropdown-item" href="{{ route('config') }}">
-                                        Configuración
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Salir') }}
-                                    </a>
+                                      @endif
+                                      <a class="dropdown-item" href="{{ route('config') }}">
+                                          Configuración
+                                      </a>
+                                      <a class="dropdown-item" href="{{ route('logout') }}"
+                                         onclick="event.preventDefault();
+                                                       document.getElementById('logout-form').submit();">
+                                          {{ __('Salir') }}
+                                      </a>
+                                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                          @csrf
+                                      </form>
+                                  </div>
+                                </li>
+                              </ul>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
                             </li>
                         @endguest
                     </ul>
