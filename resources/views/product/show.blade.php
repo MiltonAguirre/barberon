@@ -2,13 +2,12 @@
 
 @section('content')
 <div class="container">
+  @include('includes.message')
+  <div class="goBack">
+    <a class="btn btn-info btn-block" href="/barber/show/{{$products[0]->barber->id}}">Volver</a>
+  </div>
 
-    @include('includes.message')
-    <div class="goBack">
-      <a class="btn btn-info" href="/barber/show/{{$products[0]->barber->id}}">Volver</a>
-    </div>
-
-  <div class="products">
+  <div class="card-info">
       <h3 class="edithead">Productos de la barbería</h3>
       <br><br>
     <div class="row">

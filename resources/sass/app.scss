@@ -9,9 +9,9 @@
 
 //My Styles
 body{
-  background-color: #9781FC;
   width:100%;
   background-size:cover;
+  background-color: #9781FC;
 }
 header.masthead {
   padding-top: 2rem;
@@ -100,6 +100,7 @@ header.masthead .masthead-heading {
 .image-container{
   max-height: 400px;
   overflow: hidden;
+  border-radius: 20px !important;
 }
 .image-detail{
   max-height: 700px;
@@ -138,4 +139,15 @@ header.masthead .masthead-heading {
 }
 .color-secondary{
   background-color: rgb(0, 229, 187);
+}
+.card-info{
+  border-radius: 20px;
+  border-width: 15px;
+  border-color: white;
+  background-color: rgb(96, 78, 186);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.24);
+  padding-left: 50px;
+  padding-bottom: 20px;
+  
+  justify-content: center;
 }

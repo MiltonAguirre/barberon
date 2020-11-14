@@ -6,11 +6,11 @@
   <div class="row">
     <div class="col-12">
       <div class="d-flex justify-content-center">
-        <div class="card">
-          <div class="card-header">
+        <div class="card border-info">
+          <div class="card-header bg-info">
             Subir nueva foto de perfíl
           </div>
-          <div class="card-body">
+          <div class="card-body border-info">
             <div class="image-container mb-3">
               @if($user->image)
                 <img src="{{route('user.avatar',['filename'=>$user->image])}}" >
@@ -20,9 +20,9 @@
             </div>
             <form action="{{route('user.save_img')}}" method="post" enctype="multipart/form-data">
               @csrf
-              <div class="form-group row">
-                <label class="col-4 offset-md-1 col-form-label" for="image_path">Cargar:</label>
-                <div class="col-4 offset-md-2 col-form-label">
+              <div class="form-group row justify-content-center my-4">
+                <label class="col-3 col-form-label text-center" for="image_path">Cargar:</label>
+                <div class="col-3 col-form-label">
                   <input class="file-input {{$errors->has('image_path') ? 'is-invalid' : ''}}"
                     id="image_path" type="file" name="image_path" required>
                   @if($errors->has('image_path'))
