@@ -148,6 +148,180 @@ header.masthead .masthead-heading {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.24);
   padding-left: 50px;
   padding-bottom: 20px;
-  
+
   justify-content: center;
+}
+//Panel navigation aside
+/* Home icon */
+.gg-home-alt {
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  transform: scale(var(--ggs,1));
+  width: 18px;
+  height: 14px;
+  border: 2px solid;
+  border-top: 0;
+  border-radius: 2px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  margin-bottom: -2px
+}
+
+.gg-home-alt::after,
+.gg-home-alt::before {
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  position: absolute
+}
+
+.gg-home-alt::before {
+  border-top: 2px solid;
+  border-left: 2px solid;
+  border-top-left-radius: 4px;
+  transform: rotate(45deg);
+  top: -5px;
+  border-radius: 3px;
+  width: 14px;
+  height: 14px;
+  left: 0
+}
+
+.gg-home-alt::after {
+  width: 6px;
+  height: 10px;
+  background: currentColor;
+  border-top-left-radius: 100px;
+  border-top-right-radius: 100px;
+  left: 4px;
+  bottom: -2px
+}
+//Profile icons
+.gg-profile,
+.gg-profile::after,
+.gg-profile::before {
+display: block;
+box-sizing: border-box;
+border: 2px solid;
+border-radius: 100px
+}
+
+.gg-profile {
+overflow: hidden;
+transform: scale(var(--ggs,1));
+width: 22px;
+height: 22px;
+position: relative
+}
+
+.gg-profile::after,
+.gg-profile::before {
+content: "";
+position: absolute;
+top: 2px;
+left: 5px;
+width: 8px;
+height: 8px
+}
+
+.gg-profile::after {
+border-radius: 200px;
+top: 11px;
+left: 0px;
+width: 18px;
+height: 18px
+}
+//Icon my Barbershop
+.gg-toolbox {
+box-sizing: border-box;
+position: relative;
+display: block;
+transform: scale(var(--ggs,1));
+width: 22px;
+height: 16px;
+border: 2px solid;
+border-radius: 2px
+}
+
+.gg-toolbox::after,
+.gg-toolbox::before {
+content: "";
+display: block;
+box-sizing: border-box;
+position: absolute
+}
+
+.gg-toolbox::before {
+border: 2px solid;
+border-bottom: 0;
+border-top-left-radius: 3px;
+border-top-right-radius: 3px;
+left: 4px;
+width: 10px;
+height: 4px;
+top: -5px
+}
+
+.gg-toolbox::after {
+width: 18px;
+height: 2px;
+border-left: 4px solid transparent;
+border-right: 4px solid transparent;
+box-shadow:
+0 -2px 0,
+inset 4px 0 0,
+inset -4px 0 0;
+top: 4px
+}
+
+/* The sidebar menu */
+.sidebar {
+  height: 100%; /* 100% Full-height */
+  width: 190px; /* 190px width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0;
+  left: 0;
+  background-color: #1A1A32; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+}
+
+/* The sidebar links */
+.sidebar a {
+  padding: 8px 8px 8px 13px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+/* Active/current link */
+.sidebar a.active {
+  background-color: rgb(96, 78, 186);
+  color: white;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidebar a:hover {
+  color: #f1f1f1;
+  font-size: 23px;
+
+}
+.rol-user{
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(96, 78, 186);
+  vertical-align: middle;
+  justify-content: center;
+  margin-top: 5px;
+
+}
+.rol-content{
+  border-radius: 20px;
+  justify-content: center;
+  text-align: center;
+
 }

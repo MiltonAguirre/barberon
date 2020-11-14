@@ -122,7 +122,27 @@
                 </div>
             </div>
         </nav>
-
+        <!-- The sidebar -->
+        <div id="mySidebar" class="sidebar">
+          <a class="mt-5" id="aside_home" href="/">
+            <div class="row">
+              <i class="gg gg-home-alt"></i>
+              <span class="aside_span">&nbsp;Inicio</span>
+            </div>
+          </a>
+          <a id="aside_profile" href="/user/profile">
+            <div class="row">
+              <i class="gg gg-profile"></i>
+              <span class="aside_span">&nbsp;Mi perfíl</span>
+            </div>
+          </a>
+          <a id="aside_barber" href="/user/barber/show">
+            <div class="row">
+              <i class="gg gg-toolbox"></i>
+              <span class="aside_span">&nbsp;Mi barbería</span>
+            </div>
+          </a>
+        </div>
         <main class="py-4">
             @yield('content')
         </main>

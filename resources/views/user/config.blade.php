@@ -19,10 +19,14 @@
         <div>Edición de perfíl</div>
       </div>
     <div class="row">
-        <div class="col-12">
+        <div class="col-10 card-info">
           <p class="subtitule">Información de usuario</p>
             <form class="form-horizontal" method="POST" action="{{route('user.save')}}" enctype="multipart/form-data">
                 {{ csrf_field() }}
+                <!--Role-->
+                <div class="form-group col-4 color-secondary rol-content">
+                  <label class="rol-user">Rol de usuario: {{$user->getRole()}}</label>
+                </div>
                 <!-- First y last name -->
                 <div class="form-group row">
                       <div class="col-md-5 {{ $errors->has('first_name') ? ' has-error' : '' }}">
@@ -78,21 +82,13 @@
                       value="{{ $user->dataUser->phone }}" placeholder="Telefono" required>
                   </div>
                 </div>
-                <div class="form-group row">
-                  <div class="col-md-5">
-                    <label for="role" class="form-control">Role de usuario: </label>
-                  </div>
-                  <div class="col-md-5 offset-md-1">
-                    <label class="form-control">{{$user->getRole()}}</label>
-                  </div>
-                </div>
 
                 <!-- buttons -->
-                <div class="form-group row">
+                <div class="form-group row mt-5">
                     <div class="col-md-3 ">
                       <a  class="btn btn-info btn-block" href="/">Volver</a>
                     </div>
-                    <div class="col-md-3 offset-md-5 mt-2">
+                    <div class="col-md-3 offset-md-5">
                       <button type="submit" class="btn btn-success btn-block">Guardar</button>
                     </div>
                 </div>

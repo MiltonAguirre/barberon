@@ -17,6 +17,7 @@
               <p>Apellido: <strong>{{$user->dataUser->last_name}}</strong></p>
             </div>
           </div>
+          <hr/>
           <!--Address -->
           <div class="row">
             <div class="col-md-6">
@@ -44,7 +45,8 @@
               <p>C.P.: <strong>{{$user->location->zip}}</strong></p>
             </div>
           </div>
-          <!--Email and Username -->
+          <hr/>
+          <!--Username and Role -->
           <div class="row">
             <div class="col-md-6">
               <p>Usuario: <strong>{{$user->username}}</strong></p>
@@ -54,12 +56,14 @@
             </div>
 
           </div>
-          <!--Role-->
+          <!--Email -->
           <div class="row">
             <div class="col-md-12">
               <p>Email: <strong>{{$user->dataUser->email}}</strong></p>
             </div>
           </div>
+          <br/>
+
           <!-- button -->
           <div class="row">
               <div class="offset-8 offset-md-9 offset-lg-10">

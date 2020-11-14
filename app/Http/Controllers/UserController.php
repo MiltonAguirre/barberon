@@ -133,5 +133,15 @@ class UserController extends Controller
     return redirect(route('user.profile'))->with('message','Se ha actualizado la foto de perfíl correctamente');
 
   }
+  public function showMyBarber()
+  {
+    $user=\Auth::user();
+
+    if(!$user->barber){
+      return redirect(route('home'))->with('message', 'Error, usted no posee una barbería');
+    }else{
+      return view('barber.show', ['barber' => $user->barber]);
+    }
+  }
 
 }

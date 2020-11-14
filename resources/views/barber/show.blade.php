@@ -59,8 +59,6 @@
             </div>
           </div>
         </div>
-        <!-- button -->
-
       </div>
       <div class="col-4">
         <div class="card pub_image pub_image_detail">
