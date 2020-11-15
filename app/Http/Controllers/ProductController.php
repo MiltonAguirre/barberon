@@ -47,6 +47,7 @@ class ProductController extends Controller
   {
     $request->validate([
       'name' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
+      'description' => 'required|string|min:10|max:255|regex:/^[\pL\s]+$/u',
       'price' => 'required|numeric',
       'delay' => 'required|numeric|min:30',
       'image_path' => 'required|image'
@@ -59,6 +60,11 @@ class ProductController extends Controller
       'name.max' => 'El nombre no puede ser tan largo.',
       'name.regex' => 'El nombre debe contener solo letras y espacios.',
       'name.string' => 'El nombre es inválido.',
+      'description.required' => 'Debe ingresar una descripción del producto.',
+      'description.min' => 'La descripción no puede ser tan corta.',
+      'description.max' => 'La descripción no puede ser tan larga.',
+      'description.regex' => 'La descripción debe contener solo letras y espacios.',
+      'description.string' => 'La descripción es inválida.',
       'delay.required' => 'Debe ingresar un tiempo estimado de trabajo.',
       'delay.numeric' => 'El tiempo estimado debe contener solo números.',
       'delay.min' => 'El tiempo ingresado debe ser mínimo 30 minutos.',
@@ -68,6 +74,7 @@ class ProductController extends Controller
     $user = \Auth::user();
     $product = new \App\Product;
     $product->name = $request->get('name');
+    $product->description = $request->get('description');
     $product->price = $request->get('price');
     $product->delay = $request->get('delay');
     //Upload image
@@ -91,6 +98,7 @@ class ProductController extends Controller
   {
     $request->validate([
       'name' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
+      'description' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
       'price' => 'required|numeric',
       'delay' => 'required|numeric|min:30',
       'image_path' => 'image'
@@ -102,6 +110,11 @@ class ProductController extends Controller
       'name.max' => 'El nombre no puede ser tan largo.',
       'name.regex' => 'El nombre debe contener solo letras y espacios.',
       'name.string' => 'El nombre es inválido.',
+      'description.required' => 'Debe ingresar una descripción del producto.',
+      'description.min' => 'La descripción no puede ser tan corta.',
+      'description.max' => 'La descripción no puede ser tan larga.',
+      'description.regex' => 'La descripción debe contener solo letras y espacios.',
+      'description.string' => 'La descripción es inválida.',
       'delay.required' => 'Debe ingresar un tiempo estimado de trabajo.',
       'delay.numeric' => 'El tiempo estimado debe contener solo números.',
       'delay.min' => 'El tiempo ingresado debe ser mínimo de 30 minutos.',
@@ -113,6 +126,7 @@ class ProductController extends Controller
     $product = \App\Product::find($id);
     if($product){
       $product->name = $request->get('name');
+      $product->description = $request->get('description');
       $product->price = $request->get('price');
       $product->delay = $request->get('delay');
     }

@@ -15,9 +15,9 @@
             </div>
         @endif
       </div>
-      <div class="edithead">
-        <div>Editar Barbería</div>
-      </div>
+    <div class="edithead">
+      <div>Editar Barbería</div>
+    </div>
     <div class="row">
         <div class="col-8 card">
           <div class="card-header color-secondary text-dark">Información de la Barbería</div>

@@ -3,6 +3,9 @@
 @section('content')
 <div class="container">
   @include('includes.message')
+  <div class="edithead">
+    <div>Mi perfíl</div>
+  </div>
   <div class="row">
     <div class="col-md-8">
       <div class="card" >

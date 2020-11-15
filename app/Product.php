@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
   protected $fillable = [
-      'name', 'price', 'delay',
+      'name', 'description', 'price', 'delay',
   ];
   public function barber(){
     return $this->belongsTo(Barber::class);
@@ -23,5 +23,8 @@ class Product extends Model
   }
   public function getName(){
     return $this->name;
+  }
+  public function getDescription(){
+    return $this->description;
   }
 }

@@ -16,7 +16,7 @@
         @endif
       </div>
       <div class="edithead">
-        <div>Edición de perfíl</div>
+        <div>Editar mi perfíl</div>
       </div>
     <div class="row">
         <div class="col-10 card">

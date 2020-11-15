@@ -34,13 +34,12 @@
                         placeholder="Nombre del producto" required autofocus>
                   </div>
                 </div>
-
                 <!--Description-->
                 <div class="form-group row">
                   <div class="col-md-11 {{ $errors->has('description') ? ' has-error' : '' }}">
                     <textarea class="form-control {{ $errors->has('description') ? ' border-danger' : '' }}"
-                      name="description" rows="3" cols="70" value="{{ old('description') }}"
-                      placeholder="Descripción del producto"></textarea>
+                      name="description" rows="3" cols="70" placeholder="Descripción del producto"
+                      required>{{ old('description') }}</textarea>
                   </div>
                 </div>
                 <!--Price & Delay-->

@@ -25,25 +25,20 @@
             <hr class="color-secondary">
             <div class="row pb-3">
               <div class="col-6 text-center">
-                <div>
-                  <b>${{$product->price}}</b>
-                </div>
-                <div>
-                  <label>Precio</label>
-                </div>
+                <div><b>${{$product->price}}</b></div>
+                <div><label>Precio</label></div>
               </div>
               <div class="col-6 text-center">
-                <div>
-                  <b>{{$product->delay}} min</b>
-                </div>
-                <div>
-                  <label>Tiempo</label>
-                </div>
+                <div><b>{{$product->delay}} min</b></div>
+                <div><label>Tiempo</label></div>
               </div>
             </div>
-            <!-- Button trigger modal -->
-            <div class="row">
-              @if(\Auth::user()->isBarber() && \Auth::user()->barber->id == $product->barber_id)
+            <div class="row justify-content-center">
+              <p>{{$product->description}}</p>
+            </div>
+            <!-- Buttons-->
+            <div class="row mt-1">
+            @if(\Auth::user()->isBarber() && \Auth::user()->barber->id == $product->barber_id)
               <div class="col-md-6">
                 <a href="/barber/product/edit/{{$product->id}}" class="btn btn-info btn-block">Editar</a>
               </div>
@@ -54,8 +49,7 @@
                   <input class="btn btn-danger a-btn-slide-text btn-block" type="submit" value="Borrar" />
                 </form>
               </div>
-
-              @else
+            @else
               <div class="col-md-6 offset-6">
                 <a type="button" class="btn btn-primary btn-block" href="/user/turn/create/{{$product->id}}">
                   Turno

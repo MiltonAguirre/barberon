@@ -11,7 +11,7 @@
             Subir nueva foto de perfíl
           </div>
           <div class="card-body">
-            <div class="image-container mb-3">
+            <div class="image-container image-detail mb-3">
               @if($user->image)
                 <img src="{{route('user.avatar',['filename'=>$user->image])}}" >
               @else

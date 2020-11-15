@@ -4,6 +4,9 @@
 <div class="container">
   @include('includes.message')
   @if($barber)
+    <div class="edithead">
+      <div>Mi Barbería</div>
+    </div>
     <div class="row">
       <div class="col-md-8">
         <div class="card" >
