@@ -61,7 +61,7 @@
           <br/>
           <!--Role-->
           <div class="row">
-            <div class="form-group col-md-4 ml-2 color-secondary rol-content">
+            <div class="form-group col-md-5 ml-2 color-secondary rol-content">
               <label class="rol-user">Rol de usuario: {{$user->getRole()}}</label>
             </div>
           </div>

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-  <div class="container p-3 my-3 bg-dark text-white" style="text-align: center">
+  <div class="container p-3 my-3 bg-dark text-white text-center card">
     <h3>Mis turnos</h3>
   </div>
   @if(!count($turns))
@@ -11,7 +11,7 @@
     </div>
   @else
 
-    <div class="table-responsive">
+    <div class="table-responsive card">
       <table class="table table-light">
         <thead class="thead-dark">
           <tr>
