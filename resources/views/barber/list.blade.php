@@ -9,7 +9,7 @@
   <div class="edithead">
     <div>Resultados de la busqueda</div>
   </div>
-  <div class="table-responsive">
+  <div class="table-responsive card">
     <table class="table table-light">
       <thead class="thead-dark">
         <tr>

@@ -49,23 +49,22 @@
             </div>
           </div>
           <hr class="color-secondary"/>
-          <!--Username and Role -->
+          <!--Username and Email -->
           <div class="row">
             <div class="col-md-6">
               <p>Usuario: <strong>{{$user->username}}</strong></p>
             </div>
             <div class="col-md-6">
-              <p>Rol: <strong>{{$user->getRole()}}</strong></p>
-            </div>
-
-          </div>
-          <!--Email -->
-          <div class="row">
-            <div class="col-md-12">
               <p>Email: <strong>{{$user->dataUser->email}}</strong></p>
             </div>
           </div>
           <br/>
+          <!--Role-->
+          <div class="row">
+            <div class="form-group col-md-4 ml-2 color-secondary rol-content">
+              <label class="rol-user">Rol de usuario: {{$user->getRole()}}</label>
+            </div>
+          </div>
 
           <!-- button -->
           <div class="row">

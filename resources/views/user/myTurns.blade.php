@@ -3,15 +3,15 @@
 @section('content')
 <div class="container">
   @include('includes.message')
-  <div class="container p-3 my-3 bg-dark text-white" style="text-align: center">
+  <div class="container p-3 my-3 bg-dark text-white card text-center">
     <h3>Mis turnos</h3>
   </div>
-  @if(!count($user->turn))
+  @if(count($user->turn))
     <div class="container p-1 my-1 bg-info text-white">
       <h5>No posee turnos para mostrar</h5>
     </div>
   @else
-  <div class="table-responsive">
+  <div class="table-responsive card">
     <table class="table table-light">
       <thead class="thead-dark">
         <tr>

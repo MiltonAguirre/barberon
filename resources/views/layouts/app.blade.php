@@ -142,12 +142,14 @@
               <span class="aside_span">&nbsp;Mi perfíl</span>
             </div>
           </a>
+          @if(\Auth::user()->getRole()=="Barbero" && \Auth::user()->barber)
           <a id="aside_barber" href="/user/barber/show">
             <div class="row">
               <i class="gg gg-toolbox"></i>
               <span class="aside_span">&nbsp;Mi barbería</span>
             </div>
           </a>
+          @endif
         </div>
         <main class="py-4">
             @yield('content')
