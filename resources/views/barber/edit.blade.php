@@ -19,8 +19,9 @@
         <div>Editar Barbería</div>
       </div>
     <div class="row">
-        <div class="col-8 card-info">
-          <p class="subtitule">Información de barbería</p>
+        <div class="col-8 card">
+          <div class="card-header color-secondary text-dark">Información de la Barbería</div>
+          <div class="card-body pl-5">
             <form class="form-horizontal" method="POST" action="{{route('barber.update')}}" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <!-- name -->
@@ -95,23 +96,31 @@
                     </div>
                 </div>
                 <!-- buttons -->
-                <div class="form-group row mt-5">
-                    <div class="col-md-2">
+                <div class="form-group row mt-4">
+                    <div class="col-md-3">
                       <a  class="btn btn-info btn-block" href="/">Volver</a>
                     </div>
-                    <div class="col-md-2 offset-7">
+                    <div class="col-md-3 offset-5">
                       <button id="button-update" type="submit" class="btn btn-success btn-block">Actualizar</button>
                     </div>
                 </div>
             </form>
+          </div>
         </div>
         <div class="col-4">
-          <div class="image-container">
-            @if($user->barber->image)
-            <img src="{{route('barber.avatar',['filename'=>$user->barber->image])}}" >
-            @else
-            <img src="/img/empty_pic.png" alt="">
-            @endif
+          <div class="card pub_image pub_image_detail">
+              <div class="card-header color-secondary text-dark">
+                <p>Foto de la barbería</p>
+              </div>
+              <div class="card-body mt-2">
+                <div class="image-container image-detail">
+                  @if($user->barber->image)
+                  <img src="{{route('barber.avatar',['filename'=>$user->barber->image])}}" >
+                  @else
+                  <img src="/img/empty_pic.png" alt="">
+                  @endif
+                </div>
+              </div>
           </div>
         </div>
     </div>

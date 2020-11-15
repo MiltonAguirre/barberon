@@ -5,8 +5,8 @@
   @include('includes.message')
   <div class="row">
     <div class="col-md-8">
-      <div class="card border-info" >
-        <div class="card-header bg-info">Información del usuario</div>
+      <div class="card" >
+        <div class="card-header color-secondary text-dark">Información del usuario</div>
         <div class="card-body">
           <!-- First and last name -->
           <div class="row">
@@ -17,7 +17,7 @@
               <p>Apellido: <strong>{{$user->dataUser->last_name}}</strong></p>
             </div>
           </div>
-          <hr/>
+          <hr class="color-secondary"/>
           <!--Address -->
           <div class="row">
             <div class="col-md-6">
@@ -45,7 +45,7 @@
               <p>C.P.: <strong>{{$user->location->zip}}</strong></p>
             </div>
           </div>
-          <hr/>
+          <hr class="color-secondary"/>
           <!--Username and Role -->
           <div class="row">
             <div class="col-md-6">
@@ -75,10 +75,10 @@
     </div>
     <div class="col-12 col-md-4">
       <div class="card pub_image pub_image_detail">
-          <div class="card-header bg-info">
+          <div class="card-header color-secondary text-dark">
             <p>Imagen de perfíl</p>
           </div>
-          <div class="card-body">
+          <div class="card-body mt-2">
             <div class="image-container image-detail">
               @if($user->image)
                 <img src="{{route('user.avatar',['filename'=>$user->image])}}" >

@@ -19,7 +19,7 @@
         <div>Barbería</div>
       </div>
     <div class="row">
-        <div class="col-10 card-info">
+        <div class="col-10 card pl-5">
           <p class="subtitule">Información de barbería</p>
             <form class="form-horizontal" method="POST" action="{{route('barber.save')}}" enctype="multipart/form-data">
                 {{ csrf_field() }}

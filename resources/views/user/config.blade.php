@@ -19,8 +19,10 @@
         <div>Edición de perfíl</div>
       </div>
     <div class="row">
-        <div class="col-10 card-info">
-          <p class="subtitule">Información de usuario</p>
+        <div class="col-10 card">
+          <div class="card-header color-secondary text-dark">Información del usuario</div>
+          <div class="card-body pl-5">
+
             <form class="form-horizontal" method="POST" action="{{route('user.save')}}" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <!--Role-->
@@ -94,6 +96,7 @@
                 </div>
             </form>
         </div>
+      </div>
 
     </div>
 </div>

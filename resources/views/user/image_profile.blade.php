@@ -6,11 +6,11 @@
   <div class="row">
     <div class="col-12">
       <div class="d-flex justify-content-center">
-        <div class="card border-info">
-          <div class="card-header bg-info">
+        <div class="card">
+          <div class="card-header color-secondary text-dark">
             Subir nueva foto de perfíl
           </div>
-          <div class="card-body border-info">
+          <div class="card-body">
             <div class="image-container mb-3">
               @if($user->image)
                 <img src="{{route('user.avatar',['filename'=>$user->image])}}" >

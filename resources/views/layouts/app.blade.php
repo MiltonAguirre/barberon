@@ -122,6 +122,12 @@
                 </div>
             </div>
         </nav>
+        @guest
+
+        <main class="py-4">
+            @yield('content')
+        </main>
+        @else
         <!-- The sidebar -->
         <div id="mySidebar" class="sidebar">
           <a class="mt-5" id="aside_home" href="/">
@@ -146,6 +152,7 @@
         <main class="py-4">
             @yield('content')
         </main>
+        @endguest
     </div>
 </body>
 </html>

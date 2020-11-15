@@ -6,12 +6,12 @@
   @if($barber)
     <div class="row">
       <div class="col-md-8">
-        <div class="card border-info" >
-          <div class="card-header bg-info">Información de la barbería</div>
+        <div class="card" >
+          <div class="card-header color-secondary text-dark">Información de la barbería</div>
           <div class="card-body">
             <!-- Name -->
             <label>Nombre: <strong>{{$barber->name}}</strong></label>
-            <hr/>
+            <hr class="color-secondary" />
             <!--Address -->
             <div class="row">
               <div class="col-md-6">
@@ -39,7 +39,7 @@
                 <p>C.P.: <strong>{{$barber->location->zip}}</strong></p>
               </div>
             </div>
-            <hr/>
+            <hr class="color-secondary" />
             <!--Phone and ZIP -->
             <div class="row">
               <div class="col-md-6">
@@ -62,10 +62,10 @@
       </div>
       <div class="col-4">
         <div class="card pub_image pub_image_detail">
-            <div class="card-header bg-info">
+            <div class="card-header color-secondary text-dark">
               <p>Foto de la barbería</p>
             </div>
-            <div class="card-body">
+            <div class="card-body mt-2">
               <div class="image-container image-detail">
                 @if($barber->image)
                 <img src="{{route('barber.avatar',['filename'=>$barber->image])}}" >

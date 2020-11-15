@@ -6,11 +6,11 @@
   <div class="row justify-content-center">
       <div class="col-md-10 row">
           <div class="col-md-8">
-            <div class="card border-info">
-              <div class="card-header bg-info">
+            <div class="card">
+              <div class="card-header color-secondary text-dark">
                 Subir nueva foto para la barbería
               </div>
-              <div class="card-body">
+              <div class="card-body ">
                 <form action="{{route('image.save')}}" method="post" enctype="multipart/form-data">
                   @csrf
                   <div class="form-group row justify-content-center my-4">
@@ -26,11 +26,8 @@
                     </div>
 
                   </div>
-                  <div class="form-group">
-                      <input
-                        class="btn btn-primary btn-block"
-                        type="submit" value="Subir imagen">
-                  </div>
+                  <input class="btn btn-primary btn-block"
+                    type="submit" value="Subir imagen">
                 </form>
               </div>
             </div>
