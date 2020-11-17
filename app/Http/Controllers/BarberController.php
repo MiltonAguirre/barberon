@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\File;
 
 class BarberController extends Controller
 {
-  public function showBarber($id){
+  public function showBarber($id)
+  {
     $barber =\App\Barber::find($id);
     if(!$barber){
       return redirect(route('home'))->with('message', 'Error, no se encontro la barbería');
@@ -17,7 +18,8 @@ class BarberController extends Controller
       return view('barber.show', ['barber' => $barber]);
     }
   }
-  public function showTurns(){
+  public function showTurns()
+  {
     $barber =\Auth::user()->barber;
     if($barber){
       $turns =\App\Turn::where('barber_id',$barber->id)->get();
@@ -30,9 +32,9 @@ class BarberController extends Controller
     $file = Storage::disk('barbers')->get($filename);
     return new Response($file,200);
   }
-  //SAVE
   //***
-  public function save(Request $request){
+  public function store(Request $request)
+  {
     $request->validate([
       'name' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
       'phone' => 'required|numeric|digits_between:5,20',
@@ -115,8 +117,6 @@ class BarberController extends Controller
     $request->session()->flash('alert-success', 'Barber was successful uploaded!');
     return view('barber.show', ['barber' => $barber])->with('message','Se ha creado su barbería correctamente');
   }
-  //UPDATE
-  //***
   public function update(Request $request)
   {
     $request->validate([

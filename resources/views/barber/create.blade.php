@@ -22,7 +22,7 @@
         <div class="col-8 card">
           <div class="card-header color-secondary text-dark">Información de la Barbería</div>
           <div class="card-body pl-5">
-            <form class="form-horizontal" method="POST" action="{{route('barber.save')}}" enctype="multipart/form-data">
+            <form class="form-horizontal" method="POST" action="{{route('barber.store')}}" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-group row">
                   <!-- Name -->

@@ -37,10 +37,10 @@ Route::get('/user/barber/create', 'UserController@createBarber')->name('barber.c
 Route::get('/user/barber/edit', 'UserController@editBarber')->name('barber.edit');
 Route::get('/user/barber/show', 'UserController@showMyBarber');
 Route::get('/user/barber/turns', 'BarberController@showTurns')->name('barber.turns');
-Route::get('/barber/show/{id}', 'BarberController@showBarber');
 Route::get('/user/barber/avatar/{filename}', 'BarberController@getImage')->name('barber.avatar');
-Route::post('/user/barber/save', 'BarberController@save')->name('barber.save');
+Route::post('/user/barber/store', 'BarberController@store')->name('barber.store');
 Route::post('/user/barber/update', 'BarberController@update')->name('barber.update');
+Route::get('/barber/show/{id}', 'BarberController@showBarber');
 
 //Products
 Route::get('/barber/products/{id}', 'ProductController@showProducts');
