@@ -6,8 +6,8 @@
     <h3>Mis turnos</h3>
   </div>
   @if(!count($turns))
-    <div class="container p-1 my-1 bg-info text-white">
-      <h5>No posee turnos para mostrar</h5>
+    <div class="container p-2 border border-dark rounded">
+      <h5 class="text-center">No posee turnos para mostrar</h5>
     </div>
   @else
 
