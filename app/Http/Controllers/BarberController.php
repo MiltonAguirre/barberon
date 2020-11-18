@@ -47,8 +47,8 @@ class BarberController extends Controller
       'monday' => 'required|string|min:3|max:10|alpha',
       'open' => 'required',
       'close' => 'required|after:open',
-      'open_b' => 'after:close',
-      'close_b' => 'after:open_b',
+      'open_b' => '',
+      'close_b' => '',
 
       'image_path' => 'image'
     ],

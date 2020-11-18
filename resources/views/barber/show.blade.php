@@ -43,13 +43,13 @@
               </div>
             </div>
             <hr class="color-secondary" />
-            <!--Phone and ZIP -->
+            <!--DaysWork -->
             <div class="row">
-              <div class="col-md-6">
-                <p>Apertura: <strong>{{$barber->schedule->init}}</strong></p>
+              <div class="col-md-2">
+                <p><strong>{{$barber->days->first()->name}}</strong></p>
               </div>
               <div class="col-md-6">
-                <p>Cierrre: <strong>{{$barber->schedule->end}}</strong></p>
+                <p>de: <strong>{{$barber->days->first()->open}}</strong> a <strong>{{$barber->days->first()->close}}</strong> </p>
               </div>
             </div>
             <br/>
