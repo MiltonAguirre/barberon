@@ -28,4 +28,7 @@ class Barber extends Model
   public function schedule(){
     return $this->hasOne(Schedule::class);
   }
+  public function days(){
+    return $this->hasMany(Day::class);
+  }
 }

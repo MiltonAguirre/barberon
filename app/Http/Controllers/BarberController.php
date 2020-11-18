@@ -43,16 +43,16 @@ class BarberController extends Controller
       'city' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
       'location' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
       'zip' => 'required|numeric|digits_between:3,10',
-      'time_start' => 'required',
-      'time_end' => 'required|after:time_start',
+
+      'monday' => 'required|string|min:3|max:10|alpha',
+      'open' => 'required',
+      'close' => 'required|after:open',
+      'open_b' => 'after:close',
+      'close_b' => 'after:open_b',
 
       'image_path' => 'image'
     ],
     [
-      'time_start.required' => 'Debe ingresar un horario de apertura.',
-      'time_end.required' => 'Debe ingresar un horario de cierre.',
-      'time_end.after' => 'El horario de cierre es incorrecto.',
-      'image_path.image' => 'La imagen no es un archivo válido.',
       'name.required' => 'Debe ingresar el nombre de la barbería.',
       'name.min' => 'El nombre no puede ser tan corto.',
       'name.max' => 'El nombre no puede ser tan largo.',
@@ -82,6 +82,17 @@ class BarberController extends Controller
       'zip.required' => 'Debe ingresar el codigo postal.',
       'zip.numeric' => 'El codigo postal debe contener solo números.',
       'zip.digits_between' => 'El código postal es incorrecto.',
+      'image_path.image' => 'La imagen no es un archivo válido.',
+      'monday.required' => 'Debe ingresar un día laboral.',
+      'monday.min' => 'El nombre del día no puede ser tan corto.',
+      'monday.max' => 'El nombre del día no puede ser tan largo.',
+      'monday.regex' => 'El nombre del día debe contener solo letras.',
+      'monday.string' => 'El nombre del día es inválido.',
+      'open.required' => 'Debe ingresar un horario de apertura.',
+      'close.required' => 'Debe ingresar un horario de apertura.',
+      'close.after' => 'El horario de cierre debe ser después de la apertura.',
+      'open_b.after' => 'El horario de apertura opcional debe ser después del cierre.',
+      'close_b.after' => 'El horario de cierre opcional debe ser después de la apertura opcional.'
 
     ]);
     $user = \Auth::user();
@@ -95,6 +106,7 @@ class BarberController extends Controller
     $barber = new \App\Barber;
     $barber->name = $request->get('name');
     $barber->phone = $request->get('phone');
+
     //Upload image
     $image_path = $request->file('image_path');
     if ($image_path) {
@@ -106,17 +118,23 @@ class BarberController extends Controller
       Storage::disk('barbers')->put($image_path_name, File::get($image_path));
       $barber->image = $image_path_name;
     }
-    $schedule = new \App\Schedule;
-    $schedule->init = $request->get('time_start');
-    $schedule->end = $request->get('time_end');
+
     $barber->location()->associate($location);
     $barber->user()->associate($user);
     $barber->save();
-    $schedule->barber()->associate($barber);
-    $schedule->save();
+    $day = new \App\Day();
+    $day->name = $request->input('monday');
+    $day->open = $request->input('open');
+    $day->close = $request->input('close');
+    $day->open_b = $request->input('open_b');
+    $day->close_b = $request->input('close_b');
+    $day->barber()->associate($barber);
+    $day->save();
     $request->session()->flash('alert-success', 'Barber was successful uploaded!');
     return view('barber.show', ['barber' => $barber])->with('message','Se ha creado su barbería correctamente');
+
   }
+
   public function update(Request $request)
   {
     $request->validate([

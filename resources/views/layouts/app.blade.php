@@ -124,7 +124,7 @@
         </nav>
         @guest
 
-        <main class="py-4">
+        <main class="py-2">
             @yield('content')
         </main>
         @else
@@ -151,7 +151,7 @@
           </a>
           @endif
         </div>
-        <main class="py-4">
+        <main class="py-2">
             @yield('content')
         </main>
         @endguest
