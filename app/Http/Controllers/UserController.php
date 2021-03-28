@@ -13,23 +13,29 @@ class UserController extends Controller
   {
       $this->middleware('auth');
   }
-  public function config(){
+  public function config()
+  {
     return view('user.config', ['user' => \Auth::user()]);
   }
-  public function show(){
+  public function show()
+  {
     return view('user.show', ['user' => \Auth::user()]);
   }
-  public function showTurns(){
+  public function showTurns()
+  {
     return view('user.myTurns', ['user' => \Auth::user()]);
   }
 
-  public function profile_img(){
+  public function profile_img()
+  {
     return view('user.image_profile', ['user' => \Auth::user()]);
   }
-  public function createBarber(){
+  public function createBarber()
+  {
     return view('barber.create', ['user' => \Auth::user()]);
   }
-  public function editBarber(){
+  public function editBarber()
+  {
     return view('barber.edit', ['user' => \Auth::user()]);
   }
   public function getImage($filename)
@@ -38,7 +44,8 @@ class UserController extends Controller
     return new Response($file,200);
   }
   //UPDATE DATA
-  public function update(Request $request){
+  public function update(Request $request)
+  {
     $request->validate([
       'first_name' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
       'last_name' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
@@ -115,7 +122,8 @@ class UserController extends Controller
     $request->session()->flash('alert-success', 'User was successful uploaded!');
     return redirect(route('user.profile'))->with('message','Se ha actualizado el usuario correctamente');
   }
-  public function save_img(Request $request){
+  public function save_img(Request $request)
+  {
     $request->validate(
       ['image_path' => 'image'], ['image_path.image' => 'La imagen no es un archivo válido.']
     );

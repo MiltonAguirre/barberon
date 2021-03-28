@@ -43,16 +43,7 @@
               </div>
             </div>
             <hr class="color-secondary" />
-            <!--DaysWork -->
-            <div class="row">
-              <div class="col-md-2">
-                <p><strong>{{$barber->days->first()->name}}</strong></p>
-              </div>
-              <div class="col-md-6">
-                <p>de: <strong>{{$barber->days->first()->open}}</strong> a <strong>{{$barber->days->first()->close}}</strong> </p>
-              </div>
-            </div>
-            <br/>
+            
 
             <!-- button -->
             <div class="row">

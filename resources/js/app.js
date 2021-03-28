@@ -79,12 +79,6 @@ $(document).ready(function(){
     }
   });
 
-  /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
-  // $('#closeNav').click(function(e){
-  //   $("#mySidebar").css("width", "0");
-  //   $("#main").css("margin-left", "0");
-  // });
-
   /* Set class active to current link */
   var pathname = window.location.pathname;
   $(".active").removeClass("active");
@@ -104,3 +98,34 @@ $(document).ready(function(){
     default:
 
   }
+  function showHourDay(divId) {
+    let div = $(divId);
+
+    div.addClass("border border-secondary py-1 bg-success");
+    div.append("<div id='RowDay' class='row justify-content-center'></div>");
+    div = $('#RowDay');
+    div.append("<label>desde: </label>");
+    div.append("<input type='time' name='open' min='08:00' max='22:00' step='1800' required>");
+    div.append("<label>hasta: </label>");
+    div.append("<input type='time' name='close' min='08:00' max='22:00' step='1800' required>");
+    div.append("<label>desde(opc): </label>");
+    div.append("<input type='time' name='open' min='08:00' max='22:00' step='1800'>");
+    div.append("<label>hasta(opc): </label>");
+    div.append("<input type='time' name='close' min='08:00' max='22:00' step='1800'>");
+
+  }
+  function hideHourDay(divId) {
+    let div = $(divId);
+    div.removeClass("border border-secondary py-1 bg-success");
+    let save = div.children(".custom-checkbox").detach();
+    div.empty().append(save);
+  }
+  $('input[type=checkbox]').on('change', function() {
+    let divId = '#'+$(this).prop("id");
+
+      if ($(this).is(':checked') ) {
+        showHourDay(divId);
+      }else {
+        hideHourDay(divId);
+      }
+  });

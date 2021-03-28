@@ -17,28 +17,32 @@ use Illuminate\Support\Str;
 |
 */
 
-$factory->define(User::class, function (Faker $faker) {
+$factory->define(App\User::class, function (Faker $faker){
     return [
         'username' => $faker->username,
-        'role' => rand(1,2),
-        'image' => null,
-        'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+        'password' => '$2y$10$hvDP.uUN65LIxe3uLxz.te0r/gsbFqOgabOKvKfSgiNYU4RWmW.wq', // asdasd
+        'role_id' => function(){
+          return rand(1,4);
+        },
         'location_id' => function(){
           return factory(App\Location::class)->create()->id;
         },
         'data_user_id' => function(){
           return factory(App\DataUser::class)->create()->id;
         },
-        'remember_token' => Str::random(10),
+        'remember_token' => 0,
     ];
 });
-$factory->state(User::class, 'barber', [
-    'username' => 'barber',
-    'role' => '2',
-    'password' => bcrypt('asdasd' )
+
+$factory->state(App\User::class, 'admin', [
+    'username' => 'admin',
+    'role_id' => 1
 ]);
-$factory->state(User::class, 'client', [
-    'username' => 'client',
-    'role' => '1',
-    'password' => bcrypt('asdasd' )
+$factory->state(App\User::class, 'client', [
+    'username' => 'cliente',
+    'role_id' => 2,
+]);
+$factory->state(App\User::class, 'barber', [
+    'username' => 'barbero',
+    'role_id' => 3
 ]);

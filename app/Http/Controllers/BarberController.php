@@ -44,11 +44,11 @@ class BarberController extends Controller
       'location' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
       'zip' => 'required|numeric|digits_between:3,10',
 
-      'monday' => 'required|string|min:3|max:10|alpha',
-      'open' => 'required',
-      'close' => 'required|after:open',
-      'open_b' => '',
-      'close_b' => '',
+      // 'monday' => 'required|string|min:3|max:10|alpha',
+      // 'open' => 'required',
+      // 'close' => 'required|after:open',
+      // 'open_b' => '',
+      // 'close_b' => '',
 
       'image_path' => 'image'
     ],
@@ -122,14 +122,14 @@ class BarberController extends Controller
     $barber->location()->associate($location);
     $barber->user()->associate($user);
     $barber->save();
-    $day = new \App\Day();
-    $day->name = $request->input('monday');
-    $day->open = $request->input('open');
-    $day->close = $request->input('close');
-    $day->open_b = $request->input('open_b');
-    $day->close_b = $request->input('close_b');
-    $day->barber()->associate($barber);
-    $day->save();
+    // $day = new \App\Day();
+    // $day->name = $request->input('monday');
+    // $day->open = $request->input('open');
+    // $day->close = $request->input('close');
+    // $day->open_b = $request->input('open_b');
+    // $day->close_b = $request->input('close_b');
+    // $day->barber()->associate($barber);
+    // $day->save();
     $request->session()->flash('alert-success', 'Barber was successful uploaded!');
     return view('barber.show', ['barber' => $barber])->with('message','Se ha creado su barbería correctamente');
 
@@ -145,7 +145,12 @@ class BarberController extends Controller
       'city' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
       'location' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
       'zip' => 'required|numeric|digits_between:3,10',
-      'image_path' => 'image'
+      'image_path' => 'image',
+      // 'monday' => 'required|string|min:3|max:10|alpha',
+      // 'open' => 'required',
+      // 'close' => 'required|after:open',
+      // 'open_b' => '',
+      // 'close_b' => '',
     ],
     [
       'image_path.image' => 'La imagen no es un archivo válido.',
@@ -178,6 +183,16 @@ class BarberController extends Controller
       'zip.required' => 'Debe ingresar el codigo postal.',
       'zip.numeric' => 'El codigo postal debe contener solo números.',
       'zip.digits_between' => 'El código postal es incorrecto.',
+      'monday.required' => 'Debe ingresar un día laboral.',
+      'monday.min' => 'El nombre del día no puede ser tan corto.',
+      'monday.max' => 'El nombre del día no puede ser tan largo.',
+      'monday.regex' => 'El nombre del día debe contener solo letras.',
+      'monday.string' => 'El nombre del día es inválido.',
+      'open.required' => 'Debe ingresar un horario de apertura.',
+      'close.required' => 'Debe ingresar un horario de apertura.',
+      'close.after' => 'El horario de cierre debe ser después de la apertura.',
+      'open_b.after' => 'El horario de apertura opcional debe ser después del cierre.',
+      'close_b.after' => 'El horario de cierre opcional debe ser después de la apertura opcional.'
 
     ]);
     $user = \Auth::user();
@@ -188,6 +203,7 @@ class BarberController extends Controller
     $user->barber->location->location = $request->get('location');
     $user->barber->name = $request->get('name');
     $user->barber->phone = $request->get('phone');
+
     //Upload image
     $image_path = $request->file('image_path');
     if ($image_path) {

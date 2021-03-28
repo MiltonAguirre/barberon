@@ -36,7 +36,7 @@
                     <label for="image_path" class="form-control">Imagen</label>
                   </div>
                   <div class="col-md-3 col-form-label">
-                    <input type="file" name="image_path" required
+                    <input type="file" name="image_path"
                         class="file-input @error('image_path') is-invalid @enderror">
                     @error('image_path')
                         <span class="invalid-feedback" role="alert">
@@ -79,22 +79,27 @@
                   </div>
                 </div>
                 <!--Schedule-->
-                <div class="form-group row">
-                  <div class="col-md-2">
-                    <label for="time_start" class="form-control">Apertura</label>
-                  </div>
-                  <div class="col-md-3  {{ $errors->has('time_start') ? ' has-error' : '' }}">
-                      <input id="time_start" type="time" class="form-control {{ $errors->has('time_start') ? ' border-danger' : '' }}" name="time_start"
-                      value="{{$user->barber->schedule->init}}" required>
-                  </div>
-                  <div class="col-md-2 offset-1">
-                    <label for="time_end" class="form-control">Cierre</label>
-                  </div>
-                    <div class="col-md-3  {{ $errors->has('time_end') ? ' has-error' : '' }}">
-                        <input id="time_end" type="time" class="form-control {{ $errors->has('end') ? ' border-danger' : '' }}" name="time_end"
-                        value="{{$user->barber->schedule->end}}" required>
+                <div class="col-11 border border-info rounded py-1">
+                  <div class="row justify-content-center">
+                    <div class="col-2 custom-control custom-checkbox">
+                      <input type="checkbox" class="form-check-input" id="monday" name="monday" value="Lunes">
+                      <label class="form-check-label" for="monday">Lunes</label>
                     </div>
+                    <div class="col-2">
+                      <input type="time" name="open" min="08:00" max="22:00" step="1800">
+                    </div>
+                    <div class="col-2">
+                      <input type="time" name="close" min="08:00" max="22:00" step="1800">
+                    </div>
+                    <div class="col-2">
+                      <input type="time" name="open_b" min="08:00" max="22:00" step="1800" >
+                    </div>
+                    <div class="col-2">
+                      <input type="time" name="close_b" min="08:00" max="22:00" step="1800" >
+                    </div>
+                  </div>
                 </div>
+
                 <!-- buttons -->
                 <div class="form-group row mt-4">
                     <div class="col-md-3">

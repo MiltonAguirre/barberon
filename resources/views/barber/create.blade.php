@@ -77,31 +77,15 @@
                         value="{{ old('phone') }}" placeholder="Telefono" required>
                   </div>
                 </div>
-
-
                 <!--Schedule-->
                 <div class="col-11 border border-info rounded py-1">
-                  <div class="row justify-content-center">
-                    <div class="col-2 custom-control custom-checkbox">
-                      <input type="checkbox" class="form-check-input" id="monday" name="monday" value="Lunes">
-                      <label class="form-check-label" for="monday">Lunes</label>
-                    </div>
-                    <div class="col-2">
-                      <input type="time" name="open" min="08:00" max="22:00" step="1800" required>
-                    </div>
-                    <div class="col-2">
-                      <input type="time" name="close" min="08:00" max="22:00" step="1800" required>
-                    </div>
-                    <div class="col-2">
-                      <input type="time" name="open_b" min="08:00" max="22:00" step="1800" >
-                    </div>
-                    <div class="col-2">
-                      <input type="time" name="close_b" min="08:00" max="22:00" step="1800" >
+                  <div id="sunday" class="justify-content-center">
+                    <div class="col-1 custom-control custom-checkbox">
+                      <input id="sunday" name="sunday" type="checkbox" class="form-check-input" value="sunday"/>
+                      <label id="sundayLabel" for="sunday" class="form-check-label">Domingo</label>
                     </div>
                   </div>
                 </div>
-
-
 
                 <!-- buttons -->
                 <div class="form-group row mt-4">
