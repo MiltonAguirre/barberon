@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
           $table->unsignedInteger('location_id');
           $table->unsignedInteger('data_user_id');
           $table->unsignedInteger('role_id');
+          $table->date('last_conection');
           $table->rememberToken();
           $table->timestamps();
       });

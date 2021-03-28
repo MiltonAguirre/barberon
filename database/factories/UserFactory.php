@@ -31,6 +31,7 @@ $factory->define(App\User::class, function (Faker $faker){
           return factory(App\DataUser::class)->create()->id;
         },
         'remember_token' => 0,
+        'last_conection' => date('Y-m-d'),
     ];
 });
 
