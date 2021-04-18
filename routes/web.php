@@ -27,13 +27,6 @@ Route::get('/user/configuration', 'UserController@config')->name('config');
 Route::post('/user/configuration-save', 'UserController@update')->name('user.save');
 Route::get('/user/profile-image', 'UserController@profile_img')->name('user.img_profile');
 Route::post('/user/profile-image/save', 'UserController@save_img')->name('user.save_img');
-
-//Turns
-Route::get('/user/turns', 'UserController@showTurns')->name('user.turns');
-Route::get('/user/turn/create/{id}', 'TurnController@create');
-Route::post('/user/turn/save/{id}', 'TurnController@save');
-Route::delete('/user/turn/delete/{id}', 'TurnController@destroy');
-
 //BARBERS
 Route::get('/user/barber/create', 'UserController@createBarber')->name('barber.create');
 Route::get('/user/barber/edit', 'UserController@editBarber')->name('barber.edit');
@@ -43,6 +36,13 @@ Route::get('/user/barber/avatar/{filename}', 'BarberController@getImage')->name(
 Route::post('/user/barber/store', 'BarberController@store')->name('barber.store');
 Route::post('/user/barber/update', 'BarberController@update')->name('barber.update');
 Route::get('/barber/show/{id}', 'BarberController@showBarber');
+
+/*
+//Turns
+Route::get('/user/turns', 'UserController@showTurns')->name('user.turns');
+Route::get('/user/turn/create/{id}', 'TurnController@create');
+Route::post('/user/turn/save/{id}', 'TurnController@save');
+Route::delete('/user/turn/delete/{id}', 'TurnController@destroy');
 
 //Products
 Route::get('/barber/products/{id}', 'ProductController@showProducts');
@@ -57,3 +57,4 @@ Route::delete('/barber/product/delete/{id}', 'ProductController@destroy');
 Route::get('/upload-image', 'ImageController@create')->name('image.create');
 Route::post('/image/save', 'ImageController@save')->name('image.save');
 Route::get('/image/file/{filename}', 'ImageController@getImage')->name('image.file');
+*/

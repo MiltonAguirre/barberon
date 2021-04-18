@@ -59,6 +59,9 @@ class User extends Authenticatable
     public function isBarber(){
         return $this->role->id == 3;
     }
+    public function getUsername(){
+        return $this->username;
+    }
 
     function getData(){
         return [

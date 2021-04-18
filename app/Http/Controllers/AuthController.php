@@ -13,7 +13,7 @@ use Hash;
 
 class AuthController extends Controller
 {
-    public function signupUser(Request $request)
+    public function signup(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'password' => 'required|string|min:6|confirmed',
@@ -61,7 +61,7 @@ class AuthController extends Controller
             'last_name.string' => 'El apellido es inválido.',
             'role.required' => 'Debe seleccionar un rol.',
             'role.numeric' => 'El rol debe ser un número.',
-            'role.min' => 'El rol es inválido.'
+            'role.min' => 'El rol es inválido.',
             'role.max' => 'El rol es inválido.'
         ]);
         if ($validator->fails()){

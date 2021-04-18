@@ -13,15 +13,12 @@ class Location extends Model
   * @var array
   */
  protected $fillable = [
-     'addressname','addressnum','zip','city','location',
+    'address','city','state',
  ];
  public function user(){
    return $this->hasOne(User::class);
  }
- public function Barber(){
-   return $this->hasOne(Barber::class);
- }
  public function getAddress(){
-   return $this->addressname . " " . $this->addressnum . " " . $this->addressfloor . " (" . $this->zip . "), ". $this->city . " - ". $this->location;
+   return $this->address." ". $this->city . ", ". $this->state;
  }
 }
