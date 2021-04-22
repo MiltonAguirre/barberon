@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 use Validator;
 use App\User;
+use App\DataUser;
+use App\Location;
+use App\Role;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +27,7 @@ class AuthController extends Controller
             'state' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
             'first_name' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
             'last_name' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
-            'role'=>'required|numeric|min:1|max:3'
+            'role'=>'required|numeric|min:1|max:3',
 
         ],
         [
@@ -39,13 +42,17 @@ class AuthController extends Controller
             'email.max' => 'El correo electrónico es muy largo.',
             'email.min' => 'El correo electrónico es muy corto.',
             'email.unique' => 'El correo ya ha sido registrado.',
-            'city.required' => 'Debe ingresar la ciudad destino.',
-            'city.string' => 'La ciudad destino es inválida.',
+            'address.required' => 'Debe ingresar la dirección donde atiende.',
+            'address.string' => 'La dirección es inválida.',
+            'address.min' => 'La dirección no puede ser tan corta.',
+            'address.max' => 'La dirección no puede ser tan larga.',
+            'city.required' => 'Debe ingresar la ciudad donde atiende.',
+            'city.string' => 'La ciudad es inválida.',
             'city.min' => 'La ciudad no puede ser tan corta.',
             'city.max' => 'La ciudad no puede ser tan larga.',
             'city.regex' => 'La ciudad debe contener solo letras y espacios.',
-            'state.required' => 'Debe ingresar la localidad destino.',
-            'state.string' => 'La localidad destino es inválida.',
+            'state.required' => 'Debe ingresar la localidad donde atiende.',
+            'state.string' => 'La localidad es inválida.',
             'state.min' => 'La localidad no puede ser tan corta.',
             'state.max' => 'La localidad no puede ser tan larga.',
             'state.regex' => 'La localidad debe contener solo letras y espacios.',
@@ -62,35 +69,45 @@ class AuthController extends Controller
             'role.required' => 'Debe seleccionar un rol.',
             'role.numeric' => 'El rol debe ser un número.',
             'role.min' => 'El rol es inválido.',
-            'role.max' => 'El rol es inválido.'
+            'role.max' => 'El rol es inválido.',
         ]);
         if ($validator->fails()){
             return response()->json(['errors' => $validator->errors()]);
         }
+        $location = Location::create([
+          'address' => $request->get('address'),
+          'city' => $request->get('city'),
+          'state' => $request->get('state'),
+        ]);
+        $dataUser = DataUser::create([
+          'first_name' => $request->get('first_name'),
+          'last_name' => $request->get('last_name'),
+          'email' => $request->get('email'),
+          'phone' => $request->get('phone'),
+        ]);
+        $role = Role::find($request->get('role'));
 
-        $user = \Auth::user();
-        $user->location->addressname = $request->get('addressname');
-        $user->location->addressnum = $request->get('addressnum');
-        $user->location->zip = $request->get('zip');
-        $user->location->city = $request->get('city');
-        $user->location->location = $request->get('location');
-        $user->dataUser->first_name = $request->get('first_name');
-        $user->dataUser->last_name = $request->get('last_name');
-        $user->dataUser->phone = $request->get('phone');
+        $user = new User();
+        $user->username = $request->get('username');
+        $user->password = $request->get('password');
 
-        $user->dataUser->save();
-        $user->location->save();
-        $user->save();
+        $user->location()->associate($location);
+        $user->dataUser()->associate($dataUser);
+        $user->role()->associate($role);
 
         $tokenResult = $user->createToken('Personal Access Token');
-          $user->last_conection = now();
-          $user->save();
-          $token = $tokenResult->token;
-          if ($request->remember_me) {
-              $token->expires_at = Carbon::now()->addWeeks(1);
-          }
-          $token->save();
+        $user->last_conection = now();
+        $user->save();
+        $token = $tokenResult->token;
+        if ($request->remember_me) {
+            $token->expires_at = Carbon::now()->addWeeks(1);
+        }
+        $token->save();
         return response()->json([
+            'role'   => $user->role->id,
+            'user_id'   => $user->id,
+            'username'   => $user->username,
+            'message' => 'Successfully created user!',
             'access_token' => $tokenResult->accessToken], 201);
     }
 

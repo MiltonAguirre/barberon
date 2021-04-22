@@ -67,6 +67,8 @@ class User extends Authenticatable
         return [
             'id' =>  $this->id,
             'username' =>  $this->username,
+            'first_name' =>  $this->dataUser->first_name,
+            'last_name' =>  $this->dataUser->last_name,
             'email' =>  $this->dataUser->email,
             'phone' =>  $this->dataUser->phone,
             'city' =>  $this->location->city,

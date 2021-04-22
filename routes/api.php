@@ -26,3 +26,4 @@ Route::group(['prefix' => 'auth'], function () {
 
 
 });
+Route::get('users/data','UserController@show');//Show a User

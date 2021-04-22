@@ -14,6 +14,5 @@ class UsersSeeder extends Seeder
     {
       factory(App\User::class)->states('barber')->create();
       factory(App\User::class)->states('client')->create();
-      factory(App\User::class,8)->create();
     }
 }
