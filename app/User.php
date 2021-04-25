@@ -49,6 +49,9 @@ class User extends Authenticatable
     public function location(){
         return $this->belongsto(Location::class);
     }
+    public function barber(){
+        return $this->hasOne(Barber::class);
+    }
 
     public function isClient(){
         return $this->role->id == 2;

@@ -10,7 +10,7 @@ class Role extends Model
       'name',
   ];
 
-    public function User(){
-      return $this->hasOne(User::class);
-    }
+  public function user(){
+    return $this->hasOne(User::class);
+  }
 }

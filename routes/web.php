@@ -20,22 +20,22 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/home/search', 'HomeController@search')->name('search');
 
-//User
-Route::get('/user/profile', 'UserController@show')->name('user.profile');
-Route::get('/user/avatar/{filename}', 'UserController@getImage')->name('user.avatar');
-Route::get('/user/configuration', 'UserController@config')->name('config');
-Route::post('/user/configuration-save', 'UserController@update')->name('user.save');
-Route::get('/user/profile-image', 'UserController@profile_img')->name('user.img_profile');
-Route::post('/user/profile-image/save', 'UserController@save_img')->name('user.save_img');
-//BARBERS
-Route::get('/user/barber/create', 'UserController@createBarber')->name('barber.create');
-Route::get('/user/barber/edit', 'UserController@editBarber')->name('barber.edit');
-Route::get('/user/barber/show', 'UserController@showMyBarber');
-Route::get('/user/barber/turns', 'BarberController@showTurns')->name('barber.turns');
-Route::get('/user/barber/avatar/{filename}', 'BarberController@getImage')->name('barber.avatar');
-Route::post('/user/barber/store', 'BarberController@store')->name('barber.store');
-Route::post('/user/barber/update', 'BarberController@update')->name('barber.update');
-Route::get('/barber/show/{id}', 'BarberController@showBarber');
+// //User
+// Route::get('/user/profile', 'UserController@show')->name('user.profile');
+// Route::get('/user/avatar/{filename}', 'UserController@getImage')->name('user.avatar');
+// Route::get('/user/configuration', 'UserController@config')->name('config');
+// Route::post('/user/configuration-save', 'UserController@update')->name('user.save');
+// Route::get('/user/profile-image', 'UserController@profile_img')->name('user.img_profile');
+// Route::post('/user/profile-image/save', 'UserController@save_img')->name('user.save_img');
+// //BARBERS
+// Route::get('/user/barber/create', 'UserController@createBarber')->name('barber.create');
+// Route::get('/user/barber/edit', 'UserController@editBarber')->name('barber.edit');
+// Route::get('/user/barber/show', 'UserController@showMyBarber');
+// Route::get('/user/barber/turns', 'BarberController@showTurns')->name('barber.turns');
+// Route::get('/user/barber/avatar/{filename}', 'BarberController@getImage')->name('barber.avatar');
+// Route::post('/user/barber/store', 'BarberController@store')->name('barber.store');
+// Route::post('/user/barber/update', 'BarberController@update')->name('barber.update');
+// Route::get('/barber/show/{id}', 'BarberController@showBarber');
 
 /*
 //Turns

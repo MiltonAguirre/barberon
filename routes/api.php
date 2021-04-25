@@ -21,9 +21,13 @@ Route::group(['prefix' => 'auth'], function () {
     Route::group(['middleware' => 'auth:api'], function() {
         Route::get('logout', 'AuthController@logout');
         Route::get('user', 'AuthController@user');
+        //Barber
+        Route::post('barbers/store', 'BarberController@store');
+        Route::post('barbers/update', 'BarberController@update');
+        Route::get('barbers/my-barber', 'BarberController@showMyBarber');
     });
 
+    Route::get('users/data','UserController@show');//Show a User
 
 
 });
-Route::get('users/data','UserController@show');//Show a User

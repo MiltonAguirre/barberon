@@ -15,11 +15,12 @@ class UserController extends Controller
   }
   function show()
   {
-    $userAuth = auth('api')->user();
-    if(!$userAuth){
+    $user = auth('api')->user();
+
+    if(!$user){
       abort(401);
     }
-    return response()->json($userAuth->getData());
+    return response()->json($user->getData());
   }
 
 }
