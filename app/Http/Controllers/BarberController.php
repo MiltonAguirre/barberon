@@ -30,7 +30,7 @@ class BarberController extends Controller
 
     $barber = $user->barber ? $user->barber : [];
 
-    return response()->json($barber,200);
+    return response()->json($barber->getData(),200);
   }
   public function getImage($filename)
   {
@@ -103,6 +103,7 @@ class BarberController extends Controller
     $barber->location()->associate($location);
     $barber->user()->associate($user);
     $barber->save();
+
     return response()->json([
       'barber'=>$barber->getData(),
       'message'=>'Se ha creado su barbería correctamente'
