@@ -18,7 +18,6 @@ class CreateUsersTable extends Migration
           $table->string('username')->unique();
           $table->string('password');
           $table->string('api_token', 80)->unique()->nullable()->default(null);
-          $table->boolean('is_barber')->default(false);
           $table->unsignedInteger('location_id');
           $table->unsignedInteger('data_user_id');
           $table->unsignedInteger('role_id');

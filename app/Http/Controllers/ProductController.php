@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
-
+use \App\Product;
+use \App\Barber;
 class ProductController extends Controller
 {
   public function __construct()
@@ -15,21 +16,29 @@ class ProductController extends Controller
   }
   public function show($id)
   {
-    $products = \App\Product::where('barber_id', $id)->get();
-    if(count($products)){
-      return response()->json($products,200);
-    }else{
+    $product = Product::find($id);
+    if(!$product){
       return response()->json([
-        'message'=>'No se encontraron productos disponibles'
+        'message'=>'Error, no se ha encontrado el producto'
       ],400);
+    }else{
+      return response()->json($product, 200);
     }
+
+  }
+  public function showAllProducts($id)
+  {
+    $products = Product::where('barber_id', $id)->get();
+    
+    return response()->json($products,200);
+
   }
 
-  public function getImage($filename)
-  {
-    $file = Storage::disk('products')->get($filename);
-    return new Response($file,200);
-  }
+  // public function getImage($filename)
+  // {
+  //   $file = Storage::disk('products')->get($filename);
+  //   return new Response($file,200);
+  // }
 
   public function store(Request $request)
   {
@@ -38,7 +47,7 @@ class ProductController extends Controller
       'description' => 'required|string|min:10|max:255|regex:/^[\pL\s]+$/u',
       'price' => 'required|numeric',
       'delay' => 'required|numeric|min:30',
-      'image_path' => 'required|image'
+      //'image_path' => 'required|image'
     ],
     [
       'image_path.image' => 'La imagen no es un archivo válido.',
@@ -60,22 +69,23 @@ class ProductController extends Controller
       'price.numeric' => 'El precio debe contener solo números.'
     ]);
     $user = auth('api')->user();
-    $product = new \App\Product;
+    if(!$user || !$user->isBarber() || !$user->barber) abort(401);
+    $product = new Product;
     $product->name = $request->get('name');
     $product->description = $request->get('description');
     $product->price = $request->get('price');
     $product->delay = $request->get('delay');
     //Upload image
-    $image_path = $request->file('image_path');
-    if ($image_path) {
-      //delete image for be replace
-      if($product->image){
-        Storage::disk('products')->delete($product->image);
-      }
-      $image_path_name = time().$image_path->getClientOriginalName();
-      Storage::disk('products')->put($image_path_name, File::get($image_path));
-      $product->image = $image_path_name;
-    }
+    // $image_path = $request->file('image_path');
+    // if ($image_path) {
+    //   //delete image for be replace
+    //   if($product->image){
+    //     Storage::disk('products')->delete($product->image);
+    //   }
+    //   $image_path_name = time().$image_path->getClientOriginalName();
+    //   Storage::disk('products')->put($image_path_name, File::get($image_path));
+    //   $product->image = $image_path_name;
+    // }
     $product->barber()->associate($user->barber->id);
     $product->save();
 
@@ -91,7 +101,7 @@ class ProductController extends Controller
       'description' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
       'price' => 'required|numeric',
       'delay' => 'required|numeric|min:30',
-      'image_path' => 'image'
+      //'image_path' => 'image'
     ],
     [
       'image_path.image' => 'La imagen no es un archivo válido.',
@@ -113,25 +123,29 @@ class ProductController extends Controller
 
     ]);
     $user = auth('api')->user();
-    $product = \App\Product::find($id);
-    if($product){
+    if(!$user || !$user->isBarber()) abort(401);
+    $product = $user->barber->products()->find($id);
+    if(!$product){
+      abort(401);
+    }else{
       $product->name = $request->get('name');
       $product->description = $request->get('description');
       $product->price = $request->get('price');
       $product->delay = $request->get('delay');
+      $product->save();
+
     }
     //Upload image
-    $image_path = $request->file('image_path');
-    if ($image_path) {
-      //delete image for be replace
-      if($product->image){
-        Storage::disk('products')->delete($product->image);
-      }
-      $image_path_name = time().$image_path->getClientOriginalName();
-      Storage::disk('products')->put($image_path_name, File::get($image_path));
-      $product->image = $image_path_name;
-    }
-    $product->save();
+    // $image_path = $request->file('image_path');
+    // if ($image_path) {
+    //   //delete image for be replace
+    //   if($product->image){
+    //     Storage::disk('products')->delete($product->image);
+    //   }
+    //   $image_path_name = time().$image_path->getClientOriginalName();
+    //   Storage::disk('products')->put($image_path_name, File::get($image_path));
+    //   $product->image = $image_path_name;
+    // }
 
     return response()->json([
       'message'=>'Se editó su producto correctamente'
@@ -140,7 +154,14 @@ class ProductController extends Controller
 
   public function destroy($id)
   {
-    \App\Product::find($id)->delete();
+    $user = auth('api')->user();
+    if(!$user || !$user->isBarber()) abort(401);
+    $product = $user->barber->products()->find($id);
+    $user = auth('api')->user();
+    if(!$product){
+      abort(401);
+    }
+    $product->delete();
     return response()->json([
       'message'=>'Se quitó el producto de su barbería correctamente'
     ],200);

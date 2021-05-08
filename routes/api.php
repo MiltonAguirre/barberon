@@ -24,10 +24,19 @@ Route::group(['prefix' => 'auth'], function () {
         //Barber
         Route::post('barbers/store', 'BarberController@store');
         Route::post('barbers/update', 'BarberController@update');
-        Route::get('barbers/my-barber', 'BarberController@showMyBarber');
+        Route::get('barbers/', 'BarberController@showAllBarbers');
+        Route::get('barbers/{id}', 'BarberController@show');
+        //Products
+        Route::get('/products/{id}', 'ProductController@show');
+        Route::get('/products/all/{id}', 'ProductController@showAllProducts');
+        Route::post('/products/store', 'ProductController@store');
+        Route::post('/products/update/{id}', 'ProductController@update');
+        Route::delete('/products/delete/{id}', 'ProductController@destroy');
+
     });
 
     Route::get('users/data','UserController@show');//Show a User
+
 
 
 });

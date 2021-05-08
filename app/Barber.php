@@ -16,6 +16,9 @@ class Barber extends Model
   public function location(){
     return $this->belongsto(Location::class);
   }
+  public function products(){
+    return $this->hasMany(Product::class);
+  }
 
   function getData(){
       return [

@@ -7,6 +7,8 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Validator;
+use \App\Barber;
+use \App\Location;
 
 class BarberController extends Controller
 {
@@ -14,30 +16,49 @@ class BarberController extends Controller
   {
       $this->middleware('auth:api');
   }
+
   public function show($id)
   {
-    $barber =\App\Barber::find($id);
-    if(!$barber){
-      return redirect(route('home'))->with('message', 'Error, no se encontro la barbería');
+    if(is_numeric($id)){
+      $barber = Barber::find($id);
+      if(!$barber){
+        return response()->json([
+          'message'=>'Error, no hemos encontrado la barbería'
+        ],400);
+      }else{
+        return response()->json($barber->getData(),200);
+      }
     }else{
-      return view('barber.show', ['barber' => $barber]);
+      $user = auth('api')->user();
+      if(!$user || !$user->isBarber()) 
+      return response()->json([
+        'message'=>'Usted no tiene los permisos para esta acción'
+      ],400);
+
+      $barber = $user->barber ? $user->barber->getData() : [];
+
+      return response()->json($barber,200);
     }
   }
-  public function showMyBarber()
+
+  public function showAllBarbers()
   {
-    $user = auth('api')->user();
-    if(!$user || !$user->isBarber()) abort(401);
-
-    $barber = $user->barber ? $user->barber : [];
-
-    return response()->json($barber->getData(),200);
+    $barbers = Barber::all();
+    if(count($barbers)){
+      return response()->json($barbers,200);
+    }else{
+      return response()->json([
+        'message'=>'No se encontraron barberias disponibles'
+      ],400);
+    }
   }
+
   public function getImage($filename)
   {
     $file = Storage::disk('barbers')->get($filename);
     return new Response($file,200);
   }
-  //***
+
   public function store(Request $request)
   {
     $validator = Validator::make($request->all(), [
@@ -80,12 +101,12 @@ class BarberController extends Controller
     $user = auth('api')->user();
     if(!$user || !$user->isBarber() || $user->barber) abort(401);
 
-    $location = \App\Location::create([
+    $location = Location::create([
       'address' => $request->address,
       'city' => $request->city,
       'state' => $request->state,
     ]);
-    $barber = new \App\Barber;
+    $barber = new Barber;
     $barber->name = $request->name;
     $barber->phone = $request->phone;
     //Upload image
