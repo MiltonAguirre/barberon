@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
   protected $fillable = [
-      'name','price','delay', 'description'
+      'name','price','delay', 'description', 'image'
   ];
   //Relationshps
   public function barber(){

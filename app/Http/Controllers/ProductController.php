@@ -47,11 +47,11 @@ class ProductController extends Controller
       'description' => 'required|string|min:10|max:255|regex:/^[\pL\s]+$/u',
       'price' => 'required|numeric',
       'delay' => 'required|numeric|min:30',
-      //'image_path' => 'required|image'
+      'image' => 'required|image'
     ],
     [
-      'image_path.image' => 'La imagen no es un archivo válido.',
-      'image_path.required' => 'Debe subir una foto del trabajo.',
+      'image.image' => 'La imagen no es un archivo válido.',
+      'image.required' => 'Debe subir una foto del trabajo.',
       'name.required' => 'Debe ingresar un nombre descriptivo.',
       'name.min' => 'El nombre no puede ser tan corto.',
       'name.max' => 'El nombre no puede ser tan largo.',
@@ -71,25 +71,26 @@ class ProductController extends Controller
     $user = auth('api')->user();
     if(!$user || !$user->isBarber() || !$user->barber) abort(401);
     $product = new Product;
-    $product->name = $request->get('name');
-    $product->description = $request->get('description');
-    $product->price = $request->get('price');
-    $product->delay = $request->get('delay');
+    $product->name = $request->name;
+    $product->description = $request->description;
+    $product->price = $request->price;
+    $product->delay = $request->delay;
     //Upload image
-    // $image_path = $request->file('image_path');
-    // if ($image_path) {
-    //   //delete image for be replace
-    //   if($product->image){
-    //     Storage::disk('products')->delete($product->image);
-    //   }
-    //   $image_path_name = time().$image_path->getClientOriginalName();
-    //   Storage::disk('products')->put($image_path_name, File::get($image_path));
-    //   $product->image = $image_path_name;
-    // }
+    $image_path = $request->image;
+    if ($image_path) {
+      //delete image for be replace
+      if($product->image){
+        Storage::disk('products')->delete($product->image);
+      }
+      $image_path_name = time().$image_path->getClientOriginalName();
+      Storage::disk('products')->put($image_path_name, File::get($image_path));
+      $product->image = $image_path_name;
+    }
     $product->barber()->associate($user->barber->id);
     $product->save();
 
     return response()->json([
+      'products'=>$user->barber->products,
       'message'=>'Se agregó un nuevo producto a su barbería'
     ],200);
   }
@@ -101,10 +102,11 @@ class ProductController extends Controller
       'description' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
       'price' => 'required|numeric',
       'delay' => 'required|numeric|min:30',
-      //'image_path' => 'image'
+      'image' => 'required|image'
     ],
     [
-      'image_path.image' => 'La imagen no es un archivo válido.',
+      'image.image' => 'La imagen no es un archivo válido.',
+      'image.required' => 'Debe ingresar una imagen del producto.',
       'name.required' => 'Debe ingresar un nombre descriptivo.',
       'name.min' => 'El nombre no puede ser tan corto.',
       'name.max' => 'El nombre no puede ser tan largo.',
@@ -136,16 +138,16 @@ class ProductController extends Controller
 
     }
     //Upload image
-    // $image_path = $request->file('image_path');
-    // if ($image_path) {
-    //   //delete image for be replace
-    //   if($product->image){
-    //     Storage::disk('products')->delete($product->image);
-    //   }
-    //   $image_path_name = time().$image_path->getClientOriginalName();
-    //   Storage::disk('products')->put($image_path_name, File::get($image_path));
-    //   $product->image = $image_path_name;
-    // }
+    $image_path = $request->file('image');
+    if ($image_path) {
+      //delete image for be replace
+      if($product->image){
+        Storage::disk('products')->delete($product->image);
+      }
+      $image_path_name = time().$image_path->getClientOriginalName();
+      Storage::disk('products')->put($image_path_name, File::get($image_path));
+      $product->image = $image_path_name;
+    }
 
     return response()->json([
       'message'=>'Se editó su producto correctamente'

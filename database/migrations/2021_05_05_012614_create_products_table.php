@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('description');
             $table->float('price');
             $table->time('delay');
+            $table->string('image');
             $table->unsignedInteger('barber_id');
             $table->timestamps();
         });
