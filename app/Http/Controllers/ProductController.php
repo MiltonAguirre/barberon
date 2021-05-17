@@ -17,6 +17,7 @@ class ProductController extends Controller
   {
       $this->middleware('auth:api');
   }
+
   public function show($id)
   {
     $product = Product::find($id);
@@ -29,6 +30,7 @@ class ProductController extends Controller
     }
 
   }
+
   public function showAllProducts($id)
   {
     $products = Product::where('barber_id', $id)->get();
@@ -38,12 +40,6 @@ class ProductController extends Controller
     return response()->json($products,200);
 
   }
-
-  // public function getImage($filename)
-  // {
-  //   $file = Storage::disk('products')->get($filename);
-  //   return new Response($file,200);
-  // }
 
   public function store(Request $request)
   {
@@ -73,9 +69,11 @@ class ProductController extends Controller
       'price.required' => 'Debe ingresar el precio del trabajo.',
       'price.numeric' => 'El precio debe contener solo números.'
     ]);
+
     if ($validator->fails()){
       return response()->json(['errors' => $validator->errors()]);
     }
+
     $user = auth('api')->user();
     if(!$user || !$user->isBarber() || !$user->barber) abort(401);
     $product = new Product;
@@ -83,29 +81,26 @@ class ProductController extends Controller
     $product->description = $request->description;
     $product->price = $request->price;
     $product->delay = $request->delay;
-    
+
     $product->barber()->associate($user->barber);
     $product->save();
     //Upload image
     $image_path = $request->file("image");
+
     if ($image_path) {
       $image_path_name = "products/".time().$image_path->getClientOriginalName();
-      Storage::disk('products')->put($image_path_name, file_get_contents($image_path));
+      Storage::disk('public')->put($image_path_name, file_get_contents($image_path));
       $image= new ImageProduct();
       $image->path = $image_path_name;
       $image->product()->associate($product);
       $image->save();
     }
-    /*$images = ImageProduct::join('products', 'products.id', '=', 'image_products.product_id')
-    ->where('products.barber_id', '=', $user->barber->id)
-    ->select('image_products.id as id','image_products.path as path', 'image_products.id as product_id')
-    ->orderBy('image_products.id', 'DESC')
-    ->distinct()
-    ->get();*/
+
     $products = $user->barber->products;
     foreach($products as $product){
       $product['images'] = $product->images;
     }
+    
     return response()->json([
       'products'=>$products,
       'message'=>'Se agregó un nuevo producto a su barbería'
@@ -114,7 +109,7 @@ class ProductController extends Controller
 
   public function update(Request $request, $id)
   {
-    $request->validate([
+    $validator = Validator::make($request->all(), [
       'name' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
       'description' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
       'price' => 'required|numeric',
@@ -141,6 +136,9 @@ class ProductController extends Controller
       'price.numeric' => 'El precio debe contener solo números.',
 
     ]);
+    if ($validator->fails()){
+      return response()->json(['errors' => $validator->errors()]);
+    }
     $user = auth('api')->user();
     if(!$user || !$user->isBarber()) abort(401);
     $product = $user->barber->products()->find($id);
@@ -174,13 +172,13 @@ class ProductController extends Controller
   public function destroy($id)
   {
     $user = auth('api')->user();
-    if(!$user || !$user->isBarber()) abort(401);
+    if(!$user || !$user->isBarber() || !$user->barber) abort(401);
     $product = $user->barber->products()->find($id);
-    $user = auth('api')->user();
-    if(!$product){
-      abort(401);
-    }
+
+    if(!$product) abort(401);
+
     $product->delete();
+    
     return response()->json([
       'message'=>'Se quitó el producto de su barbería correctamente'
     ],200);

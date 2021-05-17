@@ -50,33 +50,8 @@ return [
 
         'public' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
-            'visibility' => 'public',
-        ],
-
-        'users' => [
-            'driver' => 'local',
-            'root' => storage_path('app/users'),
-            'url' => env('APP_URL').'/storage',
-            'visibility' => 'public',
-        ],
-        'barbers' => [
-            'driver' => 'local',
-            'root' => storage_path('app/barbers'),
-            'url' => env('APP_URL').'/storage',
-            'visibility' => 'public',
-        ],
-        'products' => [
-            'driver' => 'local',
-            'root' => storage_path('app/products'),
-            'url' => env('APP_URL').'/storage',
-            'visibility' => 'public',
-        ],
-        'images' => [
-            'driver' => 'local',
-            'root' => storage_path('app/images'),
-            'url' => env('APP_URL').'/storage',
+            'root' => public_path() . '/uploads',
+            'url' => env('APP_URL').'/public',
             'visibility' => 'public',
         ],
 
