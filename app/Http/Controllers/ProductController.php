@@ -107,18 +107,16 @@ class ProductController extends Controller
     ],200);
   }
 
-  public function update(Request $request, $id)
+  public function update(Request $request)
   {
     $validator = Validator::make($request->all(), [
       'name' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
-      'description' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
+      'description' => 'required|string|min:10|max:255|regex:/^[\pL\s]+$/u',
       'price' => 'required|numeric',
       'delay' => 'required|numeric|min:30',
-      'image' => 'required|image'
+      'id' => 'required|integer|min:1'
     ],
     [
-      'image.image' => 'La imagen no es un archivo válido.',
-      'image.required' => 'Debe ingresar una imagen del producto.',
       'name.required' => 'Debe ingresar un nombre descriptivo.',
       'name.min' => 'El nombre no puede ser tan corto.',
       'name.max' => 'El nombre no puede ser tan largo.',
@@ -136,19 +134,23 @@ class ProductController extends Controller
       'price.numeric' => 'El precio debe contener solo números.',
 
     ]);
-    if ($validator->fails()){
-      return response()->json(['errors' => $validator->errors()]);
+    /**
+     * if ($validator->fails()){
+      return response()->json(['errors' => $validator->errors()],401);
     }
+     */
+    
     $user = auth('api')->user();
     if(!$user || !$user->isBarber()) abort(401);
-    $product = $user->barber->products()->find($id);
+
+    $product = $user->barber->products()->find($request->id);
     if(!$product){
       abort(401);
     }else{
-      $product->name = $request->get('name');
-      $product->description = $request->get('description');
-      $product->price = $request->get('price');
-      $product->delay = $request->get('delay');
+      $product->name = $request->name;
+      $product->description = $request->description;
+      $product->price = $request->price;
+      $product->delay = $request->delay;
       $product->save();
 
     }
@@ -163,9 +165,13 @@ class ProductController extends Controller
       Storage::disk('products')->put($image_path_name, File::get($image_path));
       $product->image = $image_path_name;
     }*/
-
+    $products = $user->barber->products;
+    foreach($products as $product){
+      $product['images'] = $product->images;
+    }
     return response()->json([
-      'message'=>'Se editó su producto correctamente'
+      'products' => $products,
+      'message'=>'Su producto fue editado correctamente'
     ],200);
   }
 
@@ -180,7 +186,7 @@ class ProductController extends Controller
     $product->delete();
     
     return response()->json([
-      'message'=>'Se quitó el producto de su barbería correctamente'
+      'message'=>'El producto fue eliminado de su barbería'
     ],200);
   }
 

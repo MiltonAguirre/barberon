@@ -30,7 +30,7 @@ Route::group(['prefix' => 'auth'], function () {
         Route::get('/products/{id}', 'ProductController@show');
         Route::get('/products/all/{id}', 'ProductController@showAllProducts');
         Route::post('/products/store', 'ProductController@store');
-        Route::post('/products/update/{id}', 'ProductController@update');
+        Route::post('/products/update', 'ProductController@update');
         Route::delete('/products/delete/{id}', 'ProductController@destroy');
 
     });
