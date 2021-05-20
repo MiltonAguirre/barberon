@@ -52,6 +52,9 @@ class User extends Authenticatable
     public function barber(){
         return $this->hasOne(Barber::class);
     }
+    public function turns(){
+        return $this->hasMany(Turn::class);
+    }
 
     public function isClient(){
         return $this->role->id == 2;
