@@ -155,7 +155,8 @@ class ProductController extends Controller
 
     }
     //Upload image
-    /*$image_path = $request->file('image');
+    /*
+    $image_path = $request->file('image');
     if ($image_path) {
       //delete image for be replace
       if($product->image){
@@ -164,7 +165,8 @@ class ProductController extends Controller
       $image_path_name = time().$image_path->getClientOriginalName();
       Storage::disk('products')->put($image_path_name, File::get($image_path));
       $product->image = $image_path_name;
-    }*/
+    }
+    */
     $products = $user->barber->products;
     foreach($products as $product){
       $product['images'] = $product->images;

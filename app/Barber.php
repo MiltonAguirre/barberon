@@ -19,7 +19,10 @@ class Barber extends Model
   public function products(){
     return $this->hasMany(Product::class);
   }
-
+  public function schedule(){
+    return $this->hasOne(Schedule::class);
+  }
+  
   function getData(){
       return [
           'id' =>  $this->id,

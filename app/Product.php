@@ -16,4 +16,7 @@ class Product extends Model
   public function images(){
     return $this->hasMany(ImageProduct::class);
   }
+  public function turns(){
+    return $this->hasMany(Turn::class);
+  }
 }
