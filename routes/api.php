@@ -24,8 +24,8 @@ Route::group(['prefix' => 'auth'], function () {
         //Barber
         Route::post('barbers/store', 'BarberController@store');
         Route::post('barbers/update', 'BarberController@update');
-        Route::get('barbers/', 'BarberController@showAllBarbers');
-        Route::get('barbers/{id}', 'BarberController@show');
+        Route::get('barbers', 'BarberController@showBarbers');
+        Route::get('barbers/barber/{id?}', 'BarberController@show');
         //Products
         Route::get('/products/{id}', 'ProductController@show');
         Route::get('/products/all/{id}', 'ProductController@showAllProducts');

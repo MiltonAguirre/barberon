@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\File;
 use Validator;
 use \App\Barber;
 use \App\Location;
+use \App\Schedule;
+
 
 class BarberController extends Controller
 {
@@ -17,7 +19,7 @@ class BarberController extends Controller
       $this->middleware('auth:api');
   }
 
-  public function show($id)
+  public function show($id = '')
   {
     if(is_numeric($id)){
       $barber = Barber::find($id);
@@ -28,35 +30,33 @@ class BarberController extends Controller
       }else{
         return response()->json($barber->getData(),200);
       }
+
     }else{
       $user = auth('api')->user();
       if(!$user || !$user->isBarber()) 
       return response()->json([
         'message'=>'Usted no tiene los permisos para esta acción'
       ],400);
-
+      
       $barber = $user->barber ? $user->barber->getData() : [];
-
       return response()->json($barber,200);
+
     }
   }
 
-  public function showAllBarbers()
+  public function showBarbers(Request $request)
   {
-    $barbers = Barber::all();
-    if(count($barbers)){
-      return response()->json($barbers,200);
-    }else{
-      return response()->json([
-        'message'=>'No se encontraron barberias disponibles'
-      ],400);
-    }
-  }
+    $user = auth('api')->user();
+    $city = $user->location->city;
+    $state = $user->location->state;
 
-  public function getImage($filename)
-  {
-    $file = Storage::disk('barbers')->get($filename);
-    return new Response($file,200);
+    $barbers = Barber::join('locations', 'barbers.location_id', '=', 'locations.id')
+                      ->where('locations.city',$city)
+                      ->where('locations.state', $state)
+                      ->select('barbers.id', 'barbers.name', 'barbers.phone', 'locations.address', 'locations.city', 'locations.state')
+                      ->get();
+    return response()->json($barbers->toArray(),200);
+
   }
 
   public function store(Request $request)
@@ -197,4 +197,73 @@ class BarberController extends Controller
     return response()->json(['message'=>'Se ha actualizado su barbería correctamente'],200);
 
   }
+
+  public function loadSchedules(Request $request)
+  {
+    dd($request);
+
+    $validator = Validator::make($request->all(), [
+      'days' => 'required|array',
+      'open' => 'required|array',
+      'close' => 'required|array',
+    ]);
+    if($validator->fails()){
+      return response()->json(['errors' => $validator->errors()]);
+    }
+    $user = auth('api')->user();
+    if( !$user || !$user->isBarber() || !$user->barber ) abort(401);
+    $days = json_encode($request->days);
+    $open = json_encode($request->open);
+    $close = json_encode($request->close);
+
+    $schedule = new Schedule();
+    $schedule->days = $days;
+    $schedule->open = $open;
+    $schedule->close = $close;
+    $schedule->barber()->associate($user->barber);
+    $schedule->save();
+
+    return response()->json($schedule,200);
+
+  }
+
+  public function uploadSchedules(Request $request)
+  {
+    dd($request);
+
+    $validator = Validator::make($request->all(), [
+      'days' => 'required|array',
+      'open' => 'required|array',
+      'close' => 'required|array',
+    ]);
+    if($validator->fails()){
+      return response()->json(['errors' => $validator->errors()]);
+    }
+    $user = auth('api')->user();
+    if( !$user || !$user->isBarber() || !$user->barber ) abort(401);
+    $days = json_encode($request->days);
+    $open = json_encode($request->open);
+    $close = json_encode($request->close);
+
+    $schedule = $user->barber->schedule;
+    $schedule->days = $days;
+    $schedule->open = $open;
+    $schedule->close = $close;
+    $schedule->save();
+
+    return response()->json($schedule,200);
+
+  }
+
+  public function getTurns()
+  {
+    dd("get turns");
+  }
+
+  public function getImage($filename)
+  {
+    $file = Storage::disk('barbers')->get($filename);
+    return new Response($file,200);
+  }
+
 }

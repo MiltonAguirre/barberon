@@ -33,4 +33,15 @@ class Barber extends Model
           'state' =>  $this->location->state,
       ];
   }
+
+  function getSchedules(){
+      $days = json_decode($this->schedule->days);
+      $open = json_decode($this->schedule->open);
+      $close = json_decode($this->schedule->close);
+      return [
+        'days' => $days,
+        'open' => $open,
+        'close' => $close
+      ];
+  }
 }
