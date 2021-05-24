@@ -34,11 +34,16 @@ class ProductController extends Controller
   public function showAllProducts($id)
   {
     $products = Product::where('barber_id', $id)->get();
-    foreach($products as $product){
-      $product['images'] = $product->images;
-    }
-    return response()->json($products,200);
+    if(count($products)){
+      foreach($products as $product){
+        $product['images'] = $product->images;
+      }
+      return response()->json($products,200);
 
+    }
+    else{
+      return response()->json([],200);
+    }
   }
 
   public function store(Request $request)

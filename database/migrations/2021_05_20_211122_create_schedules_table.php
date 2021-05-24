@@ -18,8 +18,12 @@ class CreateSchedulesTable extends Migration
             $table->string('days');
             $table->string('open');
             $table->string('close');
+            $table->unsignedInteger('barber_id');
             
             $table->timestamps();
+        });
+        Schema::table('schedules', function($table) {
+            $table->foreign('barber_id')->references('id')->on('barbers');
         });
     }
 

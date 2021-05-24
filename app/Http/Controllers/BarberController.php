@@ -55,7 +55,15 @@ class BarberController extends Controller
                       ->where('locations.state', $state)
                       ->select('barbers.id', 'barbers.name', 'barbers.phone', 'locations.address', 'locations.city', 'locations.state')
                       ->get();
-    return response()->json($barbers->toArray(),200);
+    $response = [];
+    foreach($barbers as $barber){
+      $res = [];
+      $res['data'] = $barber->getData();
+      //$res['schedules'] = $barber->getSchedules();
+      $response[] = $res;
+    }
+    
+    return response()->json($response,200);
 
   }
 
@@ -198,10 +206,8 @@ class BarberController extends Controller
 
   }
 
-  public function loadSchedules(Request $request)
+  public function loadSchedule(Request $request)
   {
-    dd($request);
-
     $validator = Validator::make($request->all(), [
       'days' => 'required|array',
       'open' => 'required|array',
@@ -227,7 +233,7 @@ class BarberController extends Controller
 
   }
 
-  public function uploadSchedules(Request $request)
+  public function uploadSchedule(Request $request)
   {
     dd($request);
 
@@ -249,15 +255,25 @@ class BarberController extends Controller
     $schedule->days = $days;
     $schedule->open = $open;
     $schedule->close = $close;
+
     $schedule->save();
 
     return response()->json($schedule,200);
 
   }
 
-  public function getTurns()
+  public function getSchedules()
   {
-    dd("get turns");
+    $validator = Validator::make($request->all(), [
+      'barber_id' => 'required|numeric',
+    ]);
+    if($validator->fails()){
+      return response()->json(['errors' => $validator->errors()]);
+    }
+    $barber = Barber::find($request->barber_id);
+    $schedules = $barber->schedule ? $barber->schedule : [];
+    return response()->json($schedules, 200);
+
   }
 
   public function getImage($filename)

@@ -28,13 +28,17 @@ class Barber extends Model
           'id' =>  $this->id,
           'name' =>  $this->name,
           'phone' =>  $this->phone,
-          'city' =>  $this->location->city,
-          'address' =>  $this->location->address,
-          'state' =>  $this->location->state,
+          'city' =>  $this->location ? $this->location->city : $this->city,
+          'address' =>  $this->location ? $this->location->address : $this->address,
+          'state' =>  $this->location ? $this->location->state : $this->state,
       ];
   }
 
   function getSchedules(){
+    if(!$this->schedule){
+      return [];
+    }else{
+
       $days = json_decode($this->schedule->days);
       $open = json_decode($this->schedule->open);
       $close = json_decode($this->schedule->close);
@@ -43,5 +47,7 @@ class Barber extends Model
         'open' => $open,
         'close' => $close
       ];
+    }
+
   }
 }
