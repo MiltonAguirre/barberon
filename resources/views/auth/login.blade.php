@@ -4,10 +4,10 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Ingresa a BarberON') }}</div>
+            <div class="card text-primary-color">
+                <div class="card-header bg-dark-color">{{ __('Ingresa a BarberON') }}</div>
 
-                <div class="card-body">
+                <div class="card-body bg-secondary-color">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
@@ -15,7 +15,7 @@
                             <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Usuario') }}</label>
 
                             <div class="col-md-6">
-                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required>
 
                                 @error('username')
                                     <span class="invalid-feedback" role="alert">
