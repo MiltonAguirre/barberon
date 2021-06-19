@@ -11,26 +11,31 @@
 @import '~@fortawesome/fontawesome-free/css/all.css';
 
 //My Styles
-section{
-    margin-bottom: 2.5vh;
-    box-shadow: .25vw .5vh rgba(0,0,0,.5);
-}
 //Text
 .text-primary-color{
     color: $PRIMARY_COLOR !important;
 }
+.text-secondary-color{
+    color: $SECONDARY_COLOR !important;
+}
+.text-light-color{
+    color: $LIGHT_COLOR !important;
+}
+.text-dark-color{
+    color: $DARK_COLOR !important;
+}
 //Backgrounds
 .bg-primary-color{
-    background-color: $PRIMARY_COLOR;
+    background-color: $PRIMARY_COLOR !important;
 }
 .bg-secondary-color{
-    background-color: $SECONDARY_COLOR;
+    background-color: $SECONDARY_COLOR !important;
 }
 .bg-dark-color{
-    background-color: $DARK_COLOR;
+    background-color: $DARK_COLOR !important;
 }
 .bg-light-color{
-    background-color: $LIGHT_COLOR;
+    background-color: $LIGHT_COLOR !important;
 }
 //Containers
 body{
@@ -49,12 +54,18 @@ nav{
 .navbar-toggler{
     border-color: $LIGHT_COLOR !important;
 }
+section{
+    margin-bottom: 2.5vh;
+    box-shadow: .25vw .5vh rgba(0,0,0,.5);
+    z-index: 1vh;
+    width: 'auto';
+    align-self: center;
+}
 #banner{
     background-image: url('../../public/img/bg-banner3.png');
     background-size: cover;
     background-repeat: no-repeat;
     height: 85vh;
-    width: 'auto';
     justify-content: center;
     padding: 8vh 15vw 5vh 15vw;
 
@@ -74,37 +85,97 @@ nav{
     padding-bottom: 2vh;
 
 }
+#banner button{
+    font-size: 3vh;
+
+}
 .logo{
     font-size: 3.5vh;
+    text-decoration: none;
+    color: $PRIMARY_COLOR;
+}
+.logo :hover{
+    cursor: pointer;
+}
+.logo-circle{
+    border-style: solid;
+    border-radius: 900px;
+    border-width: 7.5px;
+    border-color: $LIGHT_COLOR;
+    width: 100px;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 17.5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
 }
 .info{
     background-image: url('../../public/img/bg-banner2.png');
     background-size: cover;
     background-repeat: no-repeat;
-    height: 85vh;
-    width: 'auto';
+    height: 55vh;
     justify-content: center;
-    padding: 5vh 5vw;
-    border-radius: 25vh;
+    padding: 2.5vh 2.5vw;
+    border-radius: 2.5vh;
     text-align: center;
+    width: 47.5vw;
 
 }
 .info h1{
-    font-size: 8vh;
+    font-size: 5vh;
     font-weight: bold;
     color: $LIGHT_COLOR;
     font-family: 'Lobster Two', cursive;
-    margin-bottom: 7.5vh;
-    margin-top: 5vh;
+    margin-bottom: 3.5vh;
     text-shadow: 2px 3px rgba(0,0,0,.5);
 
 }
 .info p{
-    font-size: 3vh;
+    font-size: 2vh;
     color: $LIGHT_COLOR;
+
+}
+.info img{
+    border-radius: 4vh;
+    border-width: 1vh;
+    border-color: $LIGHT_COLOR;
+    border-style: double;
 
 }
 .info-two{
     background-image: url('../../public/img/bg-banner3.png');
+
+}
+.info-two h1{
+    color: $PRIMARY_COLOR;
+
+}
+#contact{
+    justify-content: center;
+    padding-top: 7.5vh;
+    padding-bottom: 5vh;
+    text-align: center;
+    background-color: $DARK_COLOR;
+}
+#contact h1{
+    font-size: 5vh;
+    font-weight: bold;
+    color: $LIGHT_COLOR;
+    font-family: 'Lobster Two', cursive;
+    margin-bottom: 3.5vh;
+    text-shadow: 2px 3px rgba(0,0,0,.5);
+
+}
+#contact p{
+    font-size: 2vh;
+    color: $LIGHT_COLOR;
+    padding: 1.5vh;
+
+}
+#contact button{
+    font-size: 2vh;
 
 }
