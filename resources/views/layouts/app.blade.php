@@ -34,11 +34,11 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse mt-2" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse ml-5 pl-4  mt-2" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav ml-auto mr-2">
                             <li class="nav-item">
-                                <a href="/" class="nav-link text-white mr-2 ml-5">Inicio</a>
+                                <a href="#app" class="nav-link text-white mr-2 ml-5">Inicio</a>
                             </li>
                             <li class="nav-item">
                                 <a href="/" class="nav-link text-white mx-2">Quienes somos?</a>
@@ -54,7 +54,7 @@
                             <a href="/" class="nav-link text-white mx-2">Como funciona?</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/" class="nav-link text-white ml-2 mr-5">Contacto</a>
+                            <a href="#contact" class="nav-link text-white ml-2 mr-5">Contacto</a>
                         </li>
                         <!-- Authentication Links -->
                         @guest
@@ -112,7 +112,7 @@
         </nav>
         @guest
 
-        <main>
+        <main class="my-3">
             @yield('content')
         </main>
         @endguest

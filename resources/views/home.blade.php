@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid py-3">
-  @include('includes.message')
+@include('includes.message')
+
+<div class="container-fluid">
     <section id="banner">
         <div class="row justify-content-center">
             <div class=" col-0 col-md-1">
@@ -33,18 +34,29 @@
                 </div>
 
             </div>
-
             <div class="col-0 col-md-4 text-center">
-                <img src="{{asset('img/phone-hand.png')}}" alt="" width="300" height="600">
+                <div class="smartphone">
+                    <div class="content">
+                        <img src="{{asset('img/screenapp.png')}}" />
+                    </div>
+                </div>
             </div>
 
         </div>
-        <div class="col-12 text-center">
-                <button class="btn text-light-color font-weight-bold"><i class="fas fa-chevron-down mr-2"></i>Descubrí más!</button>
+        <div class="row  text-center">
+            <p><span class="scroll-btn">
+                <a href="#info">
+                    <span class="mouse">
+                    <span>
+                    </span>
+                    </span>
+                </a>
+            </span></p>
+                <!--<button class="btn text-light-color font-weight-bold"><i class="fas fa-chevron-down mr-2"></i></button>-->
         </div>
     </section>
 
-    <section class="info float-right">
+    <section id="info" class="info bg-primary-color float-right">
         <div class="row my-5 pt-3 pb-5">
             <div class="col-md-6">
                 <img src="{{asset('img/data4.jpg')}}" alt="" width="350"/>
@@ -86,7 +98,7 @@
         </div>
     </section>
 
-    <section class="info ">
+    <section class="info bg-dark-color">
         <div class="row my-5 pt-3 pb-5">
             <div class="col-md-6">
                 <img src="{{asset('img/data2.jpg')}}" alt="" width="350"/>
@@ -98,6 +110,9 @@
             </div>
         </div>
     </section>
+    <video autoplay muted loop id="myVideo">
+        <source src="{{asset('videos/how-video.mp4')}}" type="video/mp4">
+    </video>
 
     <section id="contact">
         <div class="col">
@@ -116,7 +131,7 @@
                 <form class="col-md-8 offset-md-2" action="#" method="post">
                     <input class="form-control my-2" type="text" name="name" placeholder="Nombre"/>
                     <input class="form-control my-2" type="email" name="email" placeholder="E-mail"/>
-                    <textarea class="form-control my-2" name="message" cols="10" rows="5" placeholder="Envíame un mensaje..."></textarea>
+                    <textarea class="form-control my-2" name="message" cols="10" rows="5" placeholder="Envíanos un mensaje, te responderemos a la brevedad..."></textarea>
                     <button type="submit" class="my-3 btn bg-primary-color text-light-color">Enviar</button>
                 </form>
             </div>

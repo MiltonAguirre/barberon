@@ -9,9 +9,123 @@
 @import '~bootstrap/scss/bootstrap';
 //Icons
 @import '~@fortawesome/fontawesome-free/css/all.css';
-
+//icon scroll/////////////////////////////////////////
+.scroll-btn {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    top:85vh
+}
+.scroll-btn > * {
+    display: inline-block;
+    line-height: 18px;
+    font-size: 13px;
+    font-weight: normal;
+    color: #7f8c8d;
+    color: #ffffff;
+    font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    letter-spacing: 2px;
+}
+.scroll-btn > *:hover,
+.scroll-btn > *:focus,
+.scroll-btn > *.active {
+    color: #ffffff;
+}
+.scroll-btn > *:hover,
+.scroll-btn > *:focus,
+.scroll-btn > *:active,
+.scroll-btn > *.active {
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+}
+.scroll-btn .mouse {
+    position: relative;
+    display: block;
+    width: 35px;
+    height: 80px;
+    margin: 0 auto 20px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 3px solid #ffffff;
+    border-radius: 23px;
+    background-color: rgba(0,0,0,.2);
+    box-shadow: 1px 3px rgba(0,0,0,.5);
+}
+.scroll-btn .mouse > * {
+    position: absolute;
+    display: block;
+    top: 29%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    margin: -4px 0 0 -4px;
+    background: $LIGHT_COLOR;
+    border-radius: 50%;
+    -webkit-animation: ani-mouse 3.5s linear infinite;
+    -moz-animation: ani-mouse 3.5s linear infinite;
+    animation: ani-mouse 3.5s linear infinite;
+}
+///Animation icon scroll/////////////////////////////////////////
+@-webkit-keyframes ani-mouse {
+    0% {
+    opacity: 1;
+    top: 29%;
+    }
+    15% {
+    opacity: 1;
+    top: 50%;
+    }
+    50% {
+    opacity: 0;
+    top: 50%;
+    }
+    100% {
+    opacity: 0;
+    top: 29%;
+    }
+}
+@-moz-keyframes ani-mouse {
+    0% {
+    opacity: 1;
+    top: 29%;
+    }
+    15% {
+    opacity: 1;
+    top: 50%;
+    }
+    50% {
+    opacity: 0;
+    top: 50%;
+    }
+    100% {
+    opacity: 0;
+    top: 29%;
+    }
+}
+@keyframes ani-mouse {
+    0% {
+    opacity: 1;
+    top: 29%;
+    }
+    15% {
+    opacity: 1;
+    top: 80%;
+    }
+    50% {
+    opacity: 0;
+    top: 80%;
+    }
+    100% {
+    opacity: 0;
+    top: 29%;
+    }
+}
+    /////////////////////////////////////////////////
 //My Styles
-//Text
+//My colors - Text
 .text-primary-color{
     color: $PRIMARY_COLOR !important;
 }
@@ -24,7 +138,7 @@
 .text-dark-color{
     color: $DARK_COLOR !important;
 }
-//Backgrounds
+//My colors - Backgrounds
 .bg-primary-color{
     background-color: $PRIMARY_COLOR !important;
 }
@@ -38,6 +152,9 @@
     background-color: $LIGHT_COLOR !important;
 }
 //Containers
+html {
+    scroll-behavior: smooth;
+}
 body{
     margin: 0;
     padding: 0;
@@ -67,7 +184,7 @@ section{
     background-repeat: no-repeat;
     height: 85vh;
     justify-content: center;
-    padding: 8vh 15vw 5vh 15vw;
+    padding: 5vh 10vw 3vh 5vw;
 
 }
 #banner h1{
@@ -89,6 +206,12 @@ section{
     font-size: 3vh;
 
 }
+#banner img{
+    width:100%;
+    border:none;
+    height:100%
+}
+
 .logo{
     font-size: 3.5vh;
     text-decoration: none;
@@ -101,7 +224,7 @@ section{
     border-style: solid;
     border-radius: 900px;
     border-width: 7.5px;
-    border-color: $LIGHT_COLOR;
+    border-color: $PRIMARY_COLOR;
     width: 100px;
     height: 100px;
     justify-content: center;
@@ -179,3 +302,78 @@ section{
     font-size: 2vh;
 
 }
+#myVideo {
+    position: relative;
+    left: 0;
+    height: 90vh;
+    max-width:97.5vw;
+}
+/* The device with borders */
+.smartphone {
+    position: relative;
+    width: 317px;
+    height: 660px;
+    margin: auto;
+    border: 16px black solid;
+    border-top-width: 60px;
+    border-bottom-width: 60px;
+    border-radius: 36px;
+
+    -webkit-animation: ani-phone 2s ease;
+    -moz-animation: ani-phone 2s ease ;
+    animation: ani-phone 2s ease;
+
+  }
+
+  /* The horizontal line on the top of the device */
+  .smartphone:before {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 5px;
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #333;
+    border-radius: 10px;
+  }
+
+  /* The circle on the bottom of the device */
+  .smartphone:after {
+    content: '';
+    display: block;
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    left: 50%;
+    bottom: -65px;
+    transform: translate(-50%, -50%);
+    background: #333;
+    border-radius: 50%;
+  }
+
+  /* The screen (or content) of the device */
+  .smartphone .content {
+    width: 285px;
+    height: 540px;
+    background:transparent;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 0;
+    padding: 0;
+    align-self: center;
+  }
+//Animation Phone
+@keyframes ani-phone {
+    0% {
+        transform: scale(.75)
+    }
+    70% {
+        transform: scale(1.1)
+    }
+    100% {
+        transform: scale(1)
+    }
+}
+//////Animation Phone end
