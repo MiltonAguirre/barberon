@@ -24,12 +24,9 @@
     <div id="app">
         <nav class="navbar sticky-top navbar-expand-md navbar-dark shadow-sm color-secondary">
             <div class="logo-circle">
-                <span class="logo">
-                    BB
-</span>
+                <span class="logo">BB</span>
             </div>
             <div class="container">
-
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -110,12 +107,12 @@
                 </div>
             </div>
         </nav>
-        @guest
-
         <main class="my-3">
             @yield('content')
         </main>
-        @endguest
+        <footer class="footer">
+            <h1 class="text-white">Footer</h1>
+        </footer>
     </div>
 </body>
 </html>

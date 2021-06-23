@@ -154,6 +154,8 @@
 //Containers
 html {
     scroll-behavior: smooth;
+    position: relative;
+    min-height: 100%;
 }
 body{
     margin: 0;
@@ -173,7 +175,7 @@ nav{
 }
 section{
     margin-bottom: 2.5vh;
-    box-shadow: .25vw .5vh rgba(0,0,0,.5);
+    box-shadow: 0.1vw 0.5vh rgba(0,0,0,0.5);
     z-index: 1vh;
     width: 'auto';
     align-self: center;
@@ -318,15 +320,17 @@ section{
     border-top-width: 60px;
     border-bottom-width: 60px;
     border-radius: 36px;
+    box-shadow: 0.1vw 0.5vh rgba(0,0,0,0.5);
+    z-index: 3vh;
 
     -webkit-animation: ani-phone 2s ease;
     -moz-animation: ani-phone 2s ease ;
     animation: ani-phone 2s ease;
 
-  }
+}
 
-  /* The horizontal line on the top of the device */
-  .smartphone:before {
+/* The horizontal line on the top of the device */
+.smartphone:before {
     content: '';
     display: block;
     width: 60px;
@@ -337,10 +341,10 @@ section{
     transform: translate(-50%, -50%);
     background: #333;
     border-radius: 10px;
-  }
+}
 
-  /* The circle on the bottom of the device */
-  .smartphone:after {
+/* The circle on the bottom of the device */
+.smartphone:after {
     content: '';
     display: block;
     width: 35px;
@@ -351,10 +355,10 @@ section{
     transform: translate(-50%, -50%);
     background: #333;
     border-radius: 50%;
-  }
+}
 
-  /* The screen (or content) of the device */
-  .smartphone .content {
+/* The screen (or content) of the device */
+.smartphone .content {
     width: 285px;
     height: 540px;
     background:transparent;
@@ -363,7 +367,8 @@ section{
     margin: 0;
     padding: 0;
     align-self: center;
-  }
+
+}
 //Animation Phone
 @keyframes ani-phone {
     0% {
@@ -377,3 +382,13 @@ section{
     }
 }
 //////Animation Phone end
+
+//FOOTER//////////////////////
+.footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 30vh;
+    line-height: 60px;
+    background-color: $DARK_COLOR;
+}
