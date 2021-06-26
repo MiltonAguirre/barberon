@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\File;
 use \App\Product;
 use \App\Barber;
 use \App\Turn;
+use Validator;
 
 class UserController extends Controller
 {
@@ -28,8 +29,8 @@ class UserController extends Controller
     function storeTurn(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'start' => 'required|string|date',
-            'product_id' => 'required|min:5|max:20',
+            'start' => 'required|date_format:Y-m-d H:i|after:now',
+            'product_id' => 'required|integer|min:1',
         ]);
 
         if($validator->fails()){
@@ -60,12 +61,19 @@ class UserController extends Controller
         return response()->json($turns,200);
    }
 
-   function cancelTurn($id)
+   function cancelTurn(Request $request)
    {
+        $validator = Validator::make($request->all(), [
+            'turn_id' => 'required|integer|min:1',
+        ]);
+
+        if($validator->fails()){
+            return response()->json(['errors' => $validator->errors()]);
+        }
         $user = auth('api')->user();
         if(!$user) abort(401);
 
-        $turn = Turn::findOrFail($id);
+        $turn = Turn::findOrFail($request->turn_id);
         if($user->id !== $turn->user->id) abort(401);
 
         $turn->state = 'canceled';

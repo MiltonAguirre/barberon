@@ -45,7 +45,7 @@ Route::group(['prefix' => 'auth'], function () {
         //Turns
         Route::get('/turns', 'UserController@getTurns');
         Route::post('/turns', 'UserController@storeTurn');
-        Route::post('/turns/cancel/{id}', 'UserController@cancelTurn');
+        Route::post('/turns/cancel', 'UserController@cancelTurn');
 
     });
 
