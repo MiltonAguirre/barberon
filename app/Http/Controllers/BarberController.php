@@ -19,9 +19,9 @@ class BarberController extends Controller
       $this->middleware('auth:api');
   }
 
-  public function show($id = '')
+  public function showMyBarber()
   {
-    if(is_numeric($id)){
+    /*if(is_numeric($id)){
       $barber = Barber::find($id);
       if(!$barber){
         return response()->json([
@@ -31,17 +31,17 @@ class BarberController extends Controller
         return response()->json($barber->getData(),200);
       }
 
-    }else{
+    }else{*/
       $user = auth('api')->user();
-      if(!$user || !$user->isBarber()) 
+      if(!$user || !$user->isBarber())
       return response()->json([
         'message'=>'Usted no tiene los permisos para esta acción'
       ],400);
-      
+
       $barber = $user->barber ? $user->barber->getData() : [];
       return response()->json($barber,200);
 
-    }
+    //}
   }
 
   public function showBarbers(Request $request)
@@ -62,7 +62,7 @@ class BarberController extends Controller
       //$res['schedules'] = $barber->getSchedules();
       $response[] = $res;
     }
-    
+
     return response()->json($response,200);
 
   }

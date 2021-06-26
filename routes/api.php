@@ -25,12 +25,12 @@ Route::group(['prefix' => 'auth'], function () {
         Route::post('barbers/store', 'BarberController@store');
         Route::post('barbers/update', 'BarberController@update');
         Route::get('barbers', 'BarberController@showBarbers');
-        Route::get('barbers/barber/{id?}', 'BarberController@show');
+        Route::get('barbers/my-barber/show', 'BarberController@showMyBarber');
         //Schedules
         Route::post('schedule/store', 'BarberController@loadSchedule');
         Route::post('schedule/update', 'BarberController@uploadSchedule');
         Route::get('schedule', 'BarberController@getSchedule');
-        
+
         //Products
         Route::get('/products/{id}', 'ProductController@show');
         Route::get('/products/all/{id}', 'ProductController@showAllProducts');
