@@ -19,10 +19,14 @@ class Barber extends Model
   public function products(){
     return $this->hasMany(Product::class);
   }
+  public function turns(){
+    return $this->hasMany(Turn::class);
+  }
+  /*
   public function schedule(){
     return $this->hasOne(Schedule::class);
   }
-  
+  */
   function getData(){
       return [
           'id' =>  $this->id,
@@ -33,7 +37,8 @@ class Barber extends Model
           'state' =>  $this->location ? $this->location->state : $this->state,
       ];
   }
-
+/*
+************IN CONSTRUCCION ***************
   function getSchedules(){
     if(!$this->schedule){
       return [];
@@ -50,4 +55,5 @@ class Barber extends Model
     }
 
   }
+  */
 }

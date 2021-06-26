@@ -76,32 +76,6 @@ class BarberController extends Controller
       'city' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
       'state' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
       // 'image_path' => 'image'
-    ],
-    [
-      'name.required' => 'Debe ingresar el nombre de la barbería.',
-      'name.min' => 'El nombre no puede ser tan corto.',
-      'name.max' => 'El nombre no puede ser tan largo.',
-      'name.regex' => 'El nombre debe contener solo letras y espacios.',
-      'name.string' => 'El nombre es incorrecto.',
-      'phone.required' => 'Debe ingresar el número telefónico de la barbería.',
-      'phone.min' => 'El número telefónico es demasiado corto.',
-      'phone.max' => 'El número telefónico es demasiado largo.',
-      'address.required' => 'Debe ingresar la dirección donde atiende.',
-      'address.string' => 'La dirección es inválida.',
-      'address.min' => 'La dirección no puede ser tan corta.',
-      'address.max' => 'La dirección no puede ser tan larga.',
-      'city.required' => 'Debe ingresar la ciudad donde atiende.',
-      'city.string' => 'La ciudad es inválida.',
-      'city.min' => 'La ciudad no puede ser tan corta.',
-      'city.max' => 'La ciudad no puede ser tan larga.',
-      'city.regex' => 'La ciudad debe contener solo letras y espacios.',
-      'state.required' => 'Debe ingresar la localidad donde atiende.',
-      'state.string' => 'La localidad es inválida.',
-      'state.min' => 'La localidad no puede ser tan corta.',
-      'state.max' => 'La localidad no puede ser tan larga.',
-      'state.regex' => 'La localidad debe contener solo letras y espacios.',
-      'image_path.image' => 'La imagen no es un archivo válido.',
-
     ]);
     if($validator->fails()){
       return response()->json(['errors' => $validator->errors()]);
@@ -139,7 +113,7 @@ class BarberController extends Controller
     ],200);
 
   }
-
+//************PENDING INTERFACE************
   public function update(Request $request)
   {
     $validator = Validator::make($request->all(), [
@@ -149,32 +123,6 @@ class BarberController extends Controller
       'city' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
       'state' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
       // 'image_path' => 'image'
-    ],
-    [
-      'name.required' => 'Debe ingresar el nombre de la barbería.',
-      'name.min' => 'El nombre no puede ser tan corto.',
-      'name.max' => 'El nombre no puede ser tan largo.',
-      'name.regex' => 'El nombre debe contener solo letras y espacios.',
-      'name.string' => 'El nombre es incorrecto.',
-      'phone.required' => 'Debe ingresar el número telefónico de la barbería.',
-      'phone.min' => 'El número telefónico es demasiado corto.',
-      'phone.max' => 'El número telefónico es demasiado largo.',
-      'address.required' => 'Debe ingresar la dirección donde atiende.',
-      'address.string' => 'La dirección es inválida.',
-      'address.min' => 'La dirección no puede ser tan corta.',
-      'address.max' => 'La dirección no puede ser tan larga.',
-      'city.required' => 'Debe ingresar la ciudad donde atiende.',
-      'city.string' => 'La ciudad es inválida.',
-      'city.min' => 'La ciudad no puede ser tan corta.',
-      'city.max' => 'La ciudad no puede ser tan larga.',
-      'city.regex' => 'La ciudad debe contener solo letras y espacios.',
-      'state.required' => 'Debe ingresar la localidad donde atiende.',
-      'state.string' => 'La localidad es inválida.',
-      'state.min' => 'La localidad no puede ser tan corta.',
-      'state.max' => 'La localidad no puede ser tan larga.',
-      'state.regex' => 'La localidad debe contener solo letras y espacios.',
-      'image_path.image' => 'La imagen no es un archivo válido.',
-
     ]);
     if($validator->fails()){
       return response()->json(['errors' => $validator->errors()]);
@@ -206,6 +154,9 @@ class BarberController extends Controller
 
   }
 
+/*
+************IN CONSTRUCTION************
+
   public function loadSchedule(Request $request)
   {
     $validator = Validator::make($request->all(), [
@@ -235,8 +186,6 @@ class BarberController extends Controller
 
   public function uploadSchedule(Request $request)
   {
-    dd($request);
-
     $validator = Validator::make($request->all(), [
       'days' => 'required|array',
       'open' => 'required|array',
@@ -281,5 +230,6 @@ class BarberController extends Controller
     $file = Storage::disk('barbers')->get($filename);
     return new Response($file,200);
   }
-
+************************************
+  */
 }

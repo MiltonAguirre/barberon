@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Turn extends Model
 {
     protected $fillable = [
-        'initial', 'state'
+        'start', 'state', 'product_id'
     ];
     //Relationshps
     public function user(){
@@ -15,5 +15,8 @@ class Turn extends Model
     }
     public function product(){
       return $this->belongsto(Product::class);
+    }
+    public function barber(){
+        return $this->belongsto(Barber::class);
     }
 }

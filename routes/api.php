@@ -21,15 +21,19 @@ Route::group(['prefix' => 'auth'], function () {
     Route::group(['middleware' => 'auth:api'], function() {
         Route::get('logout', 'AuthController@logout');
         Route::get('user', 'AuthController@user');
+
         //Barber
         Route::post('barbers/store', 'BarberController@store');
         Route::post('barbers/update', 'BarberController@update');
         Route::get('barbers', 'BarberController@showBarbers');
         Route::get('barbers/my-barber/show', 'BarberController@showMyBarber');
+
         //Schedules
+        /*
         Route::post('schedule/store', 'BarberController@loadSchedule');
         Route::post('schedule/update', 'BarberController@uploadSchedule');
         Route::get('schedule', 'BarberController@getSchedule');
+        */
 
         //Products
         Route::get('/products/{id}', 'ProductController@show');
@@ -37,6 +41,11 @@ Route::group(['prefix' => 'auth'], function () {
         Route::post('/products/store', 'ProductController@store');
         Route::post('/products/update', 'ProductController@update');
         Route::delete('/products/delete/{id}', 'ProductController@destroy');
+
+        //Turns
+        Route::get('/turns', 'UserController@getTurns');
+        Route::post('/turns', 'UserController@storeTurn');
+        Route::post('/turns/cancel/{id}', 'UserController@cancelTurn');
 
     });
 
