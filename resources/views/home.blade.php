@@ -2,7 +2,10 @@
 
 @section('content')
 @include('includes.message')
-
+<!--/**
+TO DO:
+apply bootstrap responsive
+*/-->
 <div class="container-fluid">
     <section id="banner">
         <div class="row justify-content-center">
@@ -56,59 +59,71 @@
         </div>
     </section>
 
-    <section id="info" class="info bg-primary-color float-right">
-        <div class="row my-5 pt-3 pb-5">
+    <section>
+        <div class="row my-5">
             <div class="col-md-6">
-                <img src="{{asset('img/data4.jpg')}}" alt="" width="350"/>
+                <div class="info info-two ">
+                    <div class="row my-5 p-3">
+                        <div class="col-md-6 p-3">
+                            <h1>Potencia tu trabajo...</h1>
+                            <p>Eres un peluquero/a independiente o tienes una barberia?</p>
+                            <p>Pues monta tu barbería online para <span class="text-primary-color font-weight-bold">promocionar tu trabajo</span> y contactar con nuevos clientes</p>
+                        </div>
+                        <div class="col-md-6">
+                            <img src="{{asset('img/data3.jpg')}}" alt="" width="200"/>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-6 p-3 justify-content-center">
-                <h1>...Con Barber On podes</h1>
-                <p>Encontrá barberias y peluqueros/as independientes en tu zona</p>
-                <p>Mira sus trabajos, precios y calificaciones!</p>
-                <p>Ya elegiste donde te vas a atender? <span class="text-primary-color font-weight-bold">Obtené tu reserva</span></p>
+            <div class="col-md-6">
+                <div id="info" class="info bg-primary-color">
+                    <div class="row my-5 p-3">
+                        <div class="col-md-6">
+                            <img src="{{asset('img/data4.jpg')}}" alt="" width="350"/>
+                        </div>
+                        <div class="col-md-6 p-3 justify-content-center">
+                            <h1>...Con Barber On podes</h1>
+                            <p>Encontrá barberias y peluqueros/as independientes en tu zona</p>
+                            <p>Mira sus trabajos, precios y calificaciones!</p>
+                            <p>Ya elegiste donde te vas a atender? <span class="text-primary-color font-weight-bold">Obtené tu reserva</span></p>
 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row my-5">
+            <div class="col-md-6">
+                <div class="info bg-dark-color">
+                    <div class="row my-5 p-3">
+                        <div class="col-md-6">
+                            <img src="{{asset('img/data2.jpg')}}" alt="" width="350"/>
+                        </div>
+                        <div class="col-md-6 p-3 justify-content-center">
+                            <h1>Una barberia mejor es una vida mejor</h1>
+                            <p>Barber On organizará las reservas para que los clientes disfruten de la experiencia <span class="text-primary-color font-weight-bold">sin demoras</span></p>
+                            <p>Gracias a esta funcionalidad, se evitan aglomeramientos de personas, <span class="text-primary-color font-weight-bold">cuidando así la salud de todos</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="info info-two">
+                    <div class="row my-5 p-3">
+                        <div class="col-md-6 p-3">
+                            <h1>Potencia tu trabajo...</h1>
+                            <p>Eres un peluquero/a independiente o tienes una barberia?</p>
+                            <p>Pues monta tu barbería online para <span class="text-primary-color font-weight-bold">promocionar tu trabajo</span> y contactar con nuevos clientes</p>
+                        </div>
+                        <div class="col-md-6">
+                            <img src="{{asset('img/data.jpg')}}" alt=""  height="300"/>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-    <section class="info info-two ">
-        <div class="row my-5 pt-3 pb-5">
-            <div class="col-md-6 p-3">
-                <h1>Potencia tu trabajo...</h1>
-                <p>Eres un peluquero/a independiente o tienes una barberia?</p>
-                <p>Pues monta tu barbería online para <span class="text-primary-color font-weight-bold">promocionar tu trabajo</span> y contactar con nuevos clientes</p>
-            </div>
-            <div class="col-md-6">
-                <img src="{{asset('img/data3.jpg')}}" alt="" width="200"/>
-            </div>
-        </div>
-    </section>
 
-
-    <section class="info info-two float-right">
-        <div class="row my-5 pt-3 pb-5">
-            <div class="col-md-6 p-3">
-                <h1>Potencia tu trabajo...</h1>
-                <p>Eres un peluquero/a independiente o tienes una barberia?</p>
-                <p>Pues monta tu barbería online para <span class="text-primary-color font-weight-bold">promocionar tu trabajo</span> y contactar con nuevos clientes</p>
-            </div>
-            <div class="col-md-6">
-                <img src="{{asset('img/data.jpg')}}" alt=""  height="300"/>
-            </div>
-        </div>
-    </section>
-
-    <section class="info bg-dark-color">
-        <div class="row my-5 pt-3 pb-5">
-            <div class="col-md-6">
-                <img src="{{asset('img/data2.jpg')}}" alt="" width="350"/>
-            </div>
-            <div class="col-md-6 p-3 justify-content-center">
-                <h1>Una barberia mejor es una vida mejor</h1>
-                <p>Barber On organizará las reservas para que los clientes disfruten de la experiencia <span class="text-primary-color font-weight-bold">sin demoras</span></p>
-                <p>Gracias a esta funcionalidad, se evitan aglomeramientos de personas, <span class="text-primary-color font-weight-bold">cuidando así la salud de todos</span></p>
-            </div>
-        </div>
-    </section>
     <video autoplay muted loop id="myVideo">
         <source src="{{asset('videos/how-video.mp4')}}" type="video/mp4">
     </video>
