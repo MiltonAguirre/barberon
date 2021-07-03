@@ -78,14 +78,13 @@
                 <p>Pues monta tu barbería online para <span class="text-primary-color font-weight-bold">promocionar tu trabajo</span> y contactar con nuevos clientes</p>
             </div>
             <div class="col-md-6">
-                <img src="{{asset('img/data3.jpg')}}" alt="" width="250"/>
+                <img src="{{asset('img/data3.jpg')}}" alt="" width="200"/>
             </div>
         </div>
     </section>
 
 
     <section class="info info-two float-right">
-
         <div class="row my-5 pt-3 pb-5">
             <div class="col-md-6 p-3">
                 <h1>Potencia tu trabajo...</h1>
@@ -93,7 +92,7 @@
                 <p>Pues monta tu barbería online para <span class="text-primary-color font-weight-bold">promocionar tu trabajo</span> y contactar con nuevos clientes</p>
             </div>
             <div class="col-md-6">
-                <img src="{{asset('img/data.jpg')}}" alt="" width="250"/>
+                <img src="{{asset('img/data.jpg')}}" alt=""  height="300"/>
             </div>
         </div>
     </section>

@@ -175,8 +175,8 @@ nav{
 }
 section{
     margin-bottom: 2.5vh;
-    box-shadow: 0.1vw 0.5vh rgba(0,0,0,0.5);
-    z-index: 1vh;
+    box-shadow: 0.1vw 0.5vh .5vw rgba(0,0,0,0.5);
+    z-index: 3;
     width: 'auto';
     align-self: center;
 }
@@ -241,9 +241,10 @@ section{
     background-image: url('../../public/img/bg-banner2.png');
     background-size: cover;
     background-repeat: no-repeat;
-    height: 55vh;
+    background-color: $LIGHT_COLOR;
+    height: 50vh;
     justify-content: center;
-    padding: 2.5vh 2.5vw;
+    padding: 1vh 2.5vw;
     border-radius: 2.5vh;
     text-align: center;
     width: 47.5vw;
@@ -261,22 +262,29 @@ section{
 .info p{
     font-size: 2vh;
     color: $LIGHT_COLOR;
-
 }
 .info img{
-    border-radius: 4vh;
-    border-width: 1vh;
+    border-radius: 1vw;
+    border-width: .5vw;
     border-color: $LIGHT_COLOR;
     border-style: double;
 
 }
 .info-two{
-    background-image: url('../../public/img/bg-banner3.png');
+    background-image: none;
 
 }
 .info-two h1{
     color: $PRIMARY_COLOR;
 
+}
+.info-two p{
+
+    font-size: 2vh;
+    color: $DARK_COLOR;
+}
+.info-two img{
+    border-style: none;
 }
 #contact{
     justify-content: center;
