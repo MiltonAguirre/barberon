@@ -52,27 +52,9 @@ class ProductController extends Controller
       'name' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
       'description' => 'required|string|min:10|max:255|regex:/^[\pL\s]+$/u',
       'price' => 'required|numeric',
-      'delay' => 'required|numeric|min:30',
+      'hours' => 'required|integer|min:0|max:24',
+      'minutes' => 'required|integer|min:0|max:30',
       'image' => 'required|image|mimes:jpeg,png,jpg|max:2048'
-    ],
-    [
-      'image.image' => 'La imagen no es un archivo válido.',
-      'image.required' => 'Debe subir una foto del trabajo.',
-      'name.required' => 'Debe ingresar un nombre descriptivo.',
-      'name.min' => 'El nombre no puede ser tan corto.',
-      'name.max' => 'El nombre no puede ser tan largo.',
-      'name.regex' => 'El nombre debe contener solo letras y espacios.',
-      'name.string' => 'El nombre es inválido.',
-      'description.required' => 'Debe ingresar una descripción del producto.',
-      'description.min' => 'La descripción no puede ser tan corta.',
-      'description.max' => 'La descripción no puede ser tan larga.',
-      'description.regex' => 'La descripción debe contener solo letras y espacios.',
-      'description.string' => 'La descripción es inválida.',
-      'delay.required' => 'Debe ingresar un tiempo estimado de trabajo.',
-      'delay.numeric' => 'El tiempo estimado debe contener solo números.',
-      'delay.min' => 'El tiempo ingresado debe ser mínimo 30 minutos.',
-      'price.required' => 'Debe ingresar el precio del trabajo.',
-      'price.numeric' => 'El precio debe contener solo números.'
     ]);
 
     if ($validator->fails()){
@@ -85,7 +67,8 @@ class ProductController extends Controller
     $product->name = $request->name;
     $product->description = $request->description;
     $product->price = $request->price;
-    $product->delay = $request->delay;
+    $product->hours = $request->hours;
+    $product->minutes = $request->minutes;
 
     $product->barber()->associate($user->barber);
     $product->save();
@@ -105,7 +88,7 @@ class ProductController extends Controller
     foreach($products as $product){
       $product['images'] = $product->images;
     }
-    
+
     return response()->json([
       'products'=>$products,
       'message'=>'Se agregó un nuevo producto a su barbería'
@@ -118,33 +101,14 @@ class ProductController extends Controller
       'name' => 'required|string|min:3|max:255|regex:/^[\pL\s]+$/u',
       'description' => 'required|string|min:10|max:255|regex:/^[\pL\s]+$/u',
       'price' => 'required|numeric',
-      'delay' => 'required|numeric|min:30',
+      'hours' => 'required|integer|min:0|max:24',
+      'minutes' => 'required|integer|min:0|max:30',
       'id' => 'required|integer|min:1'
-    ],
-    [
-      'name.required' => 'Debe ingresar un nombre descriptivo.',
-      'name.min' => 'El nombre no puede ser tan corto.',
-      'name.max' => 'El nombre no puede ser tan largo.',
-      'name.regex' => 'El nombre debe contener solo letras y espacios.',
-      'name.string' => 'El nombre es inválido.',
-      'description.required' => 'Debe ingresar una descripción del producto.',
-      'description.min' => 'La descripción no puede ser tan corta.',
-      'description.max' => 'La descripción no puede ser tan larga.',
-      'description.regex' => 'La descripción debe contener solo letras y espacios.',
-      'description.string' => 'La descripción es inválida.',
-      'delay.required' => 'Debe ingresar un tiempo estimado de trabajo.',
-      'delay.numeric' => 'El tiempo estimado debe contener solo números.',
-      'delay.min' => 'El tiempo ingresado debe ser mínimo de 30 minutos.',
-      'price.required' => 'Debe ingresar el precio del trabajo.',
-      'price.numeric' => 'El precio debe contener solo números.',
-
     ]);
-    /**
-     * if ($validator->fails()){
+    if ($validator->fails()){
       return response()->json(['errors' => $validator->errors()],401);
     }
-     */
-    
+
     $user = auth('api')->user();
     if(!$user || !$user->isBarber()) abort(401);
 
@@ -155,7 +119,8 @@ class ProductController extends Controller
       $product->name = $request->name;
       $product->description = $request->description;
       $product->price = $request->price;
-      $product->delay = $request->delay;
+      $product->hours = $request->hours;
+      $product->minutes = $request->minutes;
       $product->save();
 
     }
@@ -191,7 +156,7 @@ class ProductController extends Controller
     if(!$product) abort(401);
 
     $product->delete();
-    
+
     return response()->json([
       'message'=>'El producto fue eliminado de su barbería'
     ],200);
