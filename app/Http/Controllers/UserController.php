@@ -56,6 +56,11 @@ class UserController extends Controller
    {
         $user = auth('api')->user();
         if(!$user) abort(401);
+        foreach($user->turns as $turn ){
+            $turn["product_name"] = $turn->product->name;
+            $turn["barber_name"] = $turn->barber->name;
+
+        }
         $turns = $user->turns ? $user->turns : [];
 
         return response()->json($turns,200);
@@ -78,7 +83,16 @@ class UserController extends Controller
 
         $turn->state = 'canceled';
         $turn->save();
+
+        foreach($user->turns as $turn ){
+            $turn["product_name"] = $turn->product->name;
+            $turn["barber_name"] = $turn->barber->name;
+
+        }
+        $turns = $user->turns ? $user->turns : [];
+
         return response()->json([
+            'turns'=>$turns,
             'message'=>'Se ha cancelado el turno con éxito'
         ],200);
    }
